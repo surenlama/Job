@@ -294,10 +294,52 @@ Want to login?<a href="{% url 'login' %}">Login</a>
                                 </div> -->
                             
                             </div>
-                            <div class="form-group mt-3">
-                                <button type="submit" class="button button-contactForm boxed-btn">Send</button>
+                            <div class="form-group mt-4">
+                                <button type="submit" class="button button-contactForm boxed-btn" style="background-size: 2px;">Send</button>
+                                <!-- <a href="#" class="btn post-btn">Update</a>
+                                <a href="{% url 'job_create' %}" class="btn post-btn">Delete</a> -->
+
                             </div>
                         </form>
+                    </div>
+                    <div class="our-services section-pad-t30">
+                        <div class="container">
+                            <!-- Section Tittle -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="section-tittle text-center">
+                                        <span>FEATURED TOURS Packages</span>
+                                        <h2>Browse Top Categories </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row d-flex justify-contnet-center">
+                             
+                             {% for i in category_list%}
+                             
+                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                                    <div class="single-services text-center mb-30">
+                                        <div class="services-ion">
+                                            <img src="/media/{{i.image}}" alt="no image" style="height: 150px; width: 250px;">                              </div>
+                                        </div>
+                                        <div class="services-cap">
+                                            <h5 style="color: black;"><a href="job_listing.html"></a>{{i.name}}</h5>
+                                            <span>(658)</span>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <!-- More Btn -->
+                            <!-- Section Button -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="browse-btn2 text-center mt-50">
+                                        <a href="job_listing.html" class="border-btn2">Browse All Sectors</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-3 offset-lg-1">
                         <div class="media contact-info">

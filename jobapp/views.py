@@ -23,19 +23,26 @@ class CategoryList(ListView):
     context_object_name = "category_list"
 
 
+class CategoryListOne(ListView):
+    model = Category
+    template_name = "categorylist.html"
+    success_url = '/categoryone/update/'
+    context_object_name = "category_list"
+
+
 class CategoryUpdate(UpdateView):
     # queryset = Patient.objects.all()(yo gardani huncha ya model rakhda ni hunhca)
     model = Category
     form_class = CategoryForm
     template_name = "category.html"
-    success_url = '/category/list/'    
+    success_url = '/categoryone/list/'    
 
 
 class CategoryDelete(DeleteView):
     # queryset = Patient.objects.all()(yo gardani huncha ya model rakhda ni hunhca)
     model = Category
     template_name = "categorydelete.html"
-    success_url = '/category/list/'  
+    success_url = '/categoryone/list/'  
     
 
 class JobCreate(CreateView):

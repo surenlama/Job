@@ -264,7 +264,7 @@ Want to login?<a href="{% url 'login' %}">Login</a>
                     </center>
                     </div>
                     <div class="col-lg-8">
-                        <form class="form-contact contact_form"  method="post"  novalidate="novalidate">
+                        <form class="form-contact contact_form"  method="post"  novalidate="novalidate" enctype="multipart/form-data">
                             <div class="row">
                                     {% csrf_token %}
                                     {% if messages %}
