@@ -5,7 +5,7 @@ from jobapp.views import CategoryDelete,CategoryList,CategoryCreate,CategoryUpda
 
 urlpatterns = [
     path('category/create/', CategoryCreate.as_view(), name="category_create"),
-    path('category/list/', CategoryList.as_view(), name='category_list'),
+    path('category/list/', CategoryList.as_view(), name='admindashboard_list'),
     path('categoryone/list/', CategoryListOne.as_view(), name='categoryone_list'),
 
     path('category/update/<str:pk>/', CategoryUpdate.as_view(), name='category_update'),

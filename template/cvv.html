@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV</title>
+</head>
+<body>
+    <center><h2>{{object.first_name}}{{object.last_name}}</h2>
+    <h3>Phone:+977{{object.number}} Email:{{object.email}} Location:{{object.location}}</h3>
+    </center><br>
+    <br>
+    <img src="/media/{{object.image}}" alt="no image" style="height: 150px; width: 250px;">                        
+
+    <h3>Education</h3><hr>
+    {% for i in education %}
+      {% if forloop.counter|divisibleby:1 %}
+      {% if i.name %}
+      <p>{{i.name}}</p>
+      {% endif %}      {% endif %}
+      {% endfor %}
+        <h3>Relevant Coursework</h3><hr>
+        {% for i in course %}
+        {% if forloop.counter|divisibleby:1 %}
+        {% if i.name %}
+        <p>{{i.name}}</p>
+        {% endif %}      {% endif %}
+        {% endfor %}
+        <h3>Experience</h3><hr>
+        {% for i in experience %}
+        {% if forloop.counter|divisibleby:1 %}
+        <hp>{{i.company_name}}</p>
+        <p>As a {{i.field_type}}</p>
+        <span>Position: {{i.position}}</span>
+        <span>Started year: {{i.start_year}}</span>
+        <span>Ended year: {{i.end_year}}</span>
+        <ul>
+            <li>
+                <span>{{i.objectives}}</span>
+            </li>
+        </ul>
+
+    {% endif %}
+{% endfor %}
+ 
+<h3>Projects</h3><hr>
+{% for i in project %}
+{% if forloop.counter|divisibleby:1 %}
+<p>{{i.name}}</p>
+<p>Tools Used: {{i.tools}}</p>
+Feature:
+
+<ul>
+    <li>
+        <p>{{i.feature}}</p>
+    </li>
+</ul>
+{% endif %}
+{% endfor %}  
+
+
+<h3>Skills</h3><hr>
+{% for i in skill %}
+{% if forloop.counter|divisibleby:1 %}
+<p>{{i.skills_type}}</p>
+<p>Tescription: {{i.description}}</p>
+
+{% endif %}
+{% endfor %}  
+<h3>Expected Salary</h3><hr>
+<p>{{object.salary}}</p>
+</body>
+</html>

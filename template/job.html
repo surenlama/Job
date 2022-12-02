@@ -1,502 +1,489 @@
-<!-- <!DOCTYPE html>
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body{
-            margin: 0;
-            padding: 0;
-            font-family: montserrat;
-            background: linear-gradient(120deg,#2980b9,#8e44ad);
-            height: 100vh;
-            overflow: hidden;
-        }
-        .center{
-            position: absolute;
-            top: 50%;
-            left:50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            background: white;
-            border-radius: 10px;
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-        }
-        .center h1{
-            text-align: center;
-            padding: 0 0 20px 0;
-            border-bottom: 1px solid silver;
-        }
-        .center form{
-            padding: 0 40px;
-            box-sizing: border-box;
-        }
-        form .txt_field{
-            position: relative;
-            border-bottom: 2px solid #adadad;
-            margin: 30px 0;
-        }
-        .txt_field input{
-            width: 100%;
-            padding: 0 5px;
-            height: 40px;
-            font-size: 16px;
-            border: none;
-            background: none;
-            outline: none;
-        }
-        .txt_field label{
-            position: absolute;
-            top: 50%;
-            left: 5px;
-            color: #adadad;
-            transform: translateY(-50%);
-            font-size: 16px;
-            pointer-events: none;
-        }
-        .txt_field span::before{
-            content: '';
-            position: absolute;
-            top: 40px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: #2691d9;
-            transition: .5s;
-        }
-        .txt_field input:focus ~ label,
-        .txt_field input:valid ~ label{
-            top:-5px;
-            color:#2691d9;
-        }
-        .txt_field input:focus ~ span::before,
-        .txt_field input:valid ~ span::before{
-            width: 100%;
-        }
-.pass{
-    margin: -5px 0 20px 5px;
-    color: #a6a6a6;
-    cursor: pointer;
+    <title>Admin panel</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
-.pass:hover{
-    text-decoration: underline;
+
+body {
+    overflow-x: hidden;
+    background-color: #fff;
 }
-input[type="submit"]{
+
+.container {
+    position: relative;
     width: 100%;
-    height: 50px;
-    border: 1px solid;
-    background: #2691d9;
-    border-radius: 25px;
-    font-size: 18px;
-    color: #e9f4fb;
-    font-weight: 700;
-    cursor: pointer;
-    outline: none;
 }
-input[type="submit"]:hover{
-    border-color: #2691d9;
-    transition: .5s;
+
+.sidebar {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(45deg, #47cebe, #ef4a82);
+    overflow-x: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 2;
 }
-.signup_link{
-    margin: 30px 0;
-    text-align: center;
-    font-size:16px;
-    color: #666666;
+
+.sidebar ul li {
+    width: 100%;
+    list-style: none;
 }
-.signup_link a{
-    color: #2691d9;
+
+.sidebar ul li:hover {
+    background: #444;
+}
+
+.sidebar ul li:first-child {
+    line-height: 60px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    border-bottom: 1px solid #fff;
+}
+
+.sidebar ul li:first-child:hover {
+    background: none;
+}
+
+.sidebar ul li a {
+    width: 100%;
     text-decoration: none;
+    color: #fff;
+    height: 60px;
+    display: flex;
+    align-items: center;
 }
-.signup_link a:hover{
-    text-decoration: underline;
+
+.sidebar ul li a i {
+    min-width: 60px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.sidebar .title {
+    padding: 0 10px;
+    font-size: 20px;
+}
+
+.main {
+    position: absolute;
+    width: calc(100% - 300px);
+    min-height: 100vh;
+    left: 300px;
+    background: #f5f5f5;
+}
+
+.top-bar {
+    position: fixed;
+    height: 60px;
+    width: calc(100% - 300px);
+    background: #fff;
+    display: grid;
+    grid-template-columns: 10fr 0.4fr 1fr;
+    grid-gap: 5px;
+    align-items: center;
+    color: #444;
+    padding: 0 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.top-bar .search {
+    position: relative;
+    max-width: 400px;
+}
+
+.search input {
+    width: 100%;
+    min-width: 128px;
+    height: 40px;
+    padding: 0 40px;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    background: #f5f5f5;
+}
+
+.search i {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.user {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+.cards {
+    margin-top: 60px;
+    width: 100%;
+    padding: 35px 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+.cards .card {
+    background: linear-gradient(45deg, #47cebe, #ef4a82);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+}
+
+.number {
+    font-size: 35px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.card-name {
+    color: #444;
+    font-weight: 600;
+}
+
+.icon-box i {
+    font-size: 45px;
+    color: #444;
+}
+
+.tables {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 20px;
+    align-items: self-start;
+    padding: 0 20px 20px 20px;
+}
+
+.img-box-small {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.last-appointments,
+.doctor-visiting {
+    min-height: 350px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #444;
+}
+
+.btn {
+    padding: 5px 10px;
+    background: linear-gradient(45deg, #47cebe, #ef4a82);
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+}
+
+table {
+    margin-top: 10px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead td {
+    font-weight: 600;
+    color: #333;
+}
+
+table tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+tbody tr:hover {
+    background: #444;
+    color: #fff;
+}
+
+table tbody tr:last-child {
+    border-bottom: none;
+}
+
+td {
+    padding: 9px 5px;
+}
+
+td i {
+    padding: 7px;
+    color: #fff;
+    border-radius: 50px;
+}
+
+.last-appointments table tbody td:last-child {
+    white-space: nowrap;
+}
+
+.fa-eye {
+    background: #32bea6;
+}
+
+.fa-edit {
+    background: #63b4f4;
+}
+
+.fa-trash-alt {
+    background: #ed5564;
+}
+
+@media(max-width:1090px) {
+    .sidebar {
+        width: 60px;
+    }
+    .main {
+        width: calc(100% - 60px);
+        left: 60px;
+    }
+    .top-bar {
+        width: calc(100% - 60px);
+    }
+}
+
+@media(max-width:860px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .tables {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:530px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+    .last-appointments td:nth-child(3) {
+        display: none;
+    }
+}
+
+@media(max-width:420px) {
+    .last-appointments,
+    .doctor-visiting {
+        font-size: 70%;
+        padding: 10px;
+        min-height: 200px;
+    }
+    .cards,
+    .tables {
+        padding: 10px;
+    }
+    .search input {
+        padding: 0 10px;
+    }
+    .user {
+        width: 40px;
+        height: 40px;
+    }
 }
     </style>
 </head>
+
 <body>
-    <div class="center">
-<h1>Register</h1>
-<form method="post">
-{% csrf_token %}
-{% if messages %}
-{% for message in messages %}
-<h2> {{message}}</h2>
-{% endfor %}
-{% endif %}
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-clinic-medical"></i>
+                        <div class="title">Welcome {{user.username}}</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{%  url 'admindashboard_list'  %}">
+                        <i class="fas fa-th-large"></i>
+                        <div class="title">Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'payment' %}">
+                        <i class="fas fa-stethoscope"></i>
+                        <div class="title">Payments</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'paymentverify' %}">
+                        <i class="fas fa-stethoscope"></i>
+                        <div class="title">Verify Payment</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'companysignup' %}">
+                        <i class="fas fa-user-md"></i>
+                        <div class="title">Company</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'jobaccountcreate' %}">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <div class="title">Job Seeker</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'category_create' %}">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <div class="title">Category</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'job_create'%}">
+                        <i class="fas fa-cog"></i>
+                        <div class="title">Jobs</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}">
+                        <i class="fas fa-question"></i>
+                        <div class="title">Logout</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'changepassword' %}">
+                        <i class="fas fa-question"></i>
+                        <div class="title">ChangePassword</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-question"></i>
+                        <div class="title">Settings</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-question"></i>
+                        <div class="title">Help</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="top-bar">
+                <div class="search">
+                    <input type="text" name="search" placeholder="search here">
+                    <label for="search"><i class="fas fa-search"></i></label>
+                </div>
+                <i class="fas fa-bell"></i>
+                <div class="user">
+                    <img src="/media/{{user.image}}" alt="no image">                      
 
-{% if msg %}
-<h2>{{msg}}</h2>
-{% endif %}
-{% for fm in form %}
-    {{fm.label_tag}} {{fm}}  <br><br>
-    <small style="color:red;">{{fm.errors|striptags}}</small>
-    {% endfor %}
-
-<input type="submit" value="Signup">
-<div class="signup_link">
-Want to login?<a href="{% url 'login' %}">Login</a>
-</div>
-</form>
+                </div>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">67</div>
+                        <div class="card-name">Category</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-briefcase-medical"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">105</div>
+                        <div class="card-name">Job Seeker</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-wheelchair"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">8</div>
+                        <div class="card-name">Job</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">$4500</div>
+                        <div class="card-name">Company</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="tables">
+                <section class="contact-section">
+                    <div class="container">
+                     
+            
+                        <div class="row">
+                            <div class="col-12"><br><br>
+                                <h2 class="contact-title" style="padding-left:100px;">Create Job </h2>
+                            </div><br><br>
+                            <div class="col-lg-8">
+                                <form class="form-contact contact_form"  method="post"  novalidate="novalidate" enctype="multipart/form-data" style="padding-left: 100px;">
+                                    <div class="row">
+                                            {% csrf_token %}
+                                            {% if messages %}
+                                            {% for message in messages %}
+                                            <h4> {{message}}</h4>
+                                            {% endfor %}
+                                            {% endif %}
+                                            
+                                        
+                                            {% for fm in form %}
+                                                {{fm.label_tag}} {{fm}}
+                                                <small style="color:red;">{{fm.errors|striptags}}</small><br><br>
+                                                {% endfor %}
+                                            
+                                    
+                                    <br>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <button type="submit" class="button button-contactForm boxed-btn">Send</button>
+                                    </div>
+                                </form>
+                            </div>
+                    
+                        </div>
+                    </div>
+                </section>          
+            </div>
+        </div>
     </div>
 </body>
-</html> -->
 
-{% load static %}
-<!doctype html>
-<html class="no-js" lang="zxx">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-     <title>Job board HTML-5 Template </title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
-
-   <!-- CSS here -->
-   <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}">
-   <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css'%}">
-   <link rel="stylesheet" href="{% static 'assets/css/slicknav.css'%}">
-   <link rel="stylesheet" href="{% static 'assets/css/animate.min.css'%}">
-   <link rel="stylesheet" href="{% static 'assets/css/price_rangs.css'%}">
-   <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css'%}">
-   <link rel="stylesheet" href="{% static 'assets/css/fontawesome-all.min.css'%}">
-   <link rel="stylesheet" href="{% static 'assets/css/themify-icons.css'%}">
-   <link rel="stylesheet" href="{% static 'assets/css/themify-icons.css'%}">
-   <link rel="stylesheet" href="{% static 'assets/css/slick.css'%}">
-   <link rel="stylesheet" href="{% static 'assets/css/nice-select.css'%}">
-   <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
-   <link rel="stylesheet" href="{% static 'assets/css/responsive.css'%}">
-</head>
-
-<body>
-    <!-- Preloader Start -->
-    <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/logo.png" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Preloader Start -->
-    <header>
-        <!-- Header Start -->
-       <div class="header-area header-transparrent">
-           <div class="headder-top header-sticky">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-3 col-md-2">
-                            <!-- Logo -->
-                            <div class="logo">
-                                <a href="index.html">  <img src="{% static 'assets/img/logo/logo.png' %}" alt="">
-                                </a>
-                            </div>  
-                        </div>
-                        <div class="col-lg-9 col-md-9">
-                            <div class="menu-wrapper">
-                                <!-- Main-menu -->
-                                <div class="main-menu">
-                                    <nav class="d-none d-lg-block">
-                                        <ul id="navigation">
-                                            <li><a href="{% url 'indexx' %}">Home</a></li>
-                                            <li><a href="{% url 'findjob' %}">Find a Jobs </a></li>
-                                            <li><a href="{% url 'about' %}">About</a></li>
-                                            <li><a href="#">Page</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="single-blog.html">Blog Details</a></li>
-                                                    <li><a href="elements.html">Elements</a></li>
-                                                    <li><a href="job_details.html">job Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="{% url 'contact' %}">Contact</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>          
-                                <!-- Header-btn -->
-                                {% if user.is_authenticated %}
-                                <div class="header-btn d-none f-right d-lg-block">
-                                   
-                                            <a href="{% url 'login' %}" class="btn head-btn2" style="margin-left: 15px;">Welcome {{user.username}}</a>
-                                        </div>
-                                {% else %}
-                                <div class="header-btn d-none f-right d-lg-block">
-                                  
-                            <div class="dropdown">
-                                <button onclick="myFunction()" class="dropbtn">Scan your device</button>
-                                <div id="myDropdown" class="dropdown-content">
-                                    <a href="{% url 'signup' %}">Job Seeker</a>
-                                    <a href="{% url 'companysignup' %}">Company</a>
-                                    <a href="#contact">Admin</a>
-                                </div>
-                            </div>
-                                    <a href="{% url 'login' %}" class="btn head-btn2" style="margin-left: 15px;">Login</a>
-                                </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <!-- Mobile Menu -->
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
-                        </div>
-                    </div>
-                </div>
-           </div>
-       </div>
-        <!-- Header End -->
-    </header>
-    <!-- Hero Area Start-->
-
-        <!-- Hero Area End -->
-    <!-- ================ contact section start ================= -->
-    <section class="contact-section">
-            <div class="container">
-             
-    
-                <div class="row">
-                    <div class="col-12">
-                        <center>
-                        <h2 class="contact-title">Create Job</h2>
-                    </center>
-                    </div>
-                    <div class="col-lg-8">
-                        <form class="form-contact contact_form"  method="post"  novalidate="novalidate" enctype="multipart/form-data">
-                            <div class="row">
-                                    {% csrf_token %}
-                                    {% if messages %}
-                                    {% for message in messages %}
-                                    <h4> {{message}}</h4>
-                                    {% endfor %}
-                                    {% endif %}
-                                    
-                                
-                                    {% for fm in form %}
-                                        {{fm.label_tag}} {{fm}}  <br><br>
-                                        <small style="color:red;">{{fm.errors|striptags}}</small>
-                                        {% endfor %}
-                                    
-                                    <!-- <input type="submit" value="Signup">
-                                    <div class="signup_link">
-                                    Want to login?<a href="{% url 'login' %}">Login</a>
-                                    </div> -->
-                                <!-- <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="Enter your name">
-                                    </div>
-                                </div> -->
-                                <!-- <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Email">
-                                    </div>
-                                </div> -->
-                            
-                            </div>
-                            <div class="form-group mt-3">
-                                <button type="submit" class="button button-contactForm boxed-btn">Send</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-lg-3 offset-lg-1">
-                        <div class="media contact-info">
-                            <span class="contact-info__icon"><i class="ti-home"></i></span>
-                            <div class="media-body">
-                                <h3>Buttonwood, California.</h3>
-                                <p>Rosemead, CA 91770</p>
-                            </div>
-                        </div>
-                        <div class="media contact-info">
-                            <span class="contact-info__icon"><i class="ti-tablet"></i></span>
-                            <div class="media-body">
-                                <h3>+1 253 565 2365</h3>
-                                <p>Mon to Fri 9am to 6pm</p>
-                            </div>
-                        </div>
-                        <div class="media contact-info">
-                            <span class="contact-info__icon"><i class="ti-email"></i></span>
-                            <div class="media-body">
-                                <h3>support@colorlib.com</h3>
-                                <p>Send us your query anytime!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    <!-- ================ contact section end ================= -->
-    <footer>
-        <!-- Footer Start-->
-        <div class="footer-area footer-bg footer-padding">
-            <div class="container">
-                <div class="row d-flex justify-content-between">
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                       <div class="single-footer-caption mb-50">
-                         <div class="single-footer-caption mb-30">
-                             <div class="footer-tittle">
-                                 <h4>About Us</h4>
-                                 <div class="footer-pera">
-                                     <p>Heaven frucvitful doesn't cover lesser dvsays appear creeping seasons so behold.</p>
-                                </div>
-                             </div>
-                         </div>
-
-                       </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Contact Info</h4>
-                                <ul>
-                                    <li>
-                                    <p>Address :Your address goes
-                                        here, your demo address.</p>
-                                    </li>
-                                    <li><a href="#">Phone : +8880 44338899</a></li>
-                                    <li><a href="#">Email : info@colorlib.com</a></li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Important Link</h4>
-                                <ul>
-                                    <li><a href="#"> View Project</a></li>
-                                    <li><a href="#">Contact Us</a></li>
-                                    <li><a href="#">Testimonial</a></li>
-                                    <li><a href="#">Proparties</a></li>
-                                    <li><a href="#">Support</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Newsletter</h4>
-                                <div class="footer-pera footer-pera2">
-                                 <p>Heaven fruitful doesn't over lesser in days. Appear creeping.</p>
-                             </div>
-                             <!-- Form -->
-                             <div class="footer-form" >
-                                 <div id="mc_embed_signup">
-                                     <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                     method="get" class="subscribe_form relative mail_part">
-                                         <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                                         class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                         onblur="this.placeholder = ' Email Address '">
-                                         <div class="form-icon">
-                                             <button type="submit" name="submit" id="newsletter-submit"
-                                             class="email_icon newsletter-submit button-contactForm"><img src="{% static 'assets/img/icon/form.png' %}" alt=""></button>
-                                         </div>
-                                         <div class="mt-10 info"></div>
-                                     </form>
-                                 </div>
-                             </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-               <!--  -->
-               <div class="row footer-wejed justify-content-between">
-                       <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                          <!-- logo -->
-                          <div class="footer-logo mb-20">
-                            <a href="index.html"><img src="{% static 'assets/img/logo/logo2_footer.png'%}" alt=""></a>
-                          </div>
-                       </div>
-                       <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                        <div class="footer-tittle-bottom">
-                            <span>5000+</span>
-                            <p>Talented Hunter</p>
-                        </div>
-                       </div>
-                       <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                            <div class="footer-tittle-bottom">
-                                <span>451</span>
-                                <p>Talented Hunter</p>
-                            </div>
-                       </div>
-                       <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                            <!-- Footer Bottom Tittle -->
-                            <div class="footer-tittle-bottom">
-                                <span>568</span>
-                                <p>Talented Hunter</p>
-                            </div>
-                       </div>
-               </div>
-            </div>
-        </div>
-        <!-- footer-bottom area -->
-        <div class="footer-bottom-area footer-bg">
-            <div class="container">
-                <div class="footer-border">
-                     <div class="row d-flex justify-content-between align-items-center">
-                         <div class="col-xl-10 col-lg-10 ">
-                             <div class="footer-copy-right">
-                                 <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="{% static 'https://colorlib.com' %}" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                             </div>
-                         </div>
-                         <div class="col-xl-2 col-lg-2">
-                             <div class="footer-social f-right">
-                                 <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                 <a href="#"><i class="fab fa-twitter"></i></a>
-                                 <a href="#"><i class="fas fa-globe"></i></a>
-                                 <a href="#"><i class="fab fa-behance"></i></a>
-                             </div>
-                         </div>
-                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End-->
-    </footer>
-
-<!-- JS here -->
-	
-		<!-- All JS Custom Plugins Link Here here -->
-        <script src="{% static './assets/js/vendor/modernizr-3.5.0.min.js'%}"></script>
-		<!-- Jquery, Popper, Bootstrap -->
-		<script src="{% static './assets/js/vendor/jquery-1.12.4.min.js'%}"></script>
-        <script src="{% static './assets/js/popper.min.js'%}"></script>
-        <script src="{% static './assets/js/bootstrap.min.js'%}"></script>
-	    <!-- Jquery Mobile Menu -->
-        <script src="{% static './assets/js/jquery.slicknav.min.js'%}"></script>
-
-		<!-- Jquery Slick , Owl-Carousel Plugins -->
-        <script src="{% static './assets/js/owl.carousel.min.js'%}"></script>
-        <script src="{% static './assets/js/slick.min.js'%}"></script>
-        <script src="{% static './assets/js/price_rangs.js'%}"></script>
-
-		<!-- One Page, Animated-HeadLin -->
-        <script src="{% static './assets/js/wow.min.js'%}"></script>
-		<script src="{% static './assets/js/animated.headline.js'%}"></script>
-		
-		<!-- Scrollup, nice-select, sticky -->
-        <script src="{% static './assets/js/jquery.scrollUp.min.js'%}"></script>
-        <script src="{% static './assets/js/jquery.nice-select.min.js'%}"></script>
-		<script src="{% static './assets/js/jquery.sticky.js'%}"></script>
-        <script src="{% static './assets/js/jquery.magnific-popup.js'%}"></script>
-
-        <!-- contact js -->
-        <script src="{% static './assets/js/contact.js'%}"></script>
-        <script src="{% static './assets/js/jquery.form.js'%}"></script>
-        <script src="{% static './assets/js/jquery.validate.min.js'%}"></script>
-        <script src="{% static './assets/js/mail-script.js'%}"></script>
-        <script src="{% static './assets/js/jquery.ajaxchimp.min.js'%}"></script>
-        
-		<!-- Jquery Plugins, main Jquery -->	
-        <script src="{% static './assets/js/plugins.js'%}"></script>
-        <script src="{% static './assets/js/main.js'%}"></script>
-
-        
-    </body>
-    
-    </html>
+</html>

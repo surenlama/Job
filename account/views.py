@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse,HttpResponseRedirect
 from django.http import HttpResponse
 from django.contrib import messages
-from django.views.generic import CreateView,ListView,View
+from django.views.generic import CreateView,ListView,View,DetailView
 from .forms import SignUpForm, UserAuthentiationForm,CompanySignupForm,AdminSignupForm
 from django.contrib.auth import authenticate, login,logout
 from django.shortcuts import render
@@ -10,10 +10,15 @@ from django.views import View
 from django.core.mail import send_mail
 from django.views.generic.base import TemplateView
 import uuid
+import tempfile
 from jobapp.models import Category
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.utils import timezone
+from jobproject.func import render_to_pdf
+from .models import Skills,Project,Education,Experiences,Course
 User = get_user_model()
+
 
 
 
@@ -24,6 +29,12 @@ def send_email_after_registration(email,token):
     recipient_list = [email]
     send_mail(subject=subject, message=message, from_email=from_email, recipient_list=recipient_list)
 
+def send_email_after_payment(email,username):
+    subject = "Transaction Alert"
+    message = f'Dear{username} Your account has benn credited by 300, please check it.Thank you.'
+    from_email = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    send_mail(subject=subject, message=message, from_email=from_email, recipient_list=recipient_list)
 #verification
 def account_verify(request, token):
     usr = User.objects.filter(token=token).first()
@@ -35,10 +46,41 @@ def account_verify(request, token):
 def home(request):
     return render(request,'base.html')
 
-class SignUp(CreateView):
+class JobSeekerCreate(CreateView):
     form_class = SignUpForm
-    template_name = "signup.html"
-    success_url = '/account/login/'
+    template_name = "jobsignup.html"
+    success_url = '/account/jobsignup/'
+
+    def get(self, request):
+        fm = SignUpForm()
+        return render(request, 'signup.html', {'form':fm})
+
+    def post(self, request):
+        fm = SignUpForm(request.POST)
+        print(fm)
+        if fm.is_valid():
+            new_user = fm.save(commit=False)
+            print(new_user)
+            uid = uuid.uuid4()
+            new_user.token = uid
+            new_user.user_type = "Job_seeker"
+            print(new_user)
+            new_user.Verify = True
+            new_user.save()
+            
+            ids = new_user.id
+            # print(ids)
+            # send_email_after_registration(new_user.email,uid)
+            messages.success(request, "Your Account Created Succesully.")
+            return HttpResponseRedirect(f'/account/pdfgenerator/{ids}')  
+
+        return render(request, 'jobsignup.html', {'form':fm})
+
+
+class JobSeekerSignUp(CreateView):
+    form_class = SignUpForm
+    template_name = "jobsignup.html"
+    success_url = '/account/jobsignup/'
 
     # def get(self, request):
     #     fm = SignUpForm()
@@ -55,8 +97,39 @@ class SignUp(CreateView):
             new_user.user_type = "Job_seeker"
             print(new_user)
             new_user.save()
+            ids = new_user.id
+            print(ids)
             send_email_after_registration(new_user.email,uid)
             messages.success(request, "Your Account Created Succesully, to Verify your Account Check your Email.")
+            return HttpResponseRedirect(f'/account/pdfgenerator/{ids}')  
+
+        return render(request, 'jobsignup.html', {'form':fm})
+
+class SignUp(CreateView):
+    form_class = SignUpForm
+    template_name = "signup.html"
+    success_url = '/account/login/'
+
+    # def get(self, request):
+    #     fm = SignUpForm()
+    #     return render(request, 'signup.html', {'form':fm})
+
+    def post(self, request):
+        fm = SignUpForm(request.POST)
+        print(fm)
+        if fm.is_valid():
+            new_user = fm.save()
+                 
+            uid = uuid.uuid4()
+            new_user.token = uid
+            new_user.user_type = "Job_seeker"
+            new_user.save()
+            # course_object[0].save()          
+
+            ids = new_user.id
+            send_email_after_registration(new_user.email,uid)
+            messages.success(request, "Your Account Created Succesully, to Verify your Account Check your Email.")
+            return HttpResponseRedirect(f'/account/pdfgenerator/{ids}')  
 
         return render(request, 'login.html', {'form':fm})
 
@@ -105,13 +178,16 @@ class Signin(View):
                     if user.verify:
                         if user.user_type =="Job_seeker":
                             login(request,user)
-                            return render(request,'jobdashboard.html')
+                            return HttpResponseRedirect('/jobonedashboard/list/')  
                         elif user.user_type == "Company":
                             login(request,user)
-                            return render(request,'companydashboard.html') 
+                            return HttpResponseRedirect('/admindashboard/list/')  
+
+                            # return HttpResponseRedirect('/companydashboard/list/')  
+                    
                         elif user.user_type == "Admin":
                             login(request,user)
-                            return HttpResponseRedirect('/admindashboard/create/')  
+                            return HttpResponseRedirect('/admindashboard/list/')  
                         else:
                             pass        
                   
@@ -188,19 +264,19 @@ def changepass(request):
                 msg="Password doesn't match"    
         else: 
             msg="Incorrect current password"   
-        return render(request,'changepass.html',{'msg':msg})
-    return render(request,'changepass.html')   
+        return render(request,'changepassword.html',{'msg':msg})
+    return render(request,'changepassword.html')   
 
 
 #Company
 class CompanySignUp(CreateView):
     form_class = CompanySignupForm
-    template_name = "signup.html"
-    success_url = '/account/login/'
+    template_name = "companysignup.html"
+    success_url = '/account/companysignup/'
 
-    # def get(self, request):
-    #     fm = SignUpForm()
-    #     return render(request, 'signup.html', {'form':fm})
+    def get(self, request):
+        fm = CompanySignupForm()
+        return render(request, 'companysignup.html', {'form':fm})
 
     def post(self, request):
         fm = CompanySignupForm(request.POST)
@@ -220,7 +296,7 @@ class CompanySignUp(CreateView):
             send_email_after_registration(user.email,uid)
             messages.success(request, "Your Account Created Succesully, to Verify your Account Check your Email.")
 
-        return render(request, 'login.html', {'form':fm})
+        return render(request, 'companysignup.html', {'form':fm})
 
 
 
@@ -240,3 +316,41 @@ class About(TemplateView):
 
 class Contact(TemplateView):
     template_name = "contact.html"
+
+
+class UserPDFView(DetailView):
+    template_name = "cvv.html"
+    model = User
+
+    def get(self, request,pk):
+        user_object = User.objects.get(id=self.get_object().id)
+        experience = user_object.exp_user.all()
+        education = user_object.user_education.all()
+        skill = user_object.skill_user.all()
+        course = user_object.course_user.all()
+        project = user_object.project_user.all()
+        data = {
+            "object": user_object,
+            "experience": experience,
+            "education": education,
+            "skill":skill,
+            "course":course,
+            "project":project,
+            "base_url": request.build_absolute_uri(),
+        }
+        a = render_to_pdf(self.template_name, context=data)
+        response = HttpResponse(content_type="application/pdf")
+        response[
+            "Content-Disposition"
+        ] = f"attachment; filename=CV_{user_object.id}.pdf"
+        response["Content-Transfer-Encoding"] = "binary"
+
+        with tempfile.NamedTemporaryFile(delete=True) as output:
+            output.write(a)
+            output.flush()
+            output = open(output.name, "rb")
+            response.write(output.read())
+            return response
+
+
+            

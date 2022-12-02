@@ -23,3 +23,22 @@ PAY_CHOICES=(
     ("Un Paid", "unpaid"),
     ("Partial Payment", "patial"),
 )
+
+EDUCATION_CHOICES=(
+    ("Bachelor", "bachelor"),
+    ("Master", "master"),
+    ("Other", "other"),
+)
+
+POSITION_CHOICES=(
+    ("Senior", "senior"),
+    ("Junior", "Junior"),
+    ("Intern", "intern"),
+    ("Mid-Level", "midlevel"),
+
+)
+
+SKILL_CHOICES=(
+    ("Technical Skills", "technical"),
+    ("Soft Skills", "soft"),
+)

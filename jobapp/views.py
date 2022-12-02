@@ -18,14 +18,14 @@ class CategoryCreate(CreateView):
 
 class CategoryList(ListView):
     model = Category
-    template_name = "index.html"
-    success_url = '/category/list/'
+    template_name = "category.html"
+    success_url = '/category/create/'
     context_object_name = "category_list"
 
 
 class CategoryListOne(ListView):
     model = Category
-    template_name = "categorylist.html"
+    template_name = "category.html"
     success_url = '/categoryone/update/'
     context_object_name = "category_list"
 
@@ -35,14 +35,14 @@ class CategoryUpdate(UpdateView):
     model = Category
     form_class = CategoryForm
     template_name = "category.html"
-    success_url = '/categoryone/list/'    
+    success_url = '/admindashboard/list/'    
 
 
 class CategoryDelete(DeleteView):
     # queryset = Patient.objects.all()(yo gardani huncha ya model rakhda ni hunhca)
     model = Category
     template_name = "categorydelete.html"
-    success_url = '/categoryone/list/'  
+    success_url = '/admindashboard/list/'  
     
 
 class JobCreate(CreateView):
@@ -53,8 +53,8 @@ class JobCreate(CreateView):
 
 class JobList(ListView):
     model = Job
-    template_name = "joblist.html"
-    success_url = '/job/list/'
+    template_name = "admindashboard.html"
+    success_url = '/admindashboard/list'
     context_object_name = "job_list"
 
 
@@ -63,11 +63,11 @@ class JobUpdate(UpdateView):
     model = Job
     form_class = JobForm
     template_name = "job.html"
-    success_url = '/job/list/'    
+    success_url = '/admindashboard/list/'    
 
 
 class JobDelete(DeleteView):
     # queryset = Patient.objects.all()(yo gardani huncha ya model rakhda ni hunhca)
     model = Job
     template_name = "jobdelete.html"
-    success_url = '/job/list/'  
+    success_url = '/admindashboard/list/'    

@@ -1,0 +1,2 @@
+weasyprint==57.1
+pathlib==1.0.1
