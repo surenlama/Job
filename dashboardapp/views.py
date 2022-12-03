@@ -23,7 +23,7 @@ User = get_user_model()
 
 def send_email_after_payment(email,username):
     subject = "Transaction Alert"
-    message = f'Dear{username} Your account has benn credited by 300, please check it.Thank you.'
+    message = f'Dear {username} your account has been credited by 300, please check it.Thank you.'
     from_email = settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject=subject, message=message, from_email=from_email, recipient_list=recipient_list)
@@ -72,31 +72,28 @@ class JobsDashboardCreate(CreateView):
     template_name = "jobseekerdashboard.html"
     success_url = '/jobdashboard/create/'
 
-    def get(self, request):
-        fm = JobDashboardForm()
-        return render(request, 'jobseekerdashboard.html', {'form':fm})
+    # def get(self, request):
+    #     fm = JobDashboardForm()
+    #     return render(request, 'jobseekerdashboard.html', {'form':fm})
+    def get_queryset(self):
+        user = User.objects.filter(user_type="admin")
+        return user
 
-    def post(self, request):
-        fm = JobDashboardForm(request.POST)
-        if fm.is_valid():
-            new_user = fm.save()
-            print(new_user)
-            screen_object = fm.cleaned_data['payment_screenshot']
-            print(screen_object)
-            ids=fm.cleaned_data['send_to'].id
-            userobject = User.objects.get(id=ids)
-            if screen_object:      
-                send_email_after_payment(userobject.email,userobject.username)
-                messages.success(request, "Please check your email fortransaction.")          
-                return render(request, 'jobseekerdashboard.html', {'form':fm})        
+    def post(self, request, *args, **kwargs):
+        # self.object = None
+        ids = request.POST['send_to']
+        userobject = User.objects.get(id=ids)
+        if "payment_screenshot" in request.FILES:
+            print(request.FILES['payment_screenshot'])
+            send_email_after_payment(userobject.email,userobject.username)
+            messages.success(request, "Please check your email for transaction.")          
+            return HttpResponseRedirect('/jobdashboard/create/')  
+        else:
+            messages.success(request, "Please put your payment screenshot.")   
+            print('sorry')             
+        # course_object[0].save()          
+        return render(request, 'jobseekerdashboard.html')        
 
-            else:
-                messages.success(request, "Please put your payment screenshot.")                
-            # course_object[0].save()          
-            return render(request, 'jobseekerdashboard.html', {'form':fm})        
-
-
-        return render(request, 'jobseekerdashboard.html', {'form':fm})        
 
 
 

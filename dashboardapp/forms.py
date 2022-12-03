@@ -35,7 +35,7 @@ class JobDashboardForm(forms.ModelForm):
             super().__init__(*args, **kwargs)
             self.fields["name"].widget.attrs={"class": 'form-control'}   
             self.fields["bank_details"].widget.attrs={"class": 'form-control'}   
-            self.fields["send_to"].widget.attrs={"class": 'form-control'}   
+            self.fields["send_to"].queryset=User.objects.filter(user_type="Job_seeker")
 
 class JobDashboard1Form(forms.ModelForm):
     class Meta:

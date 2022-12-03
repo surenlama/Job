@@ -119,11 +119,13 @@ class SignUp(CreateView):
         print(fm)
         if fm.is_valid():
             new_user = fm.save()
-                 
+            course_name = fm.cleaned_data['course']
+            course_name.user=new_user
             uid = uuid.uuid4()
             new_user.token = uid
             new_user.user_type = "Job_seeker"
             new_user.save()
+            course_name.save()
             # course_object[0].save()          
 
             ids = new_user.id

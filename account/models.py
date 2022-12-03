@@ -7,62 +7,9 @@ from django.utils.translation import gettext_lazy as _
 from jobproject.utils import USERTYPE_CHOICES,EDUCATION_CHOICES,POSITION_CHOICES,SKILL_CHOICES
 
 
-    
-
-
-class Education(models.Model):
-    qualification = models.CharField(max_length=250,choices=EDUCATION_CHOICES,default="bachelor")
-    name = models.CharField(max_length=250)
-    start_year = models.DateField()
-    end_year = models.DateField()
-    def __str__(self):
-        return self.name
-
-class Course(models.Model):
-    name = models.CharField(max_length=250)
-    def __str__(self):
-         return self.name
-
-class Project(models.Model):
-    name = models.CharField(max_length=250)
-    tools = models.TextField()
-    feature = models.TextField()
-    def __str__(self):
-         return self.name
-
-class Skills(models.Model):
-    skills_type = models.CharField(max_length=250,choices=SKILL_CHOICES,default="technical")
-    description = models.TextField()
-    def __str__(self):
-         return self.skills_type
-
-
-class Experiences(models.Model):
-    company_name = models.CharField(max_length=250)
-    field_type = models.CharField(max_length=250)
-    position = models.CharField(max_length=250,choices=POSITION_CHOICES,default="intern")
-    objectives = models.TextField()
-    start_year = models.DateField()
-    end_year = models.DateField()
-    def __str__(self):
-         return self.field_type
-
-
-
-
-class Company(models.Model):
-    name = models.CharField(max_length=250)
-    email = models.EmailField(max_length=250)
-    phone_number = models.CharField(max_length=250)
-  
-    def __str__(self):
-        return self.name
-
-
 
 class User(AbstractUser):
     username_validator = UnicodeUsernameValidator()
-
     username = models.CharField(
         _("username"),
         max_length=150,
@@ -81,15 +28,59 @@ class User(AbstractUser):
     number = models.CharField(max_length=250,null=True)
     salary = models.CharField(max_length=250,null=True)
     verify = models.BooleanField(default=False)
-    course = models.ManyToManyField(Course)
-    education = models.ManyToManyField(Education)
-    experience = models.ManyToManyField(Experiences)
-    project = models.ManyToManyField(Project)
-    skill = models.ManyToManyField(Skills)
     user_type = models.CharField(max_length=250,choices=USERTYPE_CHOICES,default="Job_seeker")
     date = models.DateField(null=True)
+    
+    def __str__(self):
+        return self.username
 
-    # def get_course(self):
-    #     return ", ".join(
-    #         [course.name for territory in self.COu.all()]
-    #     )
+class Education(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="user_education",null=True)
+    qualification = models.CharField(max_length=250,choices=EDUCATION_CHOICES,default="bachelor")
+    name = models.CharField(max_length=250)
+    start_year = models.DateField()
+    end_year = models.DateField()
+    def __str__(self):
+        return self.name
+
+class Course(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="course_user",null=True)
+    name = models.CharField(max_length=250)
+    def __str__(self):
+         return self.name
+
+class Project(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="project_user",null=True)
+    name = models.CharField(max_length=250)
+    tools = models.TextField()
+    feature = models.TextField()
+    def __str__(self):
+         return self.name
+
+class Skills(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="skill_user",null=True)
+    skills_type = models.CharField(max_length=250,choices=SKILL_CHOICES,default="technical")
+    description = models.TextField()
+    def __str__(self):
+         return self.skills_type
+
+
+class Experiences(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="exp_user",null=True)
+    company_name = models.CharField(max_length=250)
+    field_type = models.CharField(max_length=250)
+    position = models.CharField(max_length=250,choices=POSITION_CHOICES,default="intern")
+    objectives = models.TextField()
+    start_year = models.DateField()
+    end_year = models.DateField()
+    def __str__(self):
+         return self.field_type
+
+
+class Company(models.Model):
+    name = models.CharField(max_length=250)
+    email = models.EmailField(max_length=250)
+    phone_number = models.CharField(max_length=250)
+  
+    def __str__(self):
+        return self.name

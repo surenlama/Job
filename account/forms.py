@@ -1,5 +1,4 @@
 from django import forms
-from django.db import models
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django.contrib.auth.models import User
@@ -37,25 +36,18 @@ class SignUpForm(UserCreationForm):
     password1 = forms.CharField(label="Password", 
     widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     password2 = forms.CharField(label="Confirm Password(Again)",widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    course = forms.ModelMultipleChoiceField(
-        queryset=Course.objects.all(),
-        widget=forms.CheckboxSelectMultiple)    
+    course = forms.ModelChoiceField(queryset=Course.objects.all())
     class Meta:
         model = User
-        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2','course']
+        fields = ['username', 'email', 'first_name', 'last_name','course', 'password1', 'password2']
         #For Label tag
         labels = {  
             'first_name': 'First Name',
             'last_name': 'Last Name',
             'email': 'Email',
-            'course': 'Course',
+
         }
 
-    def save(self, commit=True):
-        user = super().save()
-        user.course.set(self.cleaned_data["course"])
-        user.save()
-        return user
     # def clean(self):
     #     cleaned_data = super().clean()
     #     print(cleaned_data)
@@ -71,7 +63,6 @@ class SignUpForm(UserCreationForm):
         self.fields["first_name"].widget.attrs={"class": 'form-control'}
         self.fields["last_name"].widget.attrs={"class": 'form-control'}   
         self.fields["email"].widget.attrs={"class": 'form-control'}             
-        self.fields["course"].widget.attrs={"class": 'form-control'}             
 
 #login
 
