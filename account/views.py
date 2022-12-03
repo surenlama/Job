@@ -16,10 +16,19 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from jobproject.func import render_to_pdf
+import datetime
 from .models import Skills,Project,Education,Experiences,Course
 User = get_user_model()
 
-
+def delete_unpaiduser(self):
+    current_date = datetime.datetime.now()
+    a= User.objects.filter(paymentend_date=current_date)
+    print(a)
+    if a:
+        for i in a:
+            i.delete()
+            i.save()
+        print('done')
 
 
 def send_email_after_registration(email,token):
@@ -53,19 +62,26 @@ class JobSeekerCreate(CreateView):
 
     def get(self, request):
         fm = SignUpForm()
+        delete_unpaiduser(self)
+
         return render(request, 'signup.html', {'form':fm})
 
     def post(self, request):
         fm = SignUpForm(request.POST)
-        print(fm)
+        delete_unpaiduser(self)
         if fm.is_valid():
-            new_user = fm.save(commit=False)
+            new_user = fm.save()
             print(new_user)
             uid = uuid.uuid4()
             new_user.token = uid
             new_user.user_type = "Job_seeker"
             print(new_user)
             new_user.Verify = True
+            current_date = datetime.datetime.now()
+            new_date = current_date+datetime.timedelta(days=15)
+            newss_date = new_date.date()
+            new_user.paymentend_date=newss_date
+            new_user.create_date = datetime.datetime.now().date()
             new_user.save()
             
             ids = new_user.id
@@ -85,8 +101,8 @@ class JobSeekerSignUp(CreateView):
     # def get(self, request):
     #     fm = SignUpForm()
     #     return render(request, 'signup.html', {'form':fm})
-
     def post(self, request):
+        delete_unpaiduser(self)
         fm = SignUpForm(request.POST)
         print(fm)
         if fm.is_valid():
@@ -96,6 +112,11 @@ class JobSeekerSignUp(CreateView):
             new_user.token = uid
             new_user.user_type = "Job_seeker"
             print(new_user)
+            current_date = datetime.datetime.now()
+            new_date = current_date+datetime.timedelta(days=15)
+            newss_date = new_date.date()
+            new_user.paymentend_date=newss_date
+            new_user.create_date = datetime.datetime.now().date()
             new_user.save()
             ids = new_user.id
             print(ids)
@@ -116,23 +137,26 @@ class SignUp(CreateView):
 
     def post(self, request):
         fm = SignUpForm(request.POST)
-        print(fm)
         if fm.is_valid():
             new_user = fm.save()
-            course_name = fm.cleaned_data['course']
-            course_name.user=new_user
             uid = uuid.uuid4()
             new_user.token = uid
             new_user.user_type = "Job_seeker"
+            current_date = datetime.datetime.now()
+            new_date = current_date+datetime.timedelta(days=15)
+            newss_date = new_date.date()
+            new_user.paymentend_date=newss_date
+            new_user.create_date = datetime.datetime.now().date()
             new_user.save()
-            course_name.save()
-            # course_object[0].save()          
 
             ids = new_user.id
+
+                
             send_email_after_registration(new_user.email,uid)
             messages.success(request, "Your Account Created Succesully, to Verify your Account Check your Email.")
             return HttpResponseRedirect(f'/account/pdfgenerator/{ids}')  
-
+            #   
+    
         return render(request, 'login.html', {'form':fm})
 
 
@@ -180,20 +204,26 @@ class Signin(View):
                     if user.verify:
                         if user.user_type =="Job_seeker":
                             login(request,user)
+                            delete_unpaiduser(self)
                             return HttpResponseRedirect('/jobonedashboard/list/')  
                         elif user.user_type == "Company":
                             login(request,user)
+                            delete_unpaiduser(self)
                             return HttpResponseRedirect('/admindashboard/list/')  
 
                             # return HttpResponseRedirect('/companydashboard/list/')  
                     
                         elif user.user_type == "Admin":
+                            delete_unpaiduser(self)
+
                             login(request,user)
                             return HttpResponseRedirect('/admindashboard/list/')  
                         else:
                             pass        
                   
                     else:
+                        delete_unpaiduser(self)
+
                         messages.info(request,"Your account is not verified, please check your email and verify your account.")
                         return render(request,self.template_name)    
        
@@ -278,11 +308,12 @@ class CompanySignUp(CreateView):
 
     def get(self, request):
         fm = CompanySignupForm()
+        delete_unpaiduser(self)
         return render(request, 'companysignup.html', {'form':fm})
 
     def post(self, request):
         fm = CompanySignupForm(request.POST)
-        print(fm)
+        delete_unpaiduser(self)
         if fm.is_valid():
             company_user = fm.save()
             user = User.objects.create_user(username=fm.cleaned_data['name'],email=fm.cleaned_data['email'],password=fm.cleaned_data['password1'])
@@ -291,6 +322,11 @@ class CompanySignUp(CreateView):
             user.user_type = "Company"
             uid = uuid.uuid4()
             user.token = uid
+            current_date = datetime.datetime.now()
+            new_date = current_date+datetime.timedelta(days=15)
+            newss_date = new_date.date()
+            user.paymentend_date=newss_date
+            user.create_date = datetime.datetime.now().date()
             user.save()          
 
             # print(new_user)
@@ -326,11 +362,12 @@ class UserPDFView(DetailView):
 
     def get(self, request,pk):
         user_object = User.objects.get(id=self.get_object().id)
-        experience = user_object.exp_user.all()
-        education = user_object.user_education.all()
-        skill = user_object.skill_user.all()
-        course = user_object.course_user.all()
-        project = user_object.project_user.all()
+        experience = user_object.experience.all()
+        education = user_object.education.all()
+        skill = user_object.skill.all()
+        course = user_object.course.all()
+        project = user_object.project.all()
+        print(experience)
         data = {
             "object": user_object,
             "experience": experience,
@@ -354,5 +391,3 @@ class UserPDFView(DetailView):
             response.write(output.read())
             return response
 
-
-            

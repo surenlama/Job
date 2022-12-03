@@ -176,7 +176,7 @@
                                     {% endfor %}
                                     {% endif %}                             
                                     {% for fm in form %}
-                                        {{fm.label_tag}} {{fm}}  <br><br>
+                                        {{fm.label_tag}}  {{fm}}   <br>
                                         <small style="color:red;">{{fm.errors|striptags}}</small>
                                         {% endfor %}
                                     

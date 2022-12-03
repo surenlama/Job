@@ -1,3 +1,17 @@
+import datetime
+
+
+def delete_unpaiduser(self):
+    current_date = datetime.datetime.now()
+    a= User.objects.filter(paymentend_date=current_date)
+    print(a)
+    if a:
+        a.delete()
+        a.save()
+        print('done')
+
+
+
 USERTYPE_CHOICES =(
     ("Job Seeker", "Job_seeker"),
     ("Company", "Company"),

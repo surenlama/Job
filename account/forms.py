@@ -4,7 +4,9 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Authenti
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import get_user_model
-from .models import Company,Course
+from .models import Company,Course,Education,Experiences,Project,Skills
+from django.utils.safestring import mark_safe
+
 User = get_user_model()
 
 #Signupform
@@ -31,15 +33,35 @@ class AdminSignupForm(UserCreationForm):
             self.fields["last_name"].widget.attrs={"class": 'form-control'}   
             self.fields["email"].widget.attrs={"class": 'form-control'}   
 
-
 class SignUpForm(UserCreationForm):
     password1 = forms.CharField(label="Password", 
     widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     password2 = forms.CharField(label="Confirm Password(Again)",widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    course = forms.ModelChoiceField(queryset=Course.objects.all())
+ 
+    course = forms.ModelMultipleChoiceField(
+        queryset=Course.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+    education = forms.ModelMultipleChoiceField(
+        queryset=Education.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+    experience = forms.ModelMultipleChoiceField(
+        queryset=Experiences.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+    project= forms.ModelMultipleChoiceField(
+        queryset=Project.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+    skill= forms.ModelMultipleChoiceField(
+        queryset=Skills.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+
     class Meta:
         model = User
-        fields = ['username', 'email', 'first_name', 'last_name','course', 'password1', 'password2']
+        fields = ['username', 'email', 'first_name', 'last_name','course', 'education','experience','project','skill','password1', 'password2']
         #For Label tag
         labels = {  
             'first_name': 'First Name',
@@ -47,6 +69,16 @@ class SignUpForm(UserCreationForm):
             'email': 'Email',
 
         }
+
+    def save(self, commit=True):
+        user = super().save()
+        user.course.set(self.cleaned_data["course"])
+        user.education.set(self.cleaned_data["education"])
+        user.experience.set(self.cleaned_data["experience"])
+        user.project.set(self.cleaned_data["project"])
+        user.skill.set(self.cleaned_data["skill"])
+        user.save()
+        return user
 
     # def clean(self):
     #     cleaned_data = super().clean()
