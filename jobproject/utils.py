@@ -20,6 +20,14 @@ USERTYPE_CHOICES =(
 )
 
 
+# SELECTION_CHOICES =(
+#     ("Accepted", "accept"),
+#     ("Rejected", "reject"),
+#     ("Admin", "Admin"),
+
+# )
+
+
 Job_seeker = 'Job_seeker'
 Company = 'Company'
 Admin = "Admin"

@@ -205,7 +205,7 @@ class Signin(View):
                         if user.user_type =="Job_seeker":
                             login(request,user)
                             delete_unpaiduser(self)
-                            return HttpResponseRedirect('/jobonedashboard/list/')  
+                            return HttpResponseRedirect('/admindashboard/list/')  
                         elif user.user_type == "Company":
                             login(request,user)
                             delete_unpaiduser(self)

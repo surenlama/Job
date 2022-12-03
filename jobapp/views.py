@@ -2,13 +2,28 @@ from django.shortcuts import render
 from django.contrib import messages
 # from .filters import BillFilter
 # Create your views here.
-from jobapp.models import Category,Job
+from jobapp.models import Category,Job,CVUpload
 from django.views.generic import CreateView,ListView,UpdateView,DeleteView,TemplateView
-from .forms import CategoryForm,JobForm
+from .forms import CategoryForm,JobForm,JobApplyform
 # from django_filters.views import FilterView
 from django.core.mail import EmailMessage
 
 
+
+class JobApplyCreate(CreateView):
+    form_class = JobApplyform
+    template_name = "applycreate.html"
+    success_url = '/jobapply/create/'
+
+
+
+
+
+class JobApplyList(ListView):
+    model = CVUpload
+    template_name = "apply.html"
+    success_url = '/jobapply/list/'
+    context_object_name = "jobapply_list"
 
 class CategoryCreate(CreateView):
     form_class = CategoryForm
