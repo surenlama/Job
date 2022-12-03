@@ -67,6 +67,7 @@ class SignUpForm(UserCreationForm):
             'first_name': 'First Name',
             'last_name': 'Last Name',
             'email': 'Email',
+            # 'image': 'Profile Picture',
 
         }
 

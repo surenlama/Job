@@ -56,18 +56,18 @@ def home(request):
     return render(request,'base.html')
 
 class JobSeekerCreate(CreateView):
-    form_class = SignUpForm
+    form_class = AdminSignupForm
     template_name = "jobsignup.html"
-    success_url = '/account/jobsignup/'
+    success_url = '/jobseekercreate/'
 
     def get(self, request):
-        fm = SignUpForm()
+        fm = AdminSignupForm()
         delete_unpaiduser(self)
 
-        return render(request, 'signup.html', {'form':fm})
+        return render(request, 'jobsignup.html', {'form':fm})
 
     def post(self, request):
-        fm = SignUpForm(request.POST)
+        fm = AdminSignupForm(request.POST)
         delete_unpaiduser(self)
         if fm.is_valid():
             new_user = fm.save()
@@ -299,12 +299,11 @@ def changepass(request):
         return render(request,'changepassword.html',{'msg':msg})
     return render(request,'changepassword.html')   
 
-
 #Company
-class CompanySignUp(CreateView):
+class CompanyCreate(CreateView):
     form_class = CompanySignupForm
     template_name = "companysignup.html"
-    success_url = '/account/companysignup/'
+    success_url = '/account/companycreate/'
 
     def get(self, request):
         fm = CompanySignupForm()
@@ -335,6 +334,43 @@ class CompanySignUp(CreateView):
             messages.success(request, "Your Account Created Succesully, to Verify your Account Check your Email.")
 
         return render(request, 'companysignup.html', {'form':fm})
+
+
+#Company
+class CompanySignUp(CreateView):
+    form_class = CompanySignupForm
+    template_name = "companysignup.html"
+    success_url = '/account/companysignup/'
+
+    def get(self, request):
+        fm = CompanySignupForm()
+        delete_unpaiduser(self)
+        return render(request, 'signup.html', {'form':fm})
+
+    def post(self, request):
+        fm = CompanySignupForm(request.POST)
+        delete_unpaiduser(self)
+        if fm.is_valid():
+            company_user = fm.save()
+            user = User.objects.create_user(username=fm.cleaned_data['name'],email=fm.cleaned_data['email'],password=fm.cleaned_data['password1'])
+            user.is_staff=True  
+            user.is_active=True
+            user.user_type = "Company"
+            uid = uuid.uuid4()
+            user.token = uid
+            current_date = datetime.datetime.now()
+            new_date = current_date+datetime.timedelta(days=15)
+            newss_date = new_date.date()
+            user.paymentend_date=newss_date
+            user.create_date = datetime.datetime.now().date()
+            user.save()          
+
+            # print(new_user)
+            company_user.save()
+            send_email_after_registration(user.email,uid)
+            messages.success(request, "Your Account Created Succesully, to Verify your Account Check your Email.")
+
+        return render(request, 'signup.html', {'form':fm})
 
 
 

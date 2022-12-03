@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from account.views import SignUp,Signin,Logout,changepass,account_verify,home,CompanySignUp,Indexx,\
-    FindJob,About,Contact,AdminSignUp,UserPDFView,JobSeekerSignUp,JobSeekerCreate
+    FindJob,About,Contact,AdminSignUp,UserPDFView,JobSeekerSignUp,JobSeekerCreate,CompanyCreate
             
 
 
@@ -15,6 +15,8 @@ urlpatterns = [
     path('changepassword/', changepass,name="changepassword"),
     path('acount-verify/<str:token>', account_verify, name="account_verify"),
     path('companysignup/', CompanySignUp.as_view(), name="companysignup"),
+    path('companycreate/', CompanyCreate.as_view(), name="companycreate"),
+
     path('home/', home,name="home"),
     path('indexx/', Indexx.as_view(),name="indexx"),
     path('findjob/', FindJob.as_view(),name="findjob"),

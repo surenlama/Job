@@ -332,7 +332,7 @@ td i {
                         <div class="title">Dashboard</div>
                     </a>
                 </li>
-                {% if user.user_type == "job_seeker" %}
+                {% if user.user_type == "Job_seeker" %}
 
                 <li>
                     <a href="{%  url 'jobapply_create'  %}">
@@ -348,7 +348,7 @@ td i {
                     </a>
                 </li>
                 {% endif %}
-                {% if user.user_type == "admin" %}
+                {% if user.user_type == "Admin" %}
 
                 <li>
                     <a href="{% url 'payment' %}">
@@ -363,7 +363,7 @@ td i {
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'companysignup' %}">
+                    <a href="{% url 'companycreate' %}">
                         <i class="fas fa-user-md"></i>
                         <div class="title">Create Company</div>
                     </a>
@@ -508,18 +508,19 @@ td i {
                                     </div>
                                          </td>
                                 <td>{{i.description}}</td>
-                                {% if user.user_type != "Job_seeker" %}
                                 <td>
-                               
+                                    {% if user.user_type != "Job_seeker" %}
+
                                 <a href="{% url 'category_update' i.id %}">                                    
                                     <i class="far fa-edit"></i>
                                 </a>
                                 <a href="{% url 'category_delete' i.id %}">                                
                                     <i class="far fa-trash-alt"></i>
                                 </a>
+                                {% endif %}
+
                                 </td>
 
-                                {% endif %}
                             </tr>
                             {% endfor %}
 
@@ -535,7 +536,7 @@ td i {
                         <thead>
                             <td>Photo</td>
                             <td>Description</td>
-                            {% if user.user_type != "job_seeker" %}
+                            {% if user.user_type != "Job_seeker" %}
 
                             <td>Action</td>
                             {% endif %}
@@ -550,18 +551,19 @@ td i {
                         </div>
                                 </td>
                                 <td>{{i.description}}</td>
-                                {% if user.user_type == "job_seeker" %}
 
                                 <td>
-                               
+                                    {% if user.user_type != "Job_seeker" %}
+
                                     <a href="{% url 'job_update' i.id %}">                                    
                                         <i class="far fa-edit"></i>
                                     </a>
                                     <a href="{% url 'job_delete' i.id %}">                                
                                         <i class="far fa-trash-alt"></i>
                                     </a>
-                                    </td>    
                                     {% endif %}
+
+                                    </td>    
                     
                           </tr>
                            {% endfor %}
