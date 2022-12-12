@@ -94,3 +94,16 @@ class User(AbstractUser):
 
 class TermsAndCondition(models.Model):
     description = models.TextField(null=True)
+
+class Blog(models.Model):
+    title = models.CharField(max_length=250,null=True)
+    image = models.FileField(upload_to="media",null=True)
+    description = models.TextField()
+    date = models.DateField(null=True)
+    posted_by = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+
+class Contact(models.Model):
+    name = models.CharField(max_length=250,null=True)
+    message = models.TextField()
+    email = models.EmailField()
+    subject = models.CharField(max_length=250,null=True)

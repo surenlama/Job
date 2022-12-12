@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from account.views import SignUp,Signin,Logout,changepass,account_verify,home,CompanySignUp,Indexx,\
     FindJob,About,Contact,AdminSignUp,UserPDFView,JobSeekerSignUp,JobSeekerCreate,CompanyCreate,ViewCVList,\
-        Jobdetail,TermsCondition
+        Jobdetail,TermsCondition,BlogList
 
 
 
@@ -23,9 +23,9 @@ urlpatterns = [
     path('findjob/<int:pk>/', FindJob.as_view(),name="findjob"),
     path('about/', About.as_view(),name="about"),
     path('contact/', Contact.as_view(),name="contact"),
+    path('blog/', BlogList.as_view(),name="blog"),
     path("pdfgenerator/<int:pk>/", UserPDFView.as_view(), name="pdf-genertor"),
     path("termscondition/", TermsCondition.as_view(), name="termsandcondition"),
-
     path("jobdetail/<str:pk>/", Jobdetail.as_view(),name="jobdetail"),
 
 ]

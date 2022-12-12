@@ -75,3 +75,5 @@ class JobApplyform(forms.ModelForm):
         self.fields["job"].widget.attrs={"class": 'form-control'}       
         self.fields["cv"].widget.attrs={"class": 'form-control'}   
         self.fields["name"].widget.attrs={"class": 'form-control'}   
+
+ 

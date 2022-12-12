@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Authenti
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import get_user_model
-from .models import Company,Course,Education,Experiences,Project,Skills
+from .models import Company,Course,Education,Experiences,Project,Skills,Contact
 from django.utils.safestring import mark_safe
 
 User = get_user_model()
@@ -154,3 +154,23 @@ class CompanySignupForm(forms.ModelForm):
         self.fields["phone_number"].widget.attrs={"class": 'form-control'}   
         self.fields["email"].widget.attrs={"class": 'form-control'}         
         self.fields["location"].widget.attrs={"class": 'form-control'}         
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ['message', 'name','email','subject',]
+        #For Label tag
+        labels = {  
+            'Message':'message',
+            'Name':'name',
+            'Email':'email',
+            'Subject':'subject',
+
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["message"].widget.attrs={"class": 'form-control'}       
+        self.fields["name"].widget.attrs={"class": 'form-control'}   
+        self.fields["email"].widget.attrs={"class": 'form-control'}   
+        self.fields["subject"].widget.attrs={"class": 'form-control'}  

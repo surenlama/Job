@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse,HttpResponseRedirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.views.generic import CreateView,ListView,View,DetailView,UpdateView
-from .forms import SignUpForm, UserAuthentiationForm,CompanySignupForm,AdminSignupForm
+from .forms import SignUpForm, UserAuthentiationForm,CompanySignupForm,AdminSignupForm,ContactForm
 from django.contrib.auth import authenticate, login,logout
 from django.shortcuts import render
 from django.shortcuts import redirect
@@ -17,7 +17,7 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from jobproject.func import render_to_pdf
 import datetime
-from .models import Skills,Project,Education,Experiences,Course,TermsAndCondition
+from .models import Skills,Project,Education,Experiences,Course,TermsAndCondition,Blog,Contact
 from dashboardapp.models import Dashboard,Quotes,Dommy
 from account.task import delete_unpaiduser,quotesgenerate
 import  random
@@ -414,8 +414,12 @@ class Jobdetail(UpdateView):
 class About(TemplateView):
     template_name = "about.html"
 
-class Contact(TemplateView):
+class Contact(CreateView):
+    form_class = ContactForm
     template_name = "contact.html"
+    success_url = '/account/contact/'
+
+    
 
 class TermsCondition(ListView):
     model = Category
@@ -500,4 +504,18 @@ class ViewCVList(ListView):
         context['skill']=skill
         context['course']=course
         context['project']=project
+        return context
+
+
+class BlogList(ListView):
+    model = Blog
+    template_name = "blog.html"
+    success_url = '/account/blog'
+    context_object_name = "blog_list"
+
+    def get_context_data(self,*args,**kwargs):
+        context=super().get_context_data()
+        blog_object = Blog.objects.all().order_by('-id')[:2]
+        print(blog_object)
+        context['blog_obj']=blog_object
         return context
