@@ -18,14 +18,21 @@ USERTYPE_CHOICES =(
     ("Admin", "Admin"),
 
 )
+CV_CHOICES =(
+    ("Accepted", "accepted"),
+    ("Rejected", "rejected"),
+    ("Not Viewed", "notview"),
+
+)
 
 
-# SELECTION_CHOICES =(
-#     ("Accepted", "accept"),
-#     ("Rejected", "reject"),
-#     ("Admin", "Admin"),
+JOB_CHOICES =(
+    ("Part Time", "parttime"),
+    ("Full Time", "fulltime"),
+    ("Freelancing", "freelance"),
+    ("Remote", "remote"),
 
-# )
+)
 
 
 Job_seeker = 'Job_seeker'
@@ -44,6 +51,10 @@ PAY_CHOICES=(
     ("Paid", "paid"),
     ("Un Paid", "unpaid"),
     ("Partial Payment", "patial"),
+)
+CATEGORY_CHOICES=(
+    ("Digital Work", "digital"),
+    ("Field Work", "field"),
 )
 
 EDUCATION_CHOICES=(

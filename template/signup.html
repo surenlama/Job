@@ -61,7 +61,20 @@
       text-decoration: none;
       display: block;
     }
-    
+    .tacbox {
+  display:block;
+  padding: 1em;
+  margin: 2em;
+  border: 3px solid #ddd;
+  background-color: #eee;
+  max-width: 800px;
+}
+
+input {
+  height: 2em;
+  width: 2em;
+  vertical-align: middle;
+}
     .dropdown a:hover {background-color: #ddd;}
     
     .show {display: block;}
@@ -179,11 +192,12 @@
                                         {{fm.label_tag}}  {{fm}}   <br>
                                         <small style="color:red;">{{fm.errors|striptags}}</small>
                                         {% endfor %}
-                                    
-                      
+
                             </div>
+                            <label for="checkbox" style="margin-top: 30px;padding-left: -200px;"><a href="{% url 'termsandcondition'  %}" style="color: red;" >Terms and Conditions</a>.</label>
+
                             <div class="form-group mt-3">
-                            
+                              
                               <button type="submit" class="button button-contactForm boxed-btn">Send</button>
 
                             </div>

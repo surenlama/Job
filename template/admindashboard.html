@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-
-    <title>Admin panel</title>
+    <script src="https://kit.fontawesome.com/8a33ab6cef.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Job portal</title>
     <style>
         * {
     margin: 0;
@@ -21,12 +23,14 @@
 body {
     overflow-x: hidden;
     background-color: #fff;
+
 }
 
 .container {
     position: relative;
     width: 100%;
 }
+
 
 .sidebar {
     position: fixed;
@@ -146,6 +150,7 @@ img {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
+    padding-left: 100px;
 }
 
 .cards .card {
@@ -317,8 +322,8 @@ td i {
 </head>
 
 <body>
-    <div class="container">
-        <div class="sidebar">
+    <div  style="padding-left: -80px;">
+        <div class="sidebar" >
             <ul>
                 <li>
                     <a href="#">
@@ -336,90 +341,116 @@ td i {
 
                 <li>
                     <a href="{%  url 'jobapply_create'  %}">
-                        <i class="fas fa-th-large"></i>
+                        <i class="fas fa-wheelchair"></i>
                         <div class="title">Apply for jobs</div>
                     </a>
                 </li>
-
+                <li>
+                    <a href="{%  url 'viewcv_list'  %}">
+                        <i class="fa-solid fa-file"></i>
+                        <div class="title">View CV</div>
+                    </a>
+                </li>
                 <li>
                     <a href="{% url 'jobonedashboard_list' %}">
-                        <i class="fas fa-stethoscope"></i>
+                        <i class="fas fa-dollar-sign"></i>
+
                         <div class="title"> Make payment</div>
                     </a>
                 </li>
                 {% endif %}
                 {% if user.user_type == "Admin" %}
+                <li>
+                    <a href="{% url 'category_create' %}">
+                        <i class="fa-solid fa-plus"></i>
 
+                        <div class="title">Create Category</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'job_create'%}">
+                        <i class="fas fa-wheelchair"></i>
+
+                        <div class="title">Create Jobs</div>
+                    </a>
+                </li>
                 <li>
                     <a href="{% url 'payment' %}">
-                        <i class="fas fa-stethoscope"></i>
+                        <i class="fas fa-hand-holding-usd"></i>
                         <div class="title">Create Payments</div>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'paymentverify' %}">
-                        <i class="fas fa-stethoscope"></i>
+                        <i class="fa-sharp fa-solid fa-bag-shopping"></i>
                         <div class="title">Verify Payment</div>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'companycreate' %}">
-                        <i class="fas fa-user-md"></i>
+                        <i class="fa-solid fa-building"></i>
                         <div class="title">Create Company</div>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'jobaccountcreate' %}">
-                        <i class="fas fa-puzzle-piece"></i>
+                        <i class="fa-sharp fa-solid fa-person"></i>
                         <div class="title">Create Job Seeker</div>
                     </a>
                 </li>
-                 
+                <li>
+                    <a href="{% url 'jobapply_lists'%}">
+                        <i class="fa-solid fa-eye"></i>
+                        <div class="title">View Applicant</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'freelance_lists'%}">
+                        <i class="fa-solid fa-eye"></i>
+                        <div class="title">View Freelancer</div>
+                    </a>
+                </li>
                
-                <li>
-                    <a href="{% url 'category_create' %}">
-                        <i class="fas fa-hand-holding-usd"></i>
-                        <div class="title">Category</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'job_create'%}">
-                        <i class="fas fa-cog"></i>
-                        <div class="title">Jobs</div>
-                    </a>
-                </li>
+          
                 {% endif %}
                 {% if user.user_type == "Company" %}
 
                 <li>
                     <a href="{% url 'job_create'%}">
-                        <i class="fas fa-cog"></i>
-                        <div class="title">Jobs</div>
+                        <i class="fas fa-wheelchair"></i>
+
+                        <div class="title">Create Jobs</div>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'jobapply_lists'%}">
-                        <i class="fas fa-cog"></i>
-                        <div class="title">View CV</div>
+                        <i class="fa-solid fa-eye"></i>
+                        <div class="title">View Applicant</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'freelance_lists'%}">
+                        <i class="fa-solid fa-eye"></i>
+                        <div class="title">View Freelancer</div>
                     </a>
                 </li>
            {% endif %}
             
                 <li>
                     <a href="{% url 'logout' %}">
-                        <i class="fas fa-question"></i>
+                        <i class="fa-solid fa-right-from-bracket"></i>
                         <div class="title">Logout</div>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'changepassword' %}">
-                        <i class="fas fa-question"></i>
+                        <i class="fa-solid fa-lock"></i>
                         <div class="title">ChangePassword</div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fas fa-question"></i>
+                        <i class="fas fa-cog"></i>
                         <div class="title">Settings</div>
                     </a>
                 </li>
@@ -432,21 +463,19 @@ td i {
             </ul>
         </div>
         <div class="main">
-            <div class="top-bar">
-                <div class="search">
-                    <input type="text" name="search" placeholder="search here">
-                    <label for="search"><i class="fas fa-search"></i></label>
-                </div>
-                <i class="fas fa-bell"></i>
-                <div class="user">
-                    <img src="/media/{{user.image}}" alt="no image">                      
 
+            <div class="top-bar">
+             
+                <i ></i>
+                <div class="user">
+                    <img src="/media/{{user.image.url}}" alt="no image">     
+                 
                 </div>
             </div>
             <div class="cards">
                 <div class="card">
                     <div class="card-content">
-                        <div class="number">67</div>
+                        <div class="number">8</div>
                         <div class="card-name">Category</div>
                     </div>
                     <div class="icon-box">
@@ -455,7 +484,7 @@ td i {
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <div class="number">105</div>
+                        <div class="number">7</div>
                         <div class="card-name">Job Seeker</div>
                     </div>
                     <div class="icon-box">
@@ -468,16 +497,18 @@ td i {
                         <div class="card-name">Job</div>
                     </div>
                     <div class="icon-box">
-                        <i class="fas fa-bed"></i>
+                        <i class="fa-sharp fa-solid fa-person"></i>
+
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <div class="number">$4500</div>
+                        <div class="number">5</div>
                         <div class="card-name">Company</div>
                     </div>
                     <div class="icon-box">
-                        <i class="fas fa-dollar-sign"></i>
+                        <i class="fa-solid fa-building"></i>
+
                     </div>
                 </div>
             </div>
@@ -485,7 +516,34 @@ td i {
                 <div class="last-appointments">
                     <div class="heading">
                         <h2>Categories</h2>
-                        <a href="#" class="btn">View All</a>
+                        <div class="search">
+                            <form action="{% url 'admindashboard_list' %}">
+                            <input type="search" name="q" placeholder="search here" >
+                            <label for="search"><i class="fas fa-search"></i></label>
+                        </form>
+                        </div>
+                            <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                {% if servicedata.has_previous %}
+                              
+                                <li class="page-item">
+                                    <a class="page-link" href="/admindashboard/list/?page={{servicedata.previous_page_number}}" tabindex="-1" >Previous</a>
+                                </li>
+                                {% endif %}
+                                <li class="page-item"><a class="page-link" href="/admindashboard/list/?page=1" tabindex="-1">1</a></li>
+                                <li class="page-item"><a class="page-link" href="/admindashboard/list/?page=2" tabindex="-1">2</a></li>
+                                <li class="page-item"><a class="page-link" href="/admindashboard/list/?page=3" tabindex="-1">3</a></li>
+                                {% if servicedata.has_next%}
+                                <li class="page-item"><a class="page-link" href="/admindashboard/list/?page={{servicedata.next_page_number}}" >Next</a></li>
+                                {% endif %}
+                            
+                            </ul>
+                            </nav>
+
+
+
+                        <!-- <a href="#" class="btn">View All</a> -->
+        
                     </div>
                     <table class="appointments">
                         <thead>
@@ -530,12 +588,35 @@ td i {
                 <div class="doctor-visiting">
                     <div class="heading">
                         <h2>Jobs</h2>
-                        <a href="#" class="btn">View All</a>
+                        <div class="search">
+                            <form action="{% url 'admindashboard_list' %}">
+                            <input type="search" name="p" placeholder="search here" >
+                            <label for="search"><i class="fas fa-search"></i></label>
+                        </form>
+                        </div>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                              {% if mervicedata.has_previous %}
+                              <li class="page-item">
+                                  <a class="page-link" href="/admindashboard/list/?page={{mervicedata.previous_page_number}}" tabindex="-1" >Previous</a>
+                              
+                              </li>
+                              {% endif %}
+                              <li class="page-item"><a class="page-link" href="/admindashboard/list/?page=1" tabindex="-1">1</a></li>
+                              <li class="page-item"><a class="page-link" href="/admindashboard/list/?page=2" tabindex="-1">2</a></li>
+                              <li class="page-item"><a class="page-link" href="/admindashboard/list/?page=3" tabindex="-1">3</a></li>
+                              {% if mervicedata.has_next%}
+                              <li class="page-item"><a class="page-link" href="/admindashboard/list/?page={{mervicedata.next_page_number}}" tabindex="-1">Next</a></li>
+                              {% endif %}
+                            
+                          </ul>
+                          </nav>
+
                     </div>
                     <table class="visiting">
                         <thead>
                             <td>Photo</td>
-                            <td>Description</td>
+                            <td>Name</td>
                             {% if user.user_type != "Job_seeker" %}
 
                             <td>Action</td>
@@ -550,7 +631,7 @@ td i {
                                             <img src="/media/{{i.image}}" alt="no image">                      
                         </div>
                                 </td>
-                                <td>{{i.description}}</td>
+                                <td>{{i.name}}</td>
 
                                 <td>
                                     {% if user.user_type != "Job_seeker" %}
@@ -573,6 +654,7 @@ td i {
             </div>
         </div>
     </div>
+    
 </body>
 
 </html>

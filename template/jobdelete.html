@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}">
+    <script src="https://kit.fontawesome.com/8a33ab6cef.js" crossorigin="anonymous"></script>
 
     <!-- CSS here -->
         <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
@@ -24,7 +25,7 @@
         <link rel="stylesheet" href="{% static 'assets/css/slick.css' %}">
         <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
         <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-    <title>Admin panel</title>
+    <title>Job portal</title>
     <style>
 
         * {
@@ -371,8 +372,8 @@ td i {
 </head>
 
 <body style="padding-right: 220px;">
-    <div class="container">
-        <div class="sidebar">
+    <div >
+        <div class="sidebar" >
             <ul>
                 <li>
                     <a href="#">
@@ -386,69 +387,120 @@ td i {
                         <div class="title">Dashboard</div>
                     </a>
                 </li>
+                {% if user.user_type == "Job_seeker" %}
+
                 <li>
                     <a href="{%  url 'jobapply_create'  %}">
-                        <i class="fas fa-th-large"></i>
+                        <i class="fas fa-wheelchair"></i>
                         <div class="title">Apply for jobs</div>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'payment' %}">
-                        <i class="fas fa-stethoscope"></i>
-                        <div class="title"> Payments</div>
+                    <a href="{%  url 'viewcv_list'  %}">
+                        <i class="fa-solid fa-file"></i>
+                        <div class="title">View CV</div>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'jobonedashboard_list' %}">
-                        <i class="fas fa-stethoscope"></i>
+                        <i class="fas fa-dollar-sign"></i>
+
                         <div class="title"> Make payment</div>
                     </a>
                 </li>
-                <li>
-                    <a href="{% url 'paymentverify' %}">
-                        <i class="fas fa-stethoscope"></i>
-                        <div class="title">Verify Payment</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'companysignup' %}">
-                        <i class="fas fa-user-md"></i>
-                        <div class="title">Company</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'jobaccountcreate' %}">
-                        <i class="fas fa-puzzle-piece"></i>
-                        <div class="title">Job Seeker</div>
-                    </a>
-                </li>
+                {% endif %}
+                {% if user.user_type == "Admin" %}
                 <li>
                     <a href="{% url 'category_create' %}">
-                        <i class="fas fa-hand-holding-usd"></i>
-                        <div class="title">Category</div>
+                        <i class="fa-solid fa-plus"></i>
+
+                        <div class="title">Create Category</div>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'job_create'%}">
-                        <i class="fas fa-cog"></i>
-                        <div class="title">Jobs</div>
+                        <i class="fas fa-wheelchair"></i>
+
+                        <div class="title">Create Jobs</div>
                     </a>
                 </li>
                 <li>
+                    <a href="{% url 'payment' %}">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <div class="title">Create Payments</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'paymentverify' %}">
+                        <i class="fa-sharp fa-solid fa-bag-shopping"></i>
+                        <div class="title">Verify Payment</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'companycreate' %}">
+                        <i class="fa-solid fa-building"></i>
+                        <div class="title">Create Company</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'jobaccountcreate' %}">
+                        <i class="fa-sharp fa-solid fa-person"></i>
+                        <div class="title">Create Job Seeker</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'jobapply_lists'%}">
+                        <i class="fa-solid fa-eye"></i>
+                        <div class="title">View Applicant</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'freelance_lists'%}">
+                        <i class="fa-solid fa-eye"></i>
+                        <div class="title">View Freelancer</div>
+                    </a>
+                </li>
+               
+          
+                {% endif %}
+                {% if user.user_type == "Company" %}
+
+                <li>
+                    <a href="{% url 'job_create'%}">
+                        <i class="fas fa-wheelchair"></i>
+
+                        <div class="title">Create Jobs</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'jobapply_lists'%}">
+                        <i class="fa-solid fa-eye"></i>
+                        <div class="title">View Applicant</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'freelance_lists'%}">
+                        <i class="fa-solid fa-eye"></i>
+                        <div class="title">View Freelancer</div>
+                    </a>
+                </li>
+           {% endif %}
+            
+                <li>
                     <a href="{% url 'logout' %}">
-                        <i class="fas fa-question"></i>
+                        <i class="fa-solid fa-right-from-bracket"></i>
                         <div class="title">Logout</div>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'changepassword' %}">
-                        <i class="fas fa-question"></i>
+                        <i class="fa-solid fa-lock"></i>
                         <div class="title">ChangePassword</div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fas fa-question"></i>
+                        <i class="fas fa-cog"></i>
                         <div class="title">Settings</div>
                     </a>
                 </li>
@@ -462,20 +514,17 @@ td i {
         </div>
         <div class="main">
             <div class="top-bar">
-                <div class="search">
-                    <input type="text" name="search" placeholder="search here">
-                    <label for="search"><i class="fas fa-search"></i></label>
-                </div>
-                <i class="fas fa-bell"></i>
+               
+                <i ></i>
                 <div class="user">
-                    <img src="/media/{{user.image}}" alt="no image">                      
+                    <img src="/media/{{user.image.url}}" alt="no image">                      
 
                 </div>
             </div>
             <div class="cards">
                 <div class="card">
                     <div class="card-content">
-                        <div class="number">67</div>
+                        <div class="number">8</div>
                         <div class="card-name">Category</div>
                     </div>
                     <div class="icon-box">
@@ -484,7 +533,7 @@ td i {
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <div class="number">105</div>
+                        <div class="number">7</div>
                         <div class="card-name">Job Seeker</div>
                     </div>
                     <div class="icon-box">
@@ -497,16 +546,18 @@ td i {
                         <div class="card-name">Job</div>
                     </div>
                     <div class="icon-box">
-                        <i class="fas fa-bed"></i>
+                        <i class="fa-sharp fa-solid fa-person"></i>
+
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <div class="number">$4500</div>
+                        <div class="number">5</div>
                         <div class="card-name">Company</div>
                     </div>
                     <div class="icon-box">
-                        <i class="fas fa-dollar-sign"></i>
+                        <i class="fa-solid fa-building"></i>
+
                     </div>
                 </div>
             </div>
@@ -524,7 +575,7 @@ td i {
                                         <div class="col-xl-10">
                                             <div class="cv-caption text-center" >
                                                 <p class="pera1" style="padding-left:150px;">Are you sure?</p>
-                                                <form action="#" method="POST" enctype="multipart/form-data" style="padding-left: 100px;">
+                                                <form action="#" method="post" enctype="multipart/form-data" style="padding-left: 100px;">
                                                     {% csrf_token %}
                                                     <button  class="border-btn2 border-btn4" style="padding-right: 150px;">Delete</button>
                                                     <!-- <a href="{% url 'jobdashboard_create'%}" class="border-btn2 border-btn4">Make a Payment</a> -->

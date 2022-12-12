@@ -22,10 +22,10 @@ class AdminDashboardForm(forms.ModelForm):
 class JobDashboardForm(forms.ModelForm):
     class Meta:
         model = Dashboard
-        fields = ['name','bank_details','payment_screenshot','send_to']
+        fields = ['user','bank_details','payment_screenshot','send_to']
         #For Label tag
         labels = {  
-            'name':'Name',
+            'user':'User',
             'bank_details': 'Bank Details',
             'payment_screenshot': 'Payment Screenshot',
             'Send To':'send_to'
@@ -35,25 +35,43 @@ class JobDashboardForm(forms.ModelForm):
       
     def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
-            self.fields["name"].widget.attrs={"class": 'form-control'}   
+            self.fields["user"].widget.attrs={"class": 'form-control'}   
             self.fields["bank_details"].widget.attrs={"class": 'form-control'}   
-            self.fields["send_to"].queryset=User.objects.filter(user_type="Job_seeker")
+            # self.fields["send_to"].queryset=User.objects.filter(user_type="Job_seeker")
 
 class JobDashboard1Form(forms.ModelForm):
     class Meta:
         model = Dashboard
-        fields = ['name','bank_details','payment_screenshot','payment_status']
+        fields = ['user','bank_details','payment_screenshot','payment_status','apply_attempt']
         #For Label tag
         labels = {  
-            'name':'Name',
+            'user':'User',
             'bank_details': 'Bank Details',
             'payment_screenshot': 'Payment Screenshot',
             'payment_status':'Status',  
+            'apply_attempt':"Apply Attempt",
         }
       
     def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
-            self.fields["name"].widget.attrs={"class": 'form-control'}   
+            self.fields["user"].widget.attrs={"class": 'form-control'}   
             self.fields["bank_details"].widget.attrs={"class": 'form-control'}   
             self.fields["payment_screenshot"].widget.attrs={"class": 'form-control'}
             self.fields["payment_status"].widget.attrs={"class": 'form-control'}   
+            self.fields["apply_attempt"].widget.attrs={"class": 'form-control'}   
+
+
+# class QuotesForm(forms.ModelForm):
+#     class Meta:
+#         model = Quotes
+#         fields = ['name','description']
+#         #For Label tag
+#         labels = {  
+#             'name': 'Name',
+#             'description': 'Description',        
+#         }
+      
+#     def __init__(self, *args, **kwargs):
+#             super().__init__(*args, **kwargs)
+#             self.fields["name"].widget.attrs={"class": 'form-control'}
+#             self.fields["description"].widget.attrs={"class": 'form-control'}

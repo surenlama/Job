@@ -17,17 +17,18 @@ class AdminSignupForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
+        fields = ['image','username', 'email', 'first_name', 'last_name', 'password1', 'password2']
         #For Label tag
         labels = {  
+            'image':'Profile Picture',
             'first_name': 'First Name',
             'last_name': 'Last Name',
             'email': 'Email',
-
         }
 
     def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
+            self.fields["image"].widget.attrs={"class": 'form-control'}   
             self.fields["username"].widget.attrs={"class": 'form-control'}
             self.fields["first_name"].widget.attrs={"class": 'form-control'}
             self.fields["last_name"].widget.attrs={"class": 'form-control'}   
@@ -61,13 +62,18 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'first_name', 'last_name','course', 'education','experience','project','skill','password1', 'password2']
+        fields = ['image','username', 'email', 'first_name', 'last_name','location','number','salary','course', 'education','experience','project','skill','hobby','whyneed','password1', 'password2','termscondition']
         #For Label tag
         labels = {  
+            'image':'Profile Picture', 
             'first_name': 'First Name',
             'last_name': 'Last Name',
             'email': 'Email',
-            # 'image': 'Profile Picture',
+            'location':'Address',
+            'phone':'Number',
+            'hobby':'Hobby',
+            'whyneed':'Why you need this job?',
+            'termscondition':'I agree to these'
 
         }
 
@@ -81,21 +87,24 @@ class SignUpForm(UserCreationForm):
         user.save()
         return user
 
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #     print(cleaned_data)
-    #     valpwd = self.cleaned_data['password1']
-    #     valrpwd = self.cleaned_data['password2']
-    #     if valpwd != valrpwd:
-    #         raise forms.ValidationError("Password doesnot match")
 
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields["image"].widget.attrs={"class": 'form-control'}
+
         self.fields["username"].widget.attrs={"class": 'form-control'}
         self.fields["first_name"].widget.attrs={"class": 'form-control'}
         self.fields["last_name"].widget.attrs={"class": 'form-control'}   
-        self.fields["email"].widget.attrs={"class": 'form-control'}             
+        self.fields["location"].widget.attrs={"class": 'form-control'}             
+        self.fields["number"].widget.attrs={"class": 'form-control'}             
+        self.fields["email"].widget.attrs={"class": 'form-control'}   
+        self.fields["salary"].widget.attrs={"class": 'form-control'}   
+        self.fields["hobby"].widget.attrs={"class": 'form-control'}   
+        self.fields["whyneed"].widget.attrs={"class": 'form-control'}   
+        # self.fields["password1"].widget.attrs={"class": 'form-control'}   
+        # self.fields["password2"].widget.attrs={"class": 'form-control'}   
+
 
 #login
 
@@ -114,15 +123,19 @@ class CompanySignupForm(forms.ModelForm):
     password1 = forms.CharField(label="Password", 
     widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     password2 = forms.CharField(label="Confirm Password(Again)",widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    
 
     class Meta:
         model = Company
-        fields = ['name', 'email', 'phone_number', 'password1', 'password2']
+        fields = ['image','name', 'email', 'phone_number','location', 'password1', 'password2']
         #For Label tag
         labels = {  
+            'image': 'Profile Picture',
             'name': 'Name',
             'phone_number': 'Phone Number',
             'email': 'Email',
+            'location': 'Location',
+
         }
 
     # def clean(self):
@@ -136,6 +149,8 @@ class CompanySignupForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields["image"].widget.attrs={"class": 'form-control'}
         self.fields["name"].widget.attrs={"class": 'form-control'}
         self.fields["phone_number"].widget.attrs={"class": 'form-control'}   
         self.fields["email"].widget.attrs={"class": 'form-control'}         
+        self.fields["location"].widget.attrs={"class": 'form-control'}         

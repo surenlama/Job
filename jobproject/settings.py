@@ -24,8 +24,9 @@ SECRET_KEY = 'django-insecure-)=^xt2=^!8an2&lgliih5!7rz1q_-_h2lzm&id7q=ejnj0kb93
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-# ALLOWED_HOSTS = ["*"]
+from celery.schedules import crontab
+# ALLOWED_HOSTS = ["13f5-113-199-225-150.in.ngrok.io"]
+# ngrok http 8000
 AUTH_USER_MODEL = "account.User"
 
 # Application definition
@@ -40,6 +41,9 @@ INSTALLED_APPS = [
     'account',
     'jobapp',
     'dashboardapp',
+    'django_celery_results',
+    'django_celery_beat',
+
 ]
 
 MIDDLEWARE = [
@@ -139,3 +143,33 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'surenlama620@gmail.com'
 EMAIL_HOST_PASSWORD = 'scgjwriqttczlsui'
 EMAIL_USE_TLS = True
+
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/kathmandu'
+
+
+CELERY_BEAT_SCHEDULE = {
+'task-number-one':{
+    'task':'account.task.delete_unpaiduser',
+    # 'schedule':5,
+    # 'args':('24',),
+    # 'schedule':crontab(hour=19,minute=37)
+    'schedule': crontab(hour=0, minute=0, day_of_week=1),
+  },
+  'task-number-two':{
+    'task':'account.task.quotesgenerate',
+
+    'schedule': crontab(hour=0, minute=0),
+  },
+}
+#//Redirects url ro home after a refresh
+# SESSION_TIMEOUT_REDIRECT = 'index'
+# LOGOUT_REDIRICT_URL= ''
+
+# #//session end time in seconds
+# SESSION_EXPIRE_SECONDS = 5 #1hour

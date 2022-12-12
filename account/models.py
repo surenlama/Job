@@ -51,6 +51,8 @@ class Company(models.Model):
     name = models.CharField(max_length=250)
     email = models.EmailField(max_length=250)
     phone_number = models.CharField(max_length=250)
+    image = models.FileField(upload_to="profile",blank=True,null=True)
+    location = models.CharField(max_length=250,null=True)
   
     def __str__(self):
         return self.name
@@ -59,7 +61,6 @@ class Company(models.Model):
 
 class User(AbstractUser):
     username_validator = UnicodeUsernameValidator()
-
     username = models.CharField(
         _("username"),
         max_length=150,
@@ -72,7 +73,7 @@ class User(AbstractUser):
             "unique": _("A user with that username already exists."),
         },
     )
-    image = models.FileField(upload_to="media",null=True)
+    image = models.FileField(upload_to="profile",blank=True,null=True)
     token  =models.CharField(max_length=150)
     location = models.CharField(max_length=250,null=True)
     number = models.CharField(max_length=250,null=True)
@@ -85,5 +86,11 @@ class User(AbstractUser):
     experience = models.ManyToManyField(Experiences)
     project = models.ManyToManyField(Project)
     skill = models.ManyToManyField(Skills)
+    hobby = models.CharField(max_length=250,null=True)
+    whyneed = models.TextField(null=True)
     create_date = models.DateField(null=True)
-    paymentend_date = models.DateField(null=True)
+    paymentend_date = models.DateField(null=True) 
+    termscondition = models.BooleanField(default=False)
+
+class TermsAndCondition(models.Model):
+    description = models.TextField(null=True)

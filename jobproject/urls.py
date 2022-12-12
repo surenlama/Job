@@ -20,6 +20,9 @@ from django.contrib import admin
 from django.urls import include, path, re_path
 from django.views.generic import TemplateView
 from django.contrib import admin
+from account.views import Indexx
+
+
 
 
 urlpatterns = [
@@ -27,8 +30,9 @@ urlpatterns = [
     path("account/", include("account.urls")),
     path("", include("jobapp.urls")),
     path("", include("dashboardapp.urls")),
+    path("", Indexx.as_view(),name="indexx"),
+
 
 ]
-
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

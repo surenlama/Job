@@ -102,6 +102,17 @@
         <!-- Header End -->
     </header>
     <main><br>
+                     
+        {% if messages %}
+        <center>
+        <h2>Alert</h2>
+    </center>
+        <br><br><br><br><br><br>
+        <center>
+        <h2>{{messages}}</h2>
+    </center>
+        {% else %}
+
         <h2 style="padding-left: 100px;">Apply for job</h2>
 
         <div class="our-services section-pad-t30" style="margin-top: -170px;">
@@ -109,8 +120,7 @@
                 <!-- Section Tittle -->
                
                 <div class="row d-flex justify-contnet-center">
-                 
-               
+
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group">
@@ -131,7 +141,7 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                       </form>
 
-
+{% endif %}
                      
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse,HttpResponseRedirect
 from django.http import HttpResponse
 from django.contrib import messages
-from django.views.generic import CreateView,ListView,View,DetailView
+from django.views.generic import CreateView,ListView,View,DetailView,UpdateView
 from .forms import SignUpForm, UserAuthentiationForm,CompanySignupForm,AdminSignupForm
 from django.contrib.auth import authenticate, login,logout
 from django.shortcuts import render
@@ -17,18 +17,17 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from jobproject.func import render_to_pdf
 import datetime
-from .models import Skills,Project,Education,Experiences,Course
+from .models import Skills,Project,Education,Experiences,Course,TermsAndCondition
+from dashboardapp.models import Dashboard,Quotes,Dommy
+from account.task import delete_unpaiduser,quotesgenerate
+import  random
+import time
+from jobapp.models import Job
+from jobapp.forms import JobForm
+
+
 User = get_user_model()
 
-def delete_unpaiduser(self):
-    current_date = datetime.datetime.now()
-    a= User.objects.filter(paymentend_date=current_date)
-    print(a)
-    if a:
-        for i in a:
-            i.delete()
-            i.save()
-        print('done')
 
 
 def send_email_after_registration(email,token):
@@ -53,7 +52,9 @@ def account_verify(request, token):
     return redirect('/account/login/')
 
 def home(request):
-    return render(request,'base.html')
+    job_object = Job.objects.all()
+    print('jobobject',job_object)
+    return render(request,'index.html',{'jobobj':job_object})
 
 class JobSeekerCreate(CreateView):
     form_class = AdminSignupForm
@@ -62,13 +63,10 @@ class JobSeekerCreate(CreateView):
 
     def get(self, request):
         fm = AdminSignupForm()
-        delete_unpaiduser(self)
-
         return render(request, 'jobsignup.html', {'form':fm})
 
     def post(self, request):
-        fm = AdminSignupForm(request.POST)
-        delete_unpaiduser(self)
+        fm = AdminSignupForm(request.POST,request.FILES)
         if fm.is_valid():
             new_user = fm.save()
             print(new_user)
@@ -76,19 +74,22 @@ class JobSeekerCreate(CreateView):
             new_user.token = uid
             new_user.user_type = "Job_seeker"
             print(new_user)
-            new_user.Verify = True
+            new_user.verify = True
+            new_user.is_staff=True
+            new_user.is_active=True
             current_date = datetime.datetime.now()
             new_date = current_date+datetime.timedelta(days=15)
             newss_date = new_date.date()
             new_user.paymentend_date=newss_date
             new_user.create_date = datetime.datetime.now().date()
+            print(fm.cleaned_data['image'])
+            new_user.image = fm.cleaned_data['image']
             new_user.save()
-            
             ids = new_user.id
             # print(ids)
             # send_email_after_registration(new_user.email,uid)
             messages.success(request, "Your Account Created Succesully.")
-            return HttpResponseRedirect(f'/account/pdfgenerator/{ids}')  
+            # return HttpResponseRedirect(f'/account/pdfgenerator/{ids}')  
 
         return render(request, 'jobsignup.html', {'form':fm})
 
@@ -102,7 +103,6 @@ class JobSeekerSignUp(CreateView):
     #     fm = SignUpForm()
     #     return render(request, 'signup.html', {'form':fm})
     def post(self, request):
-        delete_unpaiduser(self)
         fm = SignUpForm(request.POST)
         print(fm)
         if fm.is_valid():
@@ -136,7 +136,7 @@ class SignUp(CreateView):
     #     return render(request, 'signup.html', {'form':fm})
 
     def post(self, request):
-        fm = SignUpForm(request.POST)
+        fm = SignUpForm(request.POST,request.FILES)
         if fm.is_valid():
             new_user = fm.save()
             uid = uuid.uuid4()
@@ -147,6 +147,8 @@ class SignUp(CreateView):
             newss_date = new_date.date()
             new_user.paymentend_date=newss_date
             new_user.create_date = datetime.datetime.now().date()
+            # print(request.FILES['image'])
+            new_user.image = request.POST['image']
             new_user.save()
 
             ids = new_user.id
@@ -154,7 +156,7 @@ class SignUp(CreateView):
                 
             send_email_after_registration(new_user.email,uid)
             messages.success(request, "Your Account Created Succesully, to Verify your Account Check your Email.")
-            return HttpResponseRedirect(f'/account/pdfgenerator/{ids}')  
+            # return HttpResponseRedirect(f'/account/pdfgenerator/{ids}')  
             #   
     
         return render(request, 'login.html', {'form':fm})
@@ -170,7 +172,7 @@ class AdminSignUp(CreateView):
     #     return render(request, 'signup.html', {'form':fm})
 
     def post(self, request):
-        fm = AdminSignupForm(request.POST)
+        fm = AdminSignupForm(request.POST,request.FILES)
         print(fm)
         if fm.is_valid():
             new_user = fm.save()
@@ -178,6 +180,7 @@ class AdminSignUp(CreateView):
             uid = uuid.uuid4()
             new_user.token = uid
             new_user.user_type = "Admin"
+            new_user.image = request.POST['image']
             print(new_user)
             new_user.save()
             send_email_after_registration(new_user.email,uid)
@@ -200,30 +203,24 @@ class Signin(View):
                 uname = fm.cleaned_data['username']
                 upass = fm.cleaned_data['password']
                 user = authenticate(username=uname,password=upass)
+                # add.delay()
                 if user is not None:
                     if user.verify:
                         if user.user_type =="Job_seeker":
                             login(request,user)
-                            delete_unpaiduser(self)
                             return HttpResponseRedirect('/admindashboard/list/')  
                         elif user.user_type == "Company":
                             login(request,user)
-                            delete_unpaiduser(self)
                             return HttpResponseRedirect('/admindashboard/list/')  
-
                             # return HttpResponseRedirect('/companydashboard/list/')  
                     
                         elif user.user_type == "Admin":
-                            delete_unpaiduser(self)
-
                             login(request,user)
                             return HttpResponseRedirect('/admindashboard/list/')  
                         else:
                             pass        
                   
                     else:
-                        delete_unpaiduser(self)
-
                         messages.info(request,"Your account is not verified, please check your email and verify your account.")
                         return render(request,self.template_name)    
        
@@ -234,42 +231,6 @@ class Signin(View):
             return render(request,self.template_name,{'form':fm})    
                         
 
-# class SignUpView(TemplateView):
-#     template_name = 'signup.html'
-
-#     def get(self, request):
-#         context = super().get_context_data(**kwargs)
-#         fm = SignUpForm()
-#         context['form'] = fm
-#         return context
-
-#     def post(self, request):
-#         fm = SignUpForm(request.POST)
-#         print(fm)
-#         if fm.is_valid():
-#             fm.save()
-#         else:
-#             print('not inserteds')
-#             fm = SignUpForm()
-#         return render(request, self.template_name, {'form': fm})
-
-
-# def signup(request):
-#     if request.method == "POST":
-#         fm = SignUpForm(request.POST)
-#         if fm.is_valid():
-#             # messages.success(request, "Account Created Successfully !!")
-#             fm.save()
-#         else:
-#             fm = SignUpForm()
-#             return render(request, 'signup.html', {'form': fm})
-#     return HttpResponse(request, 'signup.html', {})
-# def clean(self):
-#     form_data = self.cleaned_data
-#     if form_data['password'] != form_data['password_repeat']:
-#         self._errors["password"] = ["Password do not match"] # Will raise a error message
-#         del form_data['password']
-#     return form_data
 
 class Logout(View):
     def get(self,request):
@@ -307,18 +268,18 @@ class CompanyCreate(CreateView):
 
     def get(self, request):
         fm = CompanySignupForm()
-        delete_unpaiduser(self)
         return render(request, 'companysignup.html', {'form':fm})
 
     def post(self, request):
-        fm = CompanySignupForm(request.POST)
-        delete_unpaiduser(self)
+        fm = CompanySignupForm(request.POST,request.FILES)
         if fm.is_valid():
             company_user = fm.save()
             user = User.objects.create_user(username=fm.cleaned_data['name'],email=fm.cleaned_data['email'],password=fm.cleaned_data['password1'])
             user.is_staff=True  
             user.is_active=True
             user.user_type = "Company"
+            user.verify=True
+            user.image = request.FILES['image']
             uid = uuid.uuid4()
             user.token = uid
             current_date = datetime.datetime.now()
@@ -327,11 +288,11 @@ class CompanyCreate(CreateView):
             user.paymentend_date=newss_date
             user.create_date = datetime.datetime.now().date()
             user.save()          
-
+            company_user.image=request.FILES['image']
             # print(new_user)
             company_user.save()
-            send_email_after_registration(user.email,uid)
-            messages.success(request, "Your Account Created Succesully, to Verify your Account Check your Email.")
+            # send_email_after_registration(user.email,uid)
+            messages.success(request, "Your Account Created Succesully.")
 
         return render(request, 'companysignup.html', {'form':fm})
 
@@ -339,23 +300,23 @@ class CompanyCreate(CreateView):
 #Company
 class CompanySignUp(CreateView):
     form_class = CompanySignupForm
-    template_name = "companysignup.html"
+    template_name = "signup.html"
     success_url = '/account/companysignup/'
 
-    def get(self, request):
-        fm = CompanySignupForm()
-        delete_unpaiduser(self)
-        return render(request, 'signup.html', {'form':fm})
+    # def get(self, request):
+    #     fm = CompanySignupForm()
+    #     return render(request, 'signup.html', {'form':fm})
 
     def post(self, request):
-        fm = CompanySignupForm(request.POST)
-        delete_unpaiduser(self)
+        fm = CompanySignupForm(request.POST,request.FILES)
         if fm.is_valid():
             company_user = fm.save()
             user = User.objects.create_user(username=fm.cleaned_data['name'],email=fm.cleaned_data['email'],password=fm.cleaned_data['password1'])
             user.is_staff=True  
             user.is_active=True
             user.user_type = "Company"
+            user.location = fm.cleaned_data['location']
+            user.image = request.POST['image']
             uid = uuid.uuid4()
             user.token = uid
             current_date = datetime.datetime.now()
@@ -364,7 +325,6 @@ class CompanySignUp(CreateView):
             user.paymentend_date=newss_date
             user.create_date = datetime.datetime.now().date()
             user.save()          
-
             # print(new_user)
             company_user.save()
             send_email_after_registration(user.email,uid)
@@ -373,17 +333,83 @@ class CompanySignUp(CreateView):
         return render(request, 'signup.html', {'form':fm})
 
 
-
-    
 class Indexx(ListView):
     model = Category
     template_name = "index.html"
     success_url = '/category/list/'
     context_object_name = "category_list"
 
-class FindJob(TemplateView):
-    template_name = "job_listing.html"
+    def get_context_data(self,*args,**kwargs):
+        context=super().get_context_data()
+        # lst=[]
+        # user_object = Quotes.objects.all()
+        # for i in user_object:
+        #     lst.append(i.id)
+        # ranvalue = random.randint(min(lst),max(lst))
+        random_val = Dommy.objects.all()
+        print(random_val)
+        print(random_val[0].number)
+        randomobject = Quotes.objects.get(id=random_val[0].number)
+        if 'q' in self.request.GET:
+            q=self.request.GET['q']
+            data = Category.objects.filter(name__icontains=q)
+        else:
+            data = Category.objects.all()
 
+        context=super().get_context_data()
+        context['category_list']=data
+        context['quotes']=randomobject
+        job_obj = Job.objects.all()[:3]
+        context['jobobj']=job_obj
+        digital_obj = Category.objects.filter(category_type="Digital Work")
+        context['digital']=digital_obj
+        print('digital',digital_obj)
+        field_obj = Category.objects.filter(category_type="Field Work")
+        print('field',field_obj)
+        context['field']=field_obj
+        return context
+
+
+class FindJob(UpdateView):
+    model = Job
+    form_class=JobForm
+    template_name = "job_listing.html"
+    # success_url = '/account/findjob/'
+    context_object_name = "job_list"
+
+    def get_context_data(self,*args,**kwargs):
+        context=super().get_context_data()
+      
+        category_obj = Category.objects.all()
+        print('call')
+        job_obj = Job.objects.all()
+        cate= Category.objects.filter(id=self.kwargs['pk'])
+        if cate:
+            print('yes')
+            category_filt = Category.objects.get(id=self.kwargs['pk'])
+            jobfiltobj = category_filt.catjob.all()
+        
+        else:
+            print('no')
+            messages.info(self.request,"Doesnot have data.")
+
+        context['category_all']=category_obj
+        context['job_list']=job_obj
+        context['job_filter']=jobfiltobj
+
+        return context
+
+class Jobdetail(UpdateView):
+    model = Job
+    form_class=JobForm
+    template_name = "job_details.html"
+
+    def get_context_data(self,*args,**kwargs):
+        context=super().get_context_data()
+        job_obj = Job.objects.get(id=self.kwargs['pk'])
+        context['job_list']=job_obj
+
+        return context    
 
 class About(TemplateView):
     template_name = "about.html"
@@ -391,6 +417,31 @@ class About(TemplateView):
 class Contact(TemplateView):
     template_name = "contact.html"
 
+class TermsCondition(ListView):
+    model = Category
+    template_name = "terms.html"
+    def get(self, request):
+        terms_object = TermsAndCondition.objects.all()
+        print(terms_object)
+        data = {
+            "object": terms_object,
+            "base_url": request.build_absolute_uri(),
+
+        }
+        a = render_to_pdf(self.template_name, context=data)
+        response = HttpResponse(content_type="application/pdf")
+        response[
+            "Content-Disposition"
+        ] = f"attachment; filename=terms.pdf"
+        response["Content-Transfer-Encoding"] = "binary"
+
+        with tempfile.NamedTemporaryFile(delete=True) as output:
+            output.write(a)
+            output.flush()
+            output = open(output.name, "rb")
+            response.write(output.read())
+            return response
+  
 
 class UserPDFView(DetailView):
     template_name = "cvv.html"
@@ -427,3 +478,26 @@ class UserPDFView(DetailView):
             response.write(output.read())
             return response
 
+
+
+class ViewCVList(ListView):
+    model = User
+    template_name = "cv.html"
+    success_url = '/viewcv/list'
+    context_object_name = "cv_list"
+
+    def get_context_data(self,*args,**kwargs):
+        context=super().get_context_data()
+        user_object = User.objects.get(id=self.request.user.id)
+        experience = user_object.experience.all()
+        education = user_object.education.all()
+        skill = user_object.skill.all()
+        course = user_object.course.all()
+        project = user_object.project.all()        
+        context['object']=user_object
+        context['experience']=experience
+        context['education']=education
+        context['skill']=skill
+        context['course']=course
+        context['project']=project
+        return context

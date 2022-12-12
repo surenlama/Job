@@ -33,7 +33,7 @@
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                    <img src="{% static'assets/img/logo/logo.png'%}" alt="">
+                    <img src="{% static 'assets/img/logo/logo.png' %}" alt="">
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
                         <div class="col-lg-3 col-md-2">
                             <!-- Logo -->
                             <div class="logo">
-                                <a href="index.html"><img src="{% static'assets/img/logo/logo.png'%}" alt=""></a>
+                                <a href="index.html"><img src="{% static 'assets/img/logo/logo.png' %}" alt=""></a>
                             </div>  
                         </div>
                         <div class="col-lg-9 col-md-9">
@@ -58,7 +58,6 @@
                                     <nav class="d-none d-lg-block">
                                         <ul id="navigation">
                                             <li><a href="{% url 'indexx' %}">Home</a></li>
-                                            <li><a href="{% url 'findjob' %}">Find a Jobs </a></li>
                                             <li><a href="{% url 'about' %}">About</a></li>
                                             <li><a href="#">Page</a>
                                                 <ul class="submenu">
@@ -98,7 +97,9 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>UI/UX Designer</h2>
+                            {% if job_list %}
+                            <h2>{{job_list.name}}</h2>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -113,94 +114,110 @@
                     <!-- Left Content -->
                     <div class="col-xl-7 col-lg-8">
                         <!-- job single -->
+                        {% if job_list %}
+
                         <div class="single-job-items mb-50">
                             <div class="job-items">
                                 <div class="company-img company-img-details">
-                                    <a href="#"><img src="{% static 'assets/img/icon/job-list1.png' %}" alt=""></a>
+                                    <img src="/media/{{job_list.image}}" alt="no image" style="height: 80px;width: 80px;">                            
+                                  </div>
+
                                 </div>
                                 <div class="job-tittle">
                                     <a href="#">
-                                        <h4>Digital Marketer</h4>
+                                        <h4>{{job_list.name}}</h4>
                                     </a>
                                     <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
+                                        <li>{{job_list.post_by.username}}</li>
+                                        <li><i class="fas fa-map-marker-alt"></i>{{job_list.location}}</li>
+                                        <li>{{job_list.salary_range}}</li>
                                     </ul>
                                 </div>
                             </div>
+                            {% endif %}
                         </div>
                           <!-- job single End -->
-                       
-                        <div class="job-post-details">
-                            <div class="post-details1 mb-50">
+                          <div class="col-xl-4 col-lg-4" >
+                            <div class="post-details3  mb-50">
                                 <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Job Description</h4>
-                                </div>
-                                <p>It is a long established fact that a reader will beff distracted by vbthe creadable content of a page when looking at its layout. The pointf of using Lorem Ipsum is that it has ahf mcore or-lgess normal distribution of letters, as opposed to using, Content here content here making it look like readable.</p>
-                            </div>
-                            <div class="post-details2  mb-50">
-                                 <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Required Knowledge, Skills, and Abilities</h4>
-                                </div>
-                               <ul>
-                                   <li>System Software Development</li>
-                                   <li>Mobile Applicationin iOS/Android/Tizen or other platform</li>
-                                   <li>Research and code , libraries, APIs and frameworks</li>
-                                   <li>Strong knowledge on software development life cycle</li>
-                                   <li>Strong problem solving and debugging skills</li>
-                               </ul>
-                            </div>
-                            <div class="post-details2  mb-50">
-                                 <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Education + Experience</h4>
-                                </div>
-                               <ul>
-                                   <li>3 or more years of professional design experience</li>
-                                   <li>Direct response email experience</li>
-                                   <li>Ecommerce website design experience</li>
-                                   <li>Familiarity with mobile and web apps preferred</li>
-                                   <li>Experience using Invision a plus</li>
-                               </ul>
-                            </div>
+                               <div class="small-section-tittle">
+                                   <h4>Job Overview</h4>
+                               </div>
+                              <ul>
+                                {% if job_list %}
+                                  <li>Posted date : <span>{{job_list.date}}</span></li>
+                                  <li>Location : <span>{{job_list.location}}</span></li>
+                                  <li>Vacancy : <span>{{job_list.no_of_vacancy}}</span></li>
+                                  <li>Job nature : <span>{{job_list.job_type}}</span></li>
+                                  <li>Salary :  <span>{{job_list.salary_range}}</span></li>
+                                  <li>Application date : <span>{{job_list.application_date}}</span></li>
+                                  {% endif %}
+                              </ul>
+                              {% if user.is_authenticated %}
+                             <div class="apply-btn2">
+                                <a href="{%  url 'jobapply_create'  %}" class="btn">Apply Now</a>
+                             </div>
+                             {% else %}
+                             <h4 style="color: red;">You need to have Account inorder to Apply for this job position. Please <a href="{% url 'signup' %}">SignUp Here</a> </h2>
+                             {% endif %}
+                           </div>
+                            <div class="post-details4  mb-50">
+                                <!-- Small Section Tittle -->
+                               <div class="small-section-tittle">
+                                   <h4>Company Information</h4>
+                               </div>
+                                  <span>Alwass</span>
+                                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                             
+                           </div>
                         </div>
+    
+                      
 
                     </div>
                     <!-- Right Content -->
-                    <div class="col-xl-4 col-lg-4">
-                        <div class="post-details3  mb-50">
+           
+
+
+                    <div class="job-post-details" style="margin-top: -450px;">
+                        <div class="post-details1 mb-50">
                             <!-- Small Section Tittle -->
-                           <div class="small-section-tittle">
-                               <h4>Job Overview</h4>
-                           </div>
-                          <ul>
-                              <li>Posted date : <span>12 Aug 2019</span></li>
-                              <li>Location : <span>New York</span></li>
-                              <li>Vacancy : <span>02</span></li>
-                              <li>Job nature : <span>Full time</span></li>
-                              <li>Salary :  <span>$7,800 yearly</span></li>
-                              <li>Application date : <span>12 Sep 2020</span></li>
-                          </ul>
-                         <div class="apply-btn2">
-                            <a href="#" class="btn">Apply Now</a>
-                         </div>
-                       </div>
-                        <div class="post-details4  mb-50">
-                            <!-- Small Section Tittle -->
-                           <div class="small-section-tittle">
-                               <h4>Company Information</h4>
-                           </div>
-                              <span>Colorlib</span>
-                              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                            <ul>
-                                <li>Name: <span>Colorlib </span></li>
-                                <li>Web : <span> colorlib.com</span></li>
-                                <li>Email: <span>carrier.colorlib@gmail.com</span></li>
+                            <div class="small-section-tittle">
+                                <h4>Job Description</h4>
+
+                            </div>
+                            {% if job_list %}
+                            <p>{{job_list.description}}</p>
+                            {% endif %}
+                        </div>
+                        <div class="post-details2  mb-50">
+                             <!-- Small Section Tittle -->
+                            <div class="small-section-tittle">
+                                <h4>Required Knowledge, Skills, and Abilities</h4>
+                            </div>
+                           <ul>
+                            {% if job_list %}
+                               <li>{{job_list.knowledge}}</li>
+                               <li>{{job_list.skill}}</li>
+                               <li>{{job_list.abilities}}</li>
+                               <li>Strong problem solving </li>
+                               {% endif %}
+
                             </ul>
-                       </div>
+                        </div>
+                        <div class="post-details2  mb-50">
+                             <!-- Small Section Tittle -->
+                            <div class="small-section-tittle">
+                                <h4>Education + Experience</h4>
+                            </div>
+                           <ul>
+                            {% if job_list %}
+                               <li>{{job_list.education}}</li>
+                               <li>{{job_list.expereince}}</li>
+                           
+                          {% endif %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
