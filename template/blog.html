@@ -24,6 +24,54 @@
     <link rel="stylesheet" href="{% static 'assets/css/nice-select.css'%}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
     <link rel="stylesheet" href="{% static 'assets/css/responsive.css'%}">
+    <style>
+
+        .dropbtn {
+          background-color: #fb246a;
+          color: white;
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+        }
+        
+        .dropbtn:hover, .dropbtn:focus {
+          background-color: #2980B9;
+        }
+        
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+        
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f1f1f1;
+          min-width: 160px;
+          overflow: auto;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+        
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+        
+        .digitclass {
+          display: none;
+        
+        }
+        .formssclass{
+            display: none;
+        }
+        .dropdown a:hover {background-color: #ddd;}
+        
+        .show {display: block;}
+                    </style>
 </head>
 
 <body>
@@ -73,11 +121,19 @@
                                 </div>          
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
-                                    <a href="#" class="btn head-btn1">Register</a>
-                                    <a href="#" class="btn head-btn2">Login</a>
+
+                                    <div class="dropdown">
+                                        <button onclick="myFunction()" class="dropbtn">Registration</button>
+                                        <div id="myDropdown" class="dropdown-content">
+                                            <a href="{% url 'signup' %}">Job Seeker</a>
+                                            <a href="{% url 'companysignup' %}">Company</a>
+                                            <a href="{% url 'adminsignup' %}">Admin</a>
+                                        </div>
+                                    </div>
+                                            <a href="{% url 'login' %}" class="btn head-btn2" style="margin-left: 15px;">Login</a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
                         <!-- Mobile Menu -->
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
@@ -112,7 +168,7 @@
                         <article class="blog_item">
                             {% for i in blog_obj %}
                             <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="/media/{{i.image.url}}' %}" alt="">
+                                <img class="card-img rounded-0" src="{{i.image.url}}" style="height: 500px;width: 1100px;">
                                 <a href="#" class="blog_item_date">
                                     <h3>{{i.date}}</h3>
                                 </a>
@@ -215,7 +271,7 @@
                                     <p>Heaven fruitful doesn't over lesser in days. Appear creeping.</p>
                                 </div>
                                 <!-- Form -->
-                                <div class="footer-form" >
+                                <div class="footer-form" style="padding-left: 90px;">
                                     <div id="mc_embed_signup">
                                         <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
                                         method="get" class="subscribe_form relative mail_part">
@@ -224,7 +280,7 @@
                                             onblur="this.placeholder = ' Email Address '">
                                             <div class="form-icon">
                                                 <button type="submit" name="submit" id="newsletter-submit"
-                                                class="email_icon newsletter-submit button-contactForm"><img src="{% static 'assets/img/icon/form.png'%}" alt=""></button>
+                                                class="email_icon newsletter-submit button-contactForm"><img src="{% static 'assets/img/icon/form.png'%}" alt="" ></button>
                                             </div>
                                             <div class="mt-10 info"></div>
                                         </form>
@@ -326,6 +382,32 @@
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="{% static './assets/js/plugins.js'%}"></script>
         <script src="{% static './assets/js/main.js'%}"></script>
+        <script>
+            /* When the user clicks on the button, 
+            toggle between hiding and showing the dropdown content */
+            function myFunction() {
+              document.getElementById("myDropdown").classList.toggle("show");
+            }
+            function digitalfunc() {
+              document.getElementById("myDigital").classList.toggle("show");
+            }
+            function fieldfunc() {
+              document.getElementById("myField").classList.toggle("show");
+            }
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function(event) {
+              if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                  var openDropdown = dropdowns[i];
+                  if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                  }
+                }
+              }
+            }
+        </script>
 
 </body>
 </html>

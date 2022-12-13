@@ -47,6 +47,8 @@ class Experiences(models.Model):
 
 
 
+
+
 class Company(models.Model):
     name = models.CharField(max_length=250)
     email = models.EmailField(max_length=250)

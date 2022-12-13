@@ -26,9 +26,16 @@ class CategoryForm(forms.ModelForm):
 
 
 class JobForm(forms.ModelForm):
+    # posted_date = forms.DateField(
+    #     input_formats=['%d/%m/%Y %H:%M'],
+    #     widget=forms.DateInput(attrs={
+    #         'class': 'form-control datetimepicker-input',
+    #         'data-target': '#datetimepicker1'
+    #     })
+    # )
     class Meta:
         model = Job
-        fields = ['category','name','image', 'description','location','salary_range','job_type','no_of_vacancy','knowledge','skill','abilities','education','expereince','post_by']
+        fields = ['category','name','image', 'description','location','salary_range','job_type','no_of_vacancy','knowledge','skill','abilities','education','expereince','post_by','posted_date']
         #For Label tag
         labels = {  
             'category': 'Category',
@@ -45,6 +52,7 @@ class JobForm(forms.ModelForm):
             'abilities':'Abilities',
             'education':'Education',
             'expereince':'Experience',
+            'posted_date':'Posted Date',
         }
 
     def __init__(self, *args, **kwargs):
@@ -57,7 +65,18 @@ class JobForm(forms.ModelForm):
             self.fields["location"].widget.attrs={"class": 'form-control'}   
             self.fields["salary_range"].widget.attrs={"class": 'form-control'}   
             self.fields["job_type"].widget.attrs={"class": 'form-control'}    
+            self.fields["posted_date"].widget = forms.DateInput(attrs={"type": "date"})
 
+
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     if kwargs.get("instance") is not None:
+    #         self.initial["time"] = self.instance.date.time
+    #         self.initial["dates"] = self.instance.date.date
+
+    #     self.fields["location"].widget = forms.widgets.Select(choices=updated_location)
+
+    #     self.fields["dates"].widget = forms.DateInput(attrs={"type": "date"})
 class JobApplyform(forms.ModelForm):
     class Meta:
         model = CVUpload

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from account.views import SignUp,Signin,Logout,changepass,account_verify,home,CompanySignUp,Indexx,\
-    FindJob,About,Contact,AdminSignUp,UserPDFView,JobSeekerSignUp,JobSeekerCreate,CompanyCreate,ViewCVList,\
+    JobListing,About,Contact,AdminSignUp,UserPDFView,JobSeekerSignUp,JobSeekerCreate,CompanyCreate,ViewCVList,\
         Jobdetail,TermsCondition,BlogList
 
 
@@ -20,7 +20,7 @@ urlpatterns = [
     path('viewcv/list/', ViewCVList.as_view(), name="viewcv_list"),
     path('home/', home,name="home"),
     path('indexx/', Indexx.as_view(),name="indexx"),
-    path('findjob/<int:pk>/', FindJob.as_view(),name="findjob"),
+    path('findjob/<str:pk>/', JobListing.as_view(),name="findjob"),
     path('about/', About.as_view(),name="about"),
     path('contact/', Contact.as_view(),name="contact"),
     path('blog/', BlogList.as_view(),name="blog"),

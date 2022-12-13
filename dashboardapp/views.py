@@ -60,7 +60,6 @@ class AdminDashboardList(ListView):
         paginator=Paginator(data,4)
         page_number=self.request.GET.get('page')
         servicedata = paginator.get_page(page_number)
-
         context['category_list']=servicedata
 
 

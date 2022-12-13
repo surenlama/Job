@@ -515,7 +515,7 @@ td i {
                                 <h2 class="contact-title" style="padding-left:100px;">Create Jobseeker </h2>
                             </div><br>
                           
-                            <form method="post">
+                            <form method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     {% csrf_token %}
                                     {% if messages %}

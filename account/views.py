@@ -24,6 +24,8 @@ import  random
 import time
 from jobapp.models import Job
 from jobapp.forms import JobForm
+from datetime import datetime, timedelta
+from django.core.paginator import Paginator
 
 
 User = get_user_model()
@@ -369,34 +371,103 @@ class Indexx(ListView):
         context['field']=field_obj
         return context
 
-
-class FindJob(UpdateView):
+class JobListing(ListView):
     model = Job
     form_class=JobForm
     template_name = "job_listing.html"
-    # success_url = '/account/findjob/'
+    success_url = '/account/findjob/'
     context_object_name = "job_list"
 
     def get_context_data(self,*args,**kwargs):
         context=super().get_context_data()
-      
         category_obj = Category.objects.all()
-        print('call')
         job_obj = Job.objects.all()
-        cate= Category.objects.filter(id=self.kwargs['pk'])
-        if cate:
-            print('yes')
-            category_filt = Category.objects.get(id=self.kwargs['pk'])
-            jobfiltobj = category_filt.catjob.all()
-        
+        # filter for job type
+        print(self.kwargs['pk'])
+        print(type(self.kwargs['pk']))
+        today = datetime.now().date()
+        print(today)
+        if self.kwargs['pk'] == "-1":
+            jobfiltobj = Job.objects.filter(job_type="Full Time")
+            context['job_filter']=jobfiltobj
+
+        elif self.kwargs['pk'] == "-2":  
+            jobfiltobj = Job.objects.filter(job_type="Part Time")
+            context['job_filter']=jobfiltobj
+
+        elif self.kwargs['pk'] == "-3":  
+            jobfiltobj = Job.objects.filter(job_type="Remote")
+            context['job_filter']=jobfiltobj
+
+        elif self.kwargs['pk'] == "-4":  
+            jobfiltobj = Job.objects.filter(job_type="Freelancing")
+            context['job_filter']=jobfiltobj
+
+        elif self.kwargs['pk'] == "-10": 
+            jobfiltobj = Job.objects.filter(posted_date=today)
+            context['job_filter']=jobfiltobj
+
+
+        elif self.kwargs['pk'] == "-20": 
+            future_date_before_2days = today - \
+                                    timedelta(days = 2)
+            jobfiltobj = Job.objects.filter(posted_date=future_date_before_2days)
+            context['job_filter']=jobfiltobj
+
+        elif self.kwargs['pk'] == "-30": 
+            future_date_before_3days = today - \
+                                    timedelta(days = 3)
+            jobfiltobj = Job.objects.filter(posted_date=future_date_before_3days)
+            context['job_filter']=jobfiltobj
+
+        elif self.kwargs['pk'] == "-50": 
+            future_date_before_5days = today - \
+                                    timedelta(days = 5)
+            jobfiltobj = Job.objects.filter(posted_date=future_date_before_5days)
+            context['job_filter']=jobfiltobj
+
+        elif self.kwargs['pk'] == "-100": 
+            future_date_before_10days = today - \
+                                    timedelta(days = 10)
+            jobfiltobj = Job.objects.filter(posted_date=future_date_before_10days)
+            context['job_filter']=jobfiltobj
+
+        elif self.kwargs['pk'] == "-55": 
+            objs=Job.objects.all()
+            paginator=Paginator(objs,4)
+            page_number=self.request.GET.get('page')
+            servicedata = paginator.get_page(page_number)
+            print('servicedata',servicedata)
+
+            context['job_filter']=servicedata
+
         else:
-            print('no')
+            pass
+
+
+        #filter for job of category
+        cate= Category.objects.filter(id=self.kwargs['pk'])
+        print('cate',cate)
+        if cate:
+            category_filt = Category.objects.get(id=self.kwargs['pk'])
+            jobfiltobj = Job.objects.filter(category=category_filt)
+            if len(jobfiltobj)<0:
+                context['message']="No jobs found"
+            else:
+                context['job_filter']=jobfiltobj
+        else:
             messages.info(self.request,"Doesnot have data.")
+        # paginator=Paginator(data,4)
+        # page_number=self.request.GET.get('page')
+        # servicedata = paginator.get_page(page_number)
+        #filter forjob location 
+        jobfiltobj = Job.objects.filter(id=self.kwargs['pk'])
+        if jobfiltobj:
+            context['job_filter']=jobfiltobj
 
         context['category_all']=category_obj
         context['job_list']=job_obj
-        context['job_filter']=jobfiltobj
-
+        # context['job_filter']=jobfiltobj
         return context
 
 class Jobdetail(UpdateView):

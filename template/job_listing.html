@@ -168,7 +168,7 @@
                                         d="M7.778,12.000 L12.222,12.000 L12.222,10.000 L7.778,10.000 L7.778,12.000 ZM-0.000,-0.000 L-0.000,2.000 L20.000,2.000 L20.000,-0.000 L-0.000,-0.000 ZM3.333,7.000 L16.667,7.000 L16.667,5.000 L3.333,5.000 L3.333,7.000 Z"/>
                                     </svg>
                                     </div>
-                                    <h4>Filter Jobs</h4>
+                                    <h4>Filter Job</h4>
                                 </div>
                             </div>
                         </div>
@@ -189,35 +189,45 @@
                                         {% for i in category_all %}
 
                                       <a class="dropdown-item" href="{% url 'findjob' i.id %}">{{i.name}}</a>
-
                                       {% endfor %}
 
                                     </div>
                                   </div> 
+                           
                           
                            
                              
                                 <!--  Select job items End-->
                                 <!-- select-Categories start -->
+                               
                                 <div class="select-Categories pt-80 pb-50">
                                     <div class="small-section-tittle2">
                                         <h4>Job Type</h4>
                                     </div>
                                     <label class="container">Full Time
-                                        <input type="checkbox" >
+                                        <a href="{% url 'findjob' -1 %}">
+                                       <input type="checkbox" > 
                                         <span class="checkmark"></span>
+                                    </a>
+
                                     </label>
                                     <label class="container">Part Time
-                                        <input type="checkbox" checked="checked active">
+                                        <a href="{% url 'findjob' -2 %}">
+                                        <input type="checkbox" >
                                         <span class="checkmark"></span>
+                                    </a>
                                     </label>
                                     <label class="container">Remote
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
+                                        <a href="{% url 'findjob' -3 %}"><input type="checkbox" >
+                                            <span class="checkmark"></span>
+                                        </a>
+
                                     </label>
                                     <label class="container">Freelance
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
+                                        <a href="{% url 'findjob' -4 %}"><input type="checkbox" >
+                                            <span class="checkmark"></span>
+                                        </a>
+
                                     </label>
                                 </div>
                                 <!-- select-Categories End -->
@@ -228,18 +238,22 @@
                                      <h4>Job Location</h4>
                                </div>
                                 <!-- Select job items start -->
-                                <div class="select-job-items2">
-                                    <select name="select">
-                                        <option value="">Anywhere</option>
+                            
+
+                                  <div class="dropdown" class="select-job-items2">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   All Location
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         {% for i in job_list %}
-                                        <option value="">{{i.location}}</option>
-                                            {% endfor %}
-                                    </select>
-                                </div>
+
+                                      <a class="dropdown-item" href="{% url 'findjob' i.id %}">{{i.location}}</a>
+                                      {% endfor %}
+
+                                    </div>
+                                  </div> 
                                 <!--  Select job items End-->
-                                <!-- select-Categories start -->
-                    
-                                <!-- select-Categories End -->
+                 
                             </div>
                             <!-- single three -->
                             <div class="single-listing">
@@ -248,58 +262,42 @@
                                     <div class="small-section-tittle2">
                                         <h4>Posted Within</h4>
                                     </div>
-                                    <label class="container">Any
-                                        <input type="checkbox" >
-                                        <span class="checkmark"></span>
-                                    </label>
+                             
                                     <label class="container">Today
-                                        <input type="checkbox" checked="checked active">
-                                        <span class="checkmark"></span>
+                                        <a href="{% url 'findjob' -10 %}">
+                                            <input type="checkbox" > 
+                                             <span class="checkmark"></span>
+                                         </a>
                                     </label>
                                     <label class="container">Last 2 days
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
+                                        <a href="{% url 'findjob' -20 %}">
+                                            <input type="checkbox" > 
+                                             <span class="checkmark"></span>
+                                         </a>
                                     </label>
                                     <label class="container">Last 3 days
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
+                                        <a href="{% url 'findjob' -30 %}">
+                                            <input type="checkbox" > 
+                                             <span class="checkmark"></span>
+                                         </a>
                                     </label>
                                     <label class="container">Last 5 days
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
+                                        <a href="{% url 'findjob' -50 %}">
+                                            <input type="checkbox" > 
+                                             <span class="checkmark"></span>
+                                         </a>
                                     </label>
                                     <label class="container">Last 10 days
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
+                                        <a href="{% url 'findjob' -100 %}">
+                                            <input type="checkbox" > 
+                                             <span class="checkmark"></span>
+                                         </a>
                                     </label>
                                 </div>
                                 <!-- select-Categories End -->
                             </div>
-                            <div class="single-listing">
-                                <!-- Range Slider Start -->
-                                <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
-                                    <div class="small-section-tittle2">
-                                        <h4>Filter Jobs</h4>
-                                    </div>
-                                    <div class="widgets_inner">
-                                        <div class="range_item">
-                                            <!-- <div id="slider-range"></div> -->
-                                            <input type="text" class="js-range-slider" value="" />
-                                            <div class="d-flex align-items-center">
-                                                <div class="price_text">
-                                                    <p>Price :</p>
-                                                </div>
-                                                <div class="price_value d-flex justify-content-center">
-                                                    <input type="text" class="js-input-from" id="amount" readonly />
-                                                    <span>to</span>
-                                                    <input type="text" class="js-input-to" id="amount" readonly />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </aside>
-                              <!-- Range Slider End -->
-                            </div>
+                            <a href="{% url 'findjob' -55 %}" type="submit" class="btn btn-danger">View All Jobs</a>
+                            
                         </div>
                         <!-- Job Category Listing End -->
                     </div>
@@ -334,12 +332,12 @@
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
                                         <div class="company-img">
-                                            <a href="#">
+                                            <a href="{% url 'jobdetail' i.id %}"">
                                             <img src="/media/{{i.image}}" alt="no image" style="height: 80px;width: 80px;">                            
                                             </a>
                                         </div>
                                         <div class="job-tittle job-tittle2">
-                                            <a href="#">
+                                            <a href="{% url 'jobdetail' i.id %}"">
                                                 <h4>{{i.name}}</h4>
                                             </a>
                                             <ul>
@@ -350,13 +348,13 @@
                                         </div>
                                     </div>
                                     <div class="items-link items-link2 f-right">
-                                        <a href="job_details.html">{{i.job_type}}e</a>
-                                        <span>{{i.date}}</span>
+                                        <a href="{% url 'jobdetail' i.id %}">{{i.job_type}}e</a>
+                                        <span>{{i.posted_date}}</span>
                                     </div>
                                 </div>
                              {% endfor %}
                                 {% else %}
-                                <h2>{{messages}}</h2>
+                                <h2>{{message}}</h2>
                                 {% endif %}
                            
                             </div>
@@ -375,10 +373,15 @@
                         <div class="single-wrap d-flex justify-content-center">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-start">
-                                    <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                <li class="page-item"><a class="page-link" href="#"><span class="ti-angle-right"></span></a></li>
+
+                                    <li class="page-item active"><a class="page-link" href="/account/findjob/-55/?page=1" tabindex="-1">01</a></li>
+                                    <li class="page-item"><a class="page-link" href="/account/findjob/-55/?page=2" tabindex="-1">02</a></li>
+                                    <li class="page-item"><a class="page-link" href="/account/findjob/-55/?page=3" tabindex="-1">03</a></li>
+                                    {% if job_filter.has_next%}
+
+                                    <li class="page-item"><a class="page-link" href="/admindashboard/list/?page={{job_filter.next_page_number}}"><span class="ti-angle-right"></span></a></li>
+                                    {% endif %}
+
                                 </ul>
                             </nav>
                         </div>
@@ -576,12 +579,15 @@
             }
           }
         }
-
-        function hello() {
-  // Simulate a mouse click:
-window.location.href = "http://www.w3schools.com";
-
+ 
+        
+        </script> 
+        <script>
+                   function hello() {
+                    // Simulate a mouse click:
+window.location.href = "/account/findjob/3/ ";
+  console.log("Hellohjbj")
 }
-        </script>  
+        </script> 
 </body>
 </html>

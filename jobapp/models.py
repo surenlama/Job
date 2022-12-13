@@ -15,13 +15,21 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
+class Location(models.Model):
+    name = models.CharField(max_length=250,null=True)
+    image = models.FileField(upload_to="media",null=True)
+    def __str__(self):
+        return self.name
+
+
 class Job(models.Model):
     category = models.ForeignKey(Category,on_delete=models.CASCADE,related_name="catjob")
     name=models.CharField(max_length=250,null=True)
     image=models.FileField(upload_to="media",null=True)
     description=models.TextField(max_length=250,null=True)
     post_by = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
-    location = models.CharField(max_length=250,null=True)
+    location = models.ForeignKey(Location,on_delete=models.CASCADE,null=True)
     date = models.DateTimeField(null=True)
     salary_range = models.CharField(max_length=250,null=True)
     job_type = models.CharField(max_length=250,choices=JOB_CHOICES,default="fulltime")
@@ -32,6 +40,7 @@ class Job(models.Model):
     education = models.TextField(null=True)
     expereince = models.TextField(null=True)
     application_date = models.DateField(null=True)
+    posted_date = models.DateField(null=True)
 
     class Meta:
         ordering = ('-id',)
