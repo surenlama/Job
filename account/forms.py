@@ -127,7 +127,7 @@ class CompanySignupForm(forms.ModelForm):
 
     class Meta:
         model = Company
-        fields = ['image','name', 'email', 'phone_number','location', 'password1', 'password2']
+        fields = ['image','name', 'email', 'phone_number','location', 'password1', 'password2','termscondition']
         #For Label tag
         labels = {  
             'image': 'Profile Picture',
@@ -135,6 +135,7 @@ class CompanySignupForm(forms.ModelForm):
             'phone_number': 'Phone Number',
             'email': 'Email',
             'location': 'Location',
+            'termscondition':'I agree to these'
 
         }
 

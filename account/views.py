@@ -16,7 +16,6 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from jobproject.func import render_to_pdf
-import datetime
 from .models import Skills,Project,Education,Experiences,Course,TermsAndCondition,Blog,Contact
 from dashboardapp.models import Dashboard,Quotes,Dommy
 from account.task import delete_unpaiduser,quotesgenerate
@@ -24,7 +23,8 @@ import  random
 import time
 from jobapp.models import Job
 from jobapp.forms import JobForm
-from datetime import datetime, timedelta
+import datetime
+# from datetime import datetime, timedelta
 from django.core.paginator import Paginator
 
 
@@ -182,7 +182,8 @@ class AdminSignUp(CreateView):
             uid = uuid.uuid4()
             new_user.token = uid
             new_user.user_type = "Admin"
-            new_user.image = request.POST['image']
+            if "image" in request.FILES:
+                new_user.image = request.FILES['image']
             print(new_user)
             new_user.save()
             send_email_after_registration(new_user.email,uid)
@@ -318,7 +319,8 @@ class CompanySignUp(CreateView):
             user.is_active=True
             user.user_type = "Company"
             user.location = fm.cleaned_data['location']
-            user.image = request.POST['image']
+            if "image" in request.FILES:
+                user.image = request.FILES['image']
             uid = uuid.uuid4()
             user.token = uid
             current_date = datetime.datetime.now()
@@ -354,20 +356,21 @@ class Indexx(ListView):
         randomobject = Quotes.objects.get(id=random_val[0].number)
         if 'q' in self.request.GET:
             q=self.request.GET['q']
-            data = Category.objects.filter(name__icontains=q)
+            data = Category.objects.filter(main__category_type="Freelancing Work",name__icontains=q)
         else:
-            data = Category.objects.all()
-
+            data = Category.objects.filter(main__category_type="Freelancing Work")
+            print(data)
+        onsite = Category.objects.exclude(main__category_type="Freelancing Work")
         context=super().get_context_data()
+        context['categoryonsite_list']=onsite
+
         context['category_list']=data
         context['quotes']=randomobject
         job_obj = Job.objects.all()[:3]
         context['jobobj']=job_obj
         digital_obj = Category.objects.filter(category_type="Digital Work")
         context['digital']=digital_obj
-        print('digital',digital_obj)
         field_obj = Category.objects.filter(category_type="Field Work")
-        print('field',field_obj)
         context['field']=field_obj
         return context
 
@@ -385,7 +388,7 @@ class JobListing(ListView):
         # filter for job type
         print(self.kwargs['pk'])
         print(type(self.kwargs['pk']))
-        today = datetime.now().date()
+        today = datetime.datetime.now().date()
         print(today)
         if self.kwargs['pk'] == "-1":
             jobfiltobj = Job.objects.filter(job_type="Full Time")
@@ -410,25 +413,25 @@ class JobListing(ListView):
 
         elif self.kwargs['pk'] == "-20": 
             future_date_before_2days = today - \
-                                    timedelta(days = 2)
+                                    datetime.timedelta(days = 2)
             jobfiltobj = Job.objects.filter(posted_date=future_date_before_2days)
             context['job_filter']=jobfiltobj
 
         elif self.kwargs['pk'] == "-30": 
             future_date_before_3days = today - \
-                                    timedelta(days = 3)
+                                    datetime.timedelta(days = 3)
             jobfiltobj = Job.objects.filter(posted_date=future_date_before_3days)
             context['job_filter']=jobfiltobj
 
         elif self.kwargs['pk'] == "-50": 
             future_date_before_5days = today - \
-                                    timedelta(days = 5)
+                                    datetime.timedelta(days = 5)
             jobfiltobj = Job.objects.filter(posted_date=future_date_before_5days)
             context['job_filter']=jobfiltobj
 
         elif self.kwargs['pk'] == "-100": 
             future_date_before_10days = today - \
-                                    timedelta(days = 10)
+                                    datetime.timedelta(days = 10)
             jobfiltobj = Job.objects.filter(posted_date=future_date_before_10days)
             context['job_filter']=jobfiltobj
 

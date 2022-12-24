@@ -55,7 +55,11 @@ PAY_CHOICES=(
 CATEGORY_CHOICES=(
     ("Digital Work", "digital"),
     ("Field Work", "field"),
+    ("Freelancing Work", "freelancing"),
+
 )
+
+
 
 EDUCATION_CHOICES=(
     ("Bachelor", "bachelor"),

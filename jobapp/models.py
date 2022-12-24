@@ -4,7 +4,16 @@ from django.contrib.auth import get_user_model
 from  jobproject.utils import CV_CHOICES,JOB_CHOICES,CATEGORY_CHOICES
 User = get_user_model()
 
+
+class MainCategory(models.Model):
+    category_type = models.CharField(max_length=250,choices=CATEGORY_CHOICES,default="digital")
+    description = models.TextField(null=True)
+    def __str__(self):
+        return self.category_type
+
+
 class Category(models.Model):
+    main = models.ForeignKey(MainCategory,on_delete=models.CASCADE,null=True)
     name=models.CharField(max_length=250,null=True)
     image=models.FileField(upload_to="media",null=True)
     description=models.TextField(max_length=250,null=True)
@@ -14,7 +23,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class Location(models.Model):
     name = models.CharField(max_length=250,null=True)
@@ -55,3 +63,8 @@ class CVUpload(models.Model):
     job = models.ForeignKey(Job,on_delete=models.CASCADE,related_name="cvjob",null=True)
     # status = models.CharField(max_length=250,choices=CV_CHOICES,default="notview")
 
+# class FreelancingSubCategory(models.Model):
+#     category = models.ForeignKey(Category,on_delete=models.CASCADE)
+#     name=models.CharField(max_length=250,null=True)
+#     image=models.FileField(upload_to="media",null=True)
+#     description=models.TextField(max_length=250,null=True)

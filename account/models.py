@@ -55,6 +55,7 @@ class Company(models.Model):
     phone_number = models.CharField(max_length=250)
     image = models.FileField(upload_to="profile",blank=True,null=True)
     location = models.CharField(max_length=250,null=True)
+    termscondition = models.BooleanField(default=False)
   
     def __str__(self):
         return self.name
