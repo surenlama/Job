@@ -1,2112 +1,1851 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fiverr</title>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/path/to/flickity.css" media="screen">
-    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="challenge-11.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/path/to/flickity.css" media="screen" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courgette&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="challenge-11.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
     <style>
-
-.fix-width{
-    max-width: 1000px;
-    margin: auto;
-    text-align: center;
-}
-.clearfix::after{
-    content: "";
-    clear: both;
-    display: block;
-}
-a{
-    text-decoration: none !important;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* MAIN CSS SECTION */
-
-.header-section-1{
-    height: 50px;
-    top: 0;
-    position: fixed;
-    z-index: 2;
-    width: 100%;
-}
-.header1-1{
-    width: 30%;
-    box-sizing: border-box;
-    text-align: left;
-    position: relative;
-    cursor: context-menu;
-}
-.header1-1 img{
-    width: 90px;
-    margin-top: 13px;
-    margin-left: 35px;
-}
-.span1-2{
-    position: absolute;
-    top: -1px;
-    left: 124px;
-    font-size: 35px;
-    font-weight: bold;
-    color: #1dbf73;
-}
-.span1-1{
-    color: white;
-    font-size: 20px;
-    position: absolute;
-    top: 12px;
-    left: 10px;
-}
-
-
-
-
-.header1-2{
-    width: 60%;
-    cursor: context-menu;
-    box-sizing: border-box;
-    text-align: right;
-}
-.header1-2 ul li{
-    display: inline;
-}
-.header1-2 ul li a{
-    font-size: 13px;
-    color: #ffffff;
-    padding: 4px 10px;
-    display: inline-block;
-    transition: .3s;
-    margin-top: 10px;
-    font-weight: bold;
-}
-.header1-2 ul li a:hover{
-    color: #1dbf73;
-    cursor: pointer;
-}
-
-
-
-.header1-3{
-    width: 10%;
-    box-sizing: border-box;
-    text-align: right;
-    padding-right: 10px;
-}
-.header1-3 button{
-    border: solid 2px #ffffff;
-    color: #ffffff;
-    background: none;
-    border-radius: 2px;
-    font-size: 13px;
-    font-weight: bold;
-    margin-top: 13px;
-    transition: .3s;
-    padding: 1px 15px;
-}
-.header1-3 button:hover{
-    background-color: #1dbf73;
-    border: #1dbf7300 solid 2px;
-    cursor: pointer;
-}
-
-
-
-
-
-
-
-
-
-.header-section-2{
-    height: 50px;
-    background: white;
-    width: 100%;
-}
-.header2-1{
-    width: 17%;
-    box-sizing: border-box;
-    text-align: left;
-    position: relative;
-    cursor: context-menu;
-}
-.header2-1 img{
-    width: 90px;
-    margin-top: -21px;
-    margin-left: 35px;
-}
-.span2-2{
-    position: absolute;
-    top: -4px;
-    left: 120px;
-    font-size: 35px;
-    font-weight: bold;
-    color: #1dbf73;
-}
-.span2-1{
-    color: black;
-    font-size: 20px;
-    position: absolute;
-    top: 12px;
-    left: 10px;
-}
-
-
-.header2-4{
-    width: 22%;
-}
-
-.h-search{
-    width: 75%;
-    box-sizing: border-box;
-}
-.h-btn{
-    width: 25%;
-    box-sizing: border-box;
-    cursor: pointer;
-}
-.h-search input{
-    width: 100%;
-    border: solid rgba(0, 0, 0, 0.315) 1px;
-    background: white;
-    margin-top: 12px;
-    font-size: 14px;
-    padding: 4px 9px;
-    box-sizing: border-box;
-    border-radius: 3px 0 0 3px;
-    height: 26px;
-}
-
-.h-btn button{
-    height: 26px;
-    width: 100%;
-    background: #1dbf73;
-    border: solid #1dbf73 1px;
-    color: white;
-    font-weight: bold;
-    margin-top: 12px;
-    font-size: 12px;
-    border-radius: 0 3px 3px 0;
-}
-
-
-
-
-
-
-
-.header2-2{
-    width: 48%;
-    cursor: context-menu;
-    box-sizing: border-box;
-    text-align: right;
-}
-.header2-2 ul li{
-    display: inline;
-}
-.header2-2 ul li a{
-    font-size: 13px;
-    color: black;
-    padding: 4px 10px;
-    display: inline-block;
-    transition: .3s;
-    margin-top: 10px;
-    font-weight: bold;
-}
-.header2-2 ul li a:hover{
-    color: #1dbf73;
-    cursor: pointer;
-}
-
-
-
-.header2-3{
-    width: 10%;
-    box-sizing: border-box;
-    text-align: right;
-    padding-right: 10px;
-}
-.header2-3 button{
-    border: solid 2px #1dbf73;
-    color: #1dbf73;
-    background: none;
-    border-radius: 2px;
-    font-size: 13px;
-    font-weight: bold;
-    margin-top: 13px;
-    transition: .3s;
-    padding: 1px 15px;
-}
-.header2-3 button:hover{
-    background-color: #1dbf73;
-    border: #1dbf7300 solid 2px;
-    color: white;
-    cursor: pointer;
-}
-
-
-
-
-
-
-
-
-
-
-.category-section{
-    border-top: solid rgba(0, 0, 0, 0.3) 1px;
-    border-bottom: solid rgba(0, 0, 0, 0.3) 1px;
-    background-color: #fff;
-    height: 40px;
-    width: 100%;
-    transition: 0s;
-    position: fixed;
-}
-.ul3 li{
-    display: inline;
-}
-.ul3 li a{
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.479);
-    padding: 10px 6px;
-    display: inline-block;
-    font-weight: bold;
-    text-transform: capitalize;
-}
-
-
-
-
-
-
-
-
-
-
-
-.header-fixed{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 10;
-    visibility: hidden;
-    opacity: 0;
-    transition: .2s;
-}
-.all-body:hover > .header-fixed{
-    visibility: visible;
-    opacity: 1;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* BANNER SETION */
-
-.banner-section{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1;
-    height: 560px;
-    animation: animate 16s ease-in-out infinite;
-    background-size: cover;
-    background-position: center center;
-}
-@keyframes animate{
-    0%,100%{
-        background-image: url("https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049970/bg-hero-5-1792-x1.png");
-    }
-    20%{
-        background-image: url("https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/93085acc959671e9e9e77f3ca8147f82-1599427734108/bg-hero-4-1792-x1.png");
-    }
-    40%{
-        background-image: url("https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/d14871e2d118f46db2c18ad882619ea8-1599835783966/bg-hero-3-1792-x1.png");
-    }
-    60%{
-        background-image: url("https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/2413b8415dda9dbd7756d02cb87cd4b1-1599595203045/bg-hero-2-1792-x1.png");
-    }
-    80%{
-        background-image: url("https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049983/bg-hero-1-1792-x1.png");
-    }
-}
-
-
-
-.banner-2{
-    width: 500px;
-    text-align: left;
-    box-sizing: border-box;
-    top: 180px;
-    left: 30px;
-}
-.h-3{
-    font-size: 35px;
-    text-transform: capitalize;
-    width: 500px;
-    color: #fff;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-.h-3 i{
-    font-family: 'Courgette', cursive;
-    font-weight: 100;
-}
-
-
-
-
-.inp{
-    width: 80%;
-    box-sizing: border-box;
-    position: relative;
-}
-.btn{
-    width: 20%;
-    box-sizing: border-box;
-}
-.inp input{
-    width: 100%;
-    box-sizing: border-box;
-    border: none;
-    height: 40px;
-    border-radius: 3px 0 0 3px;
-    font-size: 15px;
-    background-color: white;
-    color: black;
-    padding-top: 5px;
-    transition: .1s;
-    padding-bottom: 5px;
-    padding-left: 40px;
-    padding-right: 10px;
-}
-.inp input:focus{
-    border: none;
-}
-.span-3{
-    position: absolute;
-    top: 5px;
-    left: 10px;
-    font-size: 20px;
-    color: rgba(0, 0, 0, 0.4);
-}
-.btn input{
-    width: 100%;
-    box-sizing: border-box;
-    height: 40px;
-    background: #1dbf73;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    transition: .2s;
-    border-radius: 0 3px 3px 0;
-    margin-top: -7px;
-    margin-left: -27px;
-}
-.btn input:hover{
-    background: #1aa162;
-    cursor: pointer;
-}
-.p1{
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
-    display: inline;
-}
-
-.ul1{
-    display: inline-block;
-    cursor: context-menu;
-    margin-left: -30px;
-    margin-top: 10px;
-}
-.ul1 li a{
-    color: white;
-    background: none;
-    font-size: 12px;
-    padding: 2px 5px;
-    border-radius: 10px;
-    transition: .3s;
-    font-weight: bold;
-    border: solid white 1px;
-}
-.ul1 li a:hover{
-    background-color: white;
-    cursor: pointer;
-    color: rgba(0, 0, 0, 0.658);
-    font-weight: bold;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.banner-bottom{
-    height: 120px;
-    margin-top: 560px;
-    background-color: rgba(0, 0, 0, 0.05);
-    z-index: -2;
-}
-.name{
-    width: 30%;
-    box-sizing: border-box;
-}
-.img-section{
-    width: 70%;
-    box-sizing: border-box;
-}
-
-.ul2 li{
-    display: inline;
-}
-
-
-
-
-
-.ul2 li:nth-child(1) img{
-    width: 100px;
-    padding: 7px;
-}
-.ul2 li:nth-child(2) img{
-    width: 100px;
-    padding: 11px;
-}
-.ul2 li:nth-child(3) img{
-    width: 100px;
-    padding: 12px;
-}
-.ul2 li:nth-child(4) img{
-    width: 100px;
-    padding: 20px;
-}
-.ul2 li:nth-child(5) img{
-    width: 100px;
-    padding: 10px;
-}
-
-
-
-
-
-
-
-
-
-.h-1{
-    color: rgba(0, 0, 0, 0.3);
-    font-size: 19px;
-    margin-top: 48px;
-    font-weight: bold;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.services-section{
-    background-color: #fff;
-    padding: 70px 0;
-}
-
-
-
-.services-1{
-    width: 17%;
-    box-sizing: border-box;
-    height: 300px;
-    margin: 1.5%;
-}
-.services-1::before{
-    background: rgba(255, 255, 255, 0.3);
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    visibility: hidden;
-    opacity: 0;
-    transition: .3s;
-    width: 100%;
-}
-.services-1:hover::before{
-    visibility: visible;
-    opacity: 1;
-    cursor: pointer;
-}
-
-
-.img-1{
-    width: 100%;
-    height: 100%;
-}
-
-
-.span-4{
-    font-size: 11px;
-    top: 10px;
-    left: 20px;
-    font-weight: bold;
-    color: white;
-}
-.span-5{
-    font-size: 20px;
-    top: 20px;
-    left: 20px;
-    color: white;
-    font-weight: bold;
-}
-.span-6{
-    color: black;
-    background: white;
-    width: 40px;
-    height: 40px;
-    box-sizing: border-box;
-    font-size: 20px;
-    padding: 6px;
-    border-radius: 50%;
-    left: -15px;
-    top: 140px;
-    transition: .2s;
-    box-shadow: 2px 2px 10px 0 black;
-    cursor: pointer;
-}
-.span-7{
-    color: black;
-    background: white;
-    width: 40px;
-    height: 40px;
-    box-sizing: border-box;
-    font-size: 20px;
-    padding: 6px;
-    border-radius: 50%;
-    right: -15px;
-    top: 140px;
-    transition: .2s;
-    box-shadow: 2px 2px 10px 0 black;
-    cursor: pointer;
-}
-.span-6:hover{
-    color: rgb(0, 0, 0);
-    background: rgb(216, 214, 214);
-}
-.span-7:hover{
-    color: rgb(0, 0, 0);
-    background: rgba(216, 214, 214);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.talent-section{
-    background-color: #e2f1ebad;
-    height: 630px;
-    padding: 100px 0;
-}
-.talent-1{
-    width: 50%;
-    box-sizing: border-box;
-}
-.talent-2{
-    width: 50%;
-    box-sizing: border-box;
-}
-
-
-.talent-1 h2{
-    color: black;
-    font-size: 27px;
-    margin-bottom: 22px;
-    width: 300px;
-}
-
-
-
-
-
-
-
-
-
-.talent h4{
-    color: black;
-    font-size: 17px;
-}
-.talent h4::before{
-    content: "\f00c";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 600;
-    color: rgba(0, 0, 0, 0.5);
-    border: solid 2px rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    padding: 4px;
-    font-size: 10px;
-    margin-right: 5px;   
-}
-
-
-
-
-.talent p{
-    font-size: 15px;
-    width: 340px;
-    margin-bottom: 20px;
-}
-
-
-
-
-.talent-2{
-    padding-top: 50px;
-    padding-right: 30px;
-    padding-left: 20px;
-    margin-top: 50px;
-}
-.talent-2 img{
-    width: 100%;
-    cursor: pointer;
-}
-.span-8{
-    left: 47%;
-    top: 170px;
-    width: 50px;
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.4);
-    color: white;
-    height: 50px;
-    padding: 10px;
-    border-radius: 50%;
-    font-size: 20px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.explore-section{
-    background-color: white;
-    height: 370px;
-}
-
-
-.explore{
-    width: 15%;
-    margin: 20px 5%;
-    cursor: pointer;
-}
-.explore img{
-    width: 40px;
-    margin-bottom: 10px;
-    box-sizing: content-box;
-    border-bottom: solid rgba(0, 0, 0, 0.397) 1px;
-    transition: .3s;
-}
-.explore:hover > img{
-    padding: 0 20px;
-    border-bottom: #1dbf73 solid 1px;
-}
-.explore p{
-    color: black;
-    text-transform: capitalize;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-
-.explore-1 h3{
-    color: black;
-    font-size: 32px;
-    text-align: left;
-    margin-top: 60px;
-    margin-bottom: 50px;
-    padding-left: 10px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.team-section{
-    background-color: #0d084d;
-    padding-top: 90px;
-    height: 600px;
-}
-
-.team-1{
-    width: 45%;
-    box-sizing: border-box;
-}
-.team-2{
-    width: 55%;
-    box-sizing: border-box;
-}
-.team-2 img{
-    width: 100%;
-}
-
-.team-top img{
-    width: 84px;
-    margin-left: 10px;
-    margin-top: -18px;
-}
-.team-top h3{
-    font-size: 30px;
-    font-weight: 400;
-}
-.span-9{
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 10px;
-    background-color: #584aff;
-    padding: 0 3px;
-    border-radius: 40px;
-    top: 7px;
-}
-
-
-.team-bottom span{
-    color: white;
-    font-size: 32px;
-    display: inline-block;
-    width: 300px;
-    font-weight: bold;
-    line-height: 30px;
-}
-.team-bottom span i{
-    font-family: 'Courgette', cursive;
-    font-weight: 100;
-}
-
-.team-bottom h6{
-    font-size: 20px;
-    width: 380px;
-    margin-top: 20px;
-}
-.team-bottom p{
-    font-size: 14px;
-    margin-top: 10px;
-    width: 340px;
-    padding-left: 40px;
-    position: relative;
-}
-
-.team-bottom p::before{
-    content: "\f00c";
-    font-family: "Font Awesome 5 Free";
-    position: absolute;
-    top: 5px;
-    font-size: 10px;
-    font-weight: 600;
-    border: solid rgba(255, 255, 255, 0.5) 2px;
-    left: 9px;
-    color: rgba(255, 255, 255, 0.5);
-    width: 21px;
-    height: 22px;
-    border-radius: 50%;
-    padding: 2px 4px;
-}
-
-.btn-2{
-    color: white;
-    background: #1dbf73;
-    border: none;
-    padding: 5px 20px;
-    text-transform: capitalize;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: .2s;
-    margin-top: 30px;
-}
-.btn-2:hover{
-    background: #1aa162;
-    cursor: pointer;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.cleant-section{
-    padding: 100px 0;
-}
-.cleant-1{
-    width: 50%;
-    box-sizing: border-box;
-    cursor: pointer;
-    padding: 0 25px;
-}
-.cleant-1 img{
-    width: 100%;
-}
-.cleant-1::before{
-    background: rgba(255, 255, 255, 0.2);
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    visibility: hidden;
-    opacity: 0;
-    transition: .3s;
-    height: 100%;
-}
-.cleant-1:hover::before{
-    visibility: visible;
-    opacity: 1;
-    cursor: pointer;
-}
-
-
-
-.cleant-2{
-    width: 50%;
-    box-sizing: border-box;
-}
-.cleant-2 h2{
-    color: rgba(0, 0, 0, 0.4);
-    font-size: 25px;
-    text-transform: capitalize;
-}
-.cleant-2 h3{
-    color: black;
-    font-size: 20px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-.cleant-2 p{
-    font-family: 'EB Garamond', serif;
-    color: #003912;
-    font-size: 27px;
-    line-height: 35px;
-}
-.span-10{
-    color: white;
-    background-color: rgba(0, 0, 0, 0.404);
-    top: 103px;
-    left: 228px;
-    font-size: 25px;
-    padding: 5px 16px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-.span-11{
-    color: black;
-    background-color: white;
-    top: 103px;
-    left: 6px;
-    font-size: 23px;
-    padding: 2px 10px;
-    box-shadow: 2px 2px 10px 0 black;
-    width: 40px;
-    height: 40px;
-    transition: .2s;
-    border-radius: 50%;
-}
-.span-12{
-    color: black;
-    background-color: white;
-    top: 103px;
-    right: 6px;
-    font-size: 23px;
-    padding: 2px 16px;
-    box-shadow: 2px 2px 10px 0 black;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    transition: .2s;
-}
-.span-11:hover{
-    background-color: rgb(213, 213, 213);
-    cursor: pointer;
-}
-.span-12:hover{
-    background-color: rgb(213, 213, 213);
-    cursor: pointer;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.project-section{
-    background-color: rgba(0, 0, 0, 0.05);
-    padding: 100px 0;
-    height: 650px;
-}
-.project{
-    width: 29.33%;
-    margin: 2%;
-    box-sizing: border-box;
-    box-shadow: 1px 1px 20px -10px black;
-    border-radius: 5px;
-    position: relative;
-}
-.project::before{
-    content: "";
-    background: rgba(255, 255, 255, 0.3);
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: .3s;
-    visibility: hidden;
-    opacity: 0;
-    height: 100%;
-    width: 100%;
-}
-.project:hover::before{
-    visibility: visible;
-    opacity: 1;
-    cursor: pointer;
-}
-
-
-
-
-.project-img img{
-    width: 100%;
-    box-sizing: border-box;
-    height: 230px;
-    border-radius: 5px 5px 0 0;
-}
-.main-details{
-    height: 70px;
-}
-.details-logo{
-    width: 30%;
-    box-sizing: border-box;
-}
-.details-logo img{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    margin-top: 13px;
-}
-.main-details{
-    width: 70%;
-    box-sizing: border-box;
-}
-.main-details h3{
-    color: rgba(0, 0, 0, 0.829);
-    font-size: 16px;
-    text-transform: capitalize;
-    margin-top: 15px;
-    margin-left: -10px;
-}
-.main-details p{
-    margin-left: -10px;
-    color: rgba(0, 0, 0, 0.5);
-    margin-top: -5px;
-    font-size: 12px;
-    font-weight: 900;
-}
-
-
-
-
-
-.project-top h1{
-    font-size: 35px;
-    text-align: left;
-    width: 650px;
-    color: rgba(0, 0, 0, 0.733);
-    margin-left: 10px;
-}
-
-
-
-
-
-.span-13{
-    width: 50px;
-    height: 50px;
-    color: black;
-    background-color: white;
-    border-radius: 50%;
-    font-size: 25px;
-    padding: 6px 0px;
-    transition: .2s;
-    left: -20px;
-    top: 115px;
-    box-shadow: 1px 1px 5px 0 black;
-}
-.span-14{
-    width: 50px;
-    height: 50px;
-    color: black;
-    background-color: white;
-    border-radius: 50%;
-    font-size: 25px;
-    padding: 6px 0px;
-    right: -20px;
-    transition: .2s;
-    top: 115px;
-    box-shadow: 1px 1px 5px 0 black;
-}
-.span-14:hover{
-    background-color: rgb(218, 216, 216);
-    cursor: pointer;
-}
-.span-13:hover{
-    background-color: rgb(218, 216, 216);
-    cursor: pointer;
-}
-
-
-
-
-
-
-.span-15{
-    top: -42px;
-    font-size: 18px;
-    font-weight: 500;
-    right: 0px;
-    text-transform: capitalize;
-}
-.span-15 a:hover{
-    color: #0d6efd;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.guideline-section{
-    background-color: #fff;
-    padding: 100px 0;
-    position: relative;
-    height: 510px;
-}
-
-.g-header{
-    width: 70%;
-    box-sizing: border-box;
-}
-.g-header h1{
-    color: black;
-    font-size: 40px;
-    font-weight: bold;
-}
-
-.g-more{
-    width: 30%;
-    box-sizing: border-box;
-}
-.g-more a{
-    font-size: 20px;
-    text-transform: capitalize;
-    font-weight: 500;
-    padding-right: 10px;
-    transition: .2s;
-}
-.g-more a:hover{
-    cursor: pointer;
-    color: #0d6efd;
-}
-
-
-
-
-.guides{
-    width: 31.33%;
-    margin: 1%;
-    box-sizing: border-box;
-    position: relative;
-}
-.guides::before{
-    content: "";
-    background: rgba(255, 255, 255, 0.2);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    visibility: hidden;
-    opacity: 0;
-    transition: .3s;
-}
-.guides:hover::before{
-    visibility: visible;
-    opacity: 1;
-    cursor: pointer;
-}
-
-
-
-
-.guides-img img{
-    width: 100%;
-    border-radius: 5px;
-    height: px;
-}
-.guides-details h4{
-    color: black;
-    font-size: 19px;
-    font-weight: 500;
-    margin-top: 10px;
-}
-.guides-details h5{
-    color: rgba(0, 0, 0, 0.5);
-    font-size: 16px;
-    font-weight: 500;
-    margin-top: -5px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.img-div{
-    height: 520px;
-    box-sizing: border-box;
-}
-
-
-.main-img{
-    margin: 20px;
-}
-.main-img img{
-    width: 100%;
-    border-radius: 5px;
-}
-.span-16{
-    top: 80px;
-    left: 20px;
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    text-align: left;
-    width: 560px;
-}
-.span-16 i{
-    font-family: 'Courgette', cursive;
-    font-weight: 100;
-}
-
-
-
-
-
-
-.main-img button{
-    bottom: 60px;
-    left: 40px;
-    font-size: 20px;
-    width: 140px;
-    height: 40px;
-    color: white;
-    font-weight: bold;
-    text-transform: capitalize;
-    border-radius: 5px;
-    border: none;
-    background: #1dbf73;
-    transition: .2s;
-}
-.main-img button:hover{
-    cursor: pointer;
-    background: #1ba565;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.about-section{
-    height: 600px;
-    padding: 50px 0;
-    box-sizing: border-box;
-    border-top: 1px solid rgba(0, 0, 0, 0.5);
-}
-
-
-.about{
-    width: 20%;
-    box-sizing: border-box;
-}
-.about h2{
-    color: rgba(0, 0, 0, 0.85);
-    font-size: 18px;
-    text-transform: capitalize;
-    margin-left: 15px;
-    font-weight: bold;
-}
-.about ul li{
-    list-style: none;
-    margin-left: -15px;
-    padding: 10px 0;
-}
-.about ul li a{
-    color: rgba(0, 0, 0, 0.7);
-    font-size: 15px;
-    text-transform: capitalize;
-    transition: .2s;
-    font-weight: 500;
-}
-.about ul li a h4{
-    font-size: 13px;
-    color: rgba(0, 0, 0, 0.5);
-}
-.about ul li a:hover{
-    text-decoration: underline;
-    cursor: pointer;
-    border-bottom: solid rgba(0, 0, 0, 0.7) 1px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.footer-section{
-    height: 85px;
-    background-color: rgba(0, 0, 0, 0.020);
-}
-
-.footer{
-    border-top: solid rgba(0, 0, 0, 0.5) 1px;
-}
-
-
-.footer-1{
-    width: 50%;
-    box-sizing: border-box;
-}
-.footer-2{
-    width: 50%;
-    box-sizing: border-box;
-}
-.footer-1 img{
-    width: 100px;
-    margin-top: -17px;
-}
-.footer-1 p{
-    display: inline-block;
-    font-size: 15px;
-    font-weight: 500;
-    text-transform: capitalize;
-    color: rgba(0, 0, 0, 0.5);
-}
-
-
-
-.footer-2 ul{
-    padding-top: 22px;
-    cursor: context-menu;
-}
-.footer-2 ul li{
-    display: inline;
-}
-.footer-2 ul li a{
-    color: rgba(0, 0, 0, 0.5);
-    font-size: 20px;
-    font-weight: bold;
-    transition: .2s;
-    padding: 5px 15px;
-}
-.footer-2 ul li a:hover{
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 30px;
-}
+      .fix-width {
+        max-width: 1000px;
+        margin: auto;
+        text-align: center;
+      }
+      .clearfix::after {
+        content: "";
+        clear: both;
+        display: block;
+      }
+      a {
+        text-decoration: none !important;
+      }
+
+      /* MAIN CSS SECTION */
+
+      .header-section-1 {
+        height: 50px;
+        top: 0;
+        position: fixed;
+        z-index: 2;
+        width: 100%;
+      }
+      .header1-1 {
+        width: 30%;
+        box-sizing: border-box;
+        text-align: left;
+        position: relative;
+        cursor: context-menu;
+      }
+      .header1-1 img {
+        width: 90px;
+        margin-top: 13px;
+        margin-left: 35px;
+      }
+      .span1-2 {
+        position: absolute;
+        top: -1px;
+        left: 124px;
+        font-size: 35px;
+        font-weight: bold;
+        color: #1dbf73;
+      }
+      .span1-1 {
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        top: 12px;
+        left: 10px;
+      }
+
+      .header1-2 {
+        width: 60%;
+        cursor: context-menu;
+        box-sizing: border-box;
+        text-align: right;
+      }
+      .header1-2 ul li {
+        display: inline;
+      }
+      .header1-2 ul li a {
+        font-size: 13px;
+        color: #ffffff;
+        padding: 4px 10px;
+        display: inline-block;
+        transition: 0.3s;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+      .header1-2 ul li a:hover {
+        color: #1dbf73;
+        cursor: pointer;
+      }
+
+      .header1-3 {
+        width: 10%;
+        box-sizing: border-box;
+        text-align: right;
+        padding-right: 10px;
+      }
+      .header1-3 button {
+        border: solid 2px #ffffff;
+        color: #ffffff;
+        background: none;
+        border-radius: 2px;
+        font-size: 13px;
+        font-weight: bold;
+        margin-top: 13px;
+        transition: 0.3s;
+        padding: 1px 15px;
+      }
+      .header1-3 button:hover {
+        background-color: #1dbf73;
+        border: #1dbf7300 solid 2px;
+        cursor: pointer;
+      }
+
+      .header-section-2 {
+        height: 50px;
+        background: white;
+        width: 100%;
+      }
+      .header2-1 {
+        width: 17%;
+        box-sizing: border-box;
+        text-align: left;
+        position: relative;
+        cursor: context-menu;
+      }
+      .header2-1 img {
+        width: 90px;
+        margin-top: -21px;
+        margin-left: 35px;
+      }
+      .span2-2 {
+        position: absolute;
+        top: -4px;
+        left: 120px;
+        font-size: 35px;
+        font-weight: bold;
+        color: #1dbf73;
+      }
+      .span2-1 {
+        color: black;
+        font-size: 20px;
+        position: absolute;
+        top: 12px;
+        left: 10px;
+      }
+
+      .header2-4 {
+        width: 22%;
+      }
+
+      .h-search {
+        width: 75%;
+        box-sizing: border-box;
+      }
+      .h-btn {
+        width: 25%;
+        box-sizing: border-box;
+        cursor: pointer;
+      }
+      .h-search input {
+        width: 100%;
+        border: solid rgba(0, 0, 0, 0.315) 1px;
+        background: white;
+        margin-top: 12px;
+        font-size: 14px;
+        padding: 4px 9px;
+        box-sizing: border-box;
+        border-radius: 3px 0 0 3px;
+        height: 26px;
+      }
+
+      .h-btn button {
+        height: 26px;
+        width: 100%;
+        background: #1dbf73;
+        border: solid #1dbf73 1px;
+        color: white;
+        font-weight: bold;
+        margin-top: 12px;
+        font-size: 12px;
+        border-radius: 0 3px 3px 0;
+      }
+
+      .header2-2 {
+        width: 48%;
+        cursor: context-menu;
+        box-sizing: border-box;
+        text-align: right;
+      }
+      .header2-2 ul li {
+        display: inline;
+      }
+      .header2-2 ul li a {
+        font-size: 13px;
+        color: black;
+        padding: 4px 10px;
+        display: inline-block;
+        transition: 0.3s;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+      .header2-2 ul li a:hover {
+        color: #1dbf73;
+        cursor: pointer;
+      }
+
+      .header2-3 {
+        width: 10%;
+        box-sizing: border-box;
+        text-align: right;
+        padding-right: 10px;
+      }
+      .header2-3 button {
+        border: solid 2px #1dbf73;
+        color: #1dbf73;
+        background: none;
+        border-radius: 2px;
+        font-size: 13px;
+        font-weight: bold;
+        margin-top: 13px;
+        transition: 0.3s;
+        padding: 1px 15px;
+      }
+      .header2-3 button:hover {
+        background-color: #1dbf73;
+        border: #1dbf7300 solid 2px;
+        color: white;
+        cursor: pointer;
+      }
+
+      .category-section {
+        border-top: solid rgba(0, 0, 0, 0.3) 1px;
+        border-bottom: solid rgba(0, 0, 0, 0.3) 1px;
+        background-color: #fff;
+        height: 40px;
+        width: 100%;
+        transition: 0s;
+        position: fixed;
+      }
+      .ul3 li {
+        display: inline;
+      }
+      .ul3 li a {
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.479);
+        padding: 10px 6px;
+        display: inline-block;
+        font-weight: bold;
+        text-transform: capitalize;
+      }
+
+      .header-fixed {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.2s;
+      }
+      .all-body:hover > .header-fixed {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      /* BANNER SETION */
+
+      .banner-section {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+        height: 560px;
+        animation: animate 16s ease-in-out infinite;
+        background-size: cover;
+        background-position: center center;
+      }
+      @keyframes animate {
+        0%,
+        100% {
+          background-image: url("https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049970/bg-hero-5-1792-x1.png");
+        }
+        20% {
+          background-image: url("https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/93085acc959671e9e9e77f3ca8147f82-1599427734108/bg-hero-4-1792-x1.png");
+        }
+        40% {
+          background-image: url("https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/d14871e2d118f46db2c18ad882619ea8-1599835783966/bg-hero-3-1792-x1.png");
+        }
+        60% {
+          background-image: url("https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/2413b8415dda9dbd7756d02cb87cd4b1-1599595203045/bg-hero-2-1792-x1.png");
+        }
+        80% {
+          background-image: url("https://fiverr-res.cloudinary.com/image/upload/q_auto,f_auto/v1/attachments/generic_asset/asset/bb5958e41c91bb37f4afe2a318b71599-1599344049983/bg-hero-1-1792-x1.png");
+        }
+      }
+
+      .banner-2 {
+        width: 500px;
+        text-align: left;
+        box-sizing: border-box;
+        top: 180px;
+        left: 30px;
+      }
+      .h-3 {
+        font-size: 35px;
+        text-transform: capitalize;
+        width: 500px;
+        color: #fff;
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+      .h-3 i {
+        font-family: "Courgette", cursive;
+        font-weight: 100;
+      }
+
+      .inp {
+        width: 80%;
+        box-sizing: border-box;
+        position: relative;
+      }
+      .btn {
+        width: 20%;
+        box-sizing: border-box;
+      }
+      .inp input {
+        width: 100%;
+        box-sizing: border-box;
+        border: none;
+        height: 40px;
+        border-radius: 3px 0 0 3px;
+        font-size: 15px;
+        background-color: white;
+        color: black;
+        padding-top: 5px;
+        transition: 0.1s;
+        padding-bottom: 5px;
+        padding-left: 40px;
+        padding-right: 10px;
+      }
+      .inp input:focus {
+        border: none;
+      }
+      .span-3 {
+        position: absolute;
+        top: 5px;
+        left: 10px;
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.4);
+      }
+      .btn input {
+        width: 100%;
+        box-sizing: border-box;
+        height: 40px;
+        background: #1dbf73;
+        border: none;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        transition: 0.2s;
+        border-radius: 0 3px 3px 0;
+        margin-top: -7px;
+        margin-left: -27px;
+      }
+      .btn input:hover {
+        background: #1aa162;
+        cursor: pointer;
+      }
+      .p1 {
+        color: white;
+        font-weight: bold;
+        font-size: 15px;
+        display: inline;
+      }
+
+      .ul1 {
+        display: inline-block;
+        cursor: context-menu;
+        margin-left: -30px;
+        margin-top: 10px;
+      }
+      .ul1 li a {
+        color: white;
+        background: none;
+        font-size: 12px;
+        padding: 2px 5px;
+        border-radius: 10px;
+        transition: 0.3s;
+        font-weight: bold;
+        border: solid white 1px;
+      }
+      .ul1 li a:hover {
+        background-color: white;
+        cursor: pointer;
+        color: rgba(0, 0, 0, 0.658);
+        font-weight: bold;
+      }
+
+      .banner-bottom {
+        height: 120px;
+        margin-top: 560px;
+        background-color: rgba(0, 0, 0, 0.05);
+        z-index: -2;
+      }
+      .name {
+        width: 30%;
+        box-sizing: border-box;
+      }
+      .img-section {
+        width: 70%;
+        box-sizing: border-box;
+      }
+
+      .ul2 li {
+        display: inline;
+      }
+
+      .ul2 li:nth-child(1) img {
+        width: 100px;
+        padding: 7px;
+      }
+      .ul2 li:nth-child(2) img {
+        width: 100px;
+        padding: 11px;
+      }
+      .ul2 li:nth-child(3) img {
+        width: 100px;
+        padding: 12px;
+      }
+      .ul2 li:nth-child(4) img {
+        width: 100px;
+        padding: 20px;
+      }
+      .ul2 li:nth-child(5) img {
+        width: 100px;
+        padding: 10px;
+      }
+
+      .h-1 {
+        color: rgba(0, 0, 0, 0.3);
+        font-size: 19px;
+        margin-top: 48px;
+        font-weight: bold;
+      }
+
+      .services-section {
+        background-color: #fff;
+        padding: 70px 0;
+      }
+
+      .services-1 {
+        width: 17%;
+        box-sizing: border-box;
+        height: 300px;
+        margin: 1.5%;
+      }
+      .services-1::before {
+        background: rgba(255, 255, 255, 0.3);
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.3s;
+        width: 100%;
+      }
+      .services-1:hover::before {
+        visibility: visible;
+        opacity: 1;
+        cursor: pointer;
+      }
+
+      .img-1 {
+        width: 100%;
+        height: 100%;
+      }
+
+      .span-4 {
+        font-size: 11px;
+        top: 10px;
+        left: 20px;
+        font-weight: bold;
+        color: white;
+      }
+      .span-5 {
+        font-size: 20px;
+        top: 20px;
+        left: 20px;
+        color: white;
+        font-weight: bold;
+      }
+      .span-6 {
+        color: black;
+        background: white;
+        width: 40px;
+        height: 40px;
+        box-sizing: border-box;
+        font-size: 20px;
+        padding: 6px;
+        border-radius: 50%;
+        left: -15px;
+        top: 140px;
+        transition: 0.2s;
+        box-shadow: 2px 2px 10px 0 black;
+        cursor: pointer;
+      }
+      .span-7 {
+        color: black;
+        background: white;
+        width: 40px;
+        height: 40px;
+        box-sizing: border-box;
+        font-size: 20px;
+        padding: 6px;
+        border-radius: 50%;
+        right: -15px;
+        top: 140px;
+        transition: 0.2s;
+        box-shadow: 2px 2px 10px 0 black;
+        cursor: pointer;
+      }
+      .span-6:hover {
+        color: rgb(0, 0, 0);
+        background: rgb(216, 214, 214);
+      }
+      .span-7:hover {
+        color: rgb(0, 0, 0);
+        background: rgba(216, 214, 214);
+      }
+
+      .talent-section {
+        background-color: #e2f1ebad;
+        height: 630px;
+        padding: 100px 0;
+      }
+      .talent-1 {
+        width: 50%;
+        box-sizing: border-box;
+      }
+      .talent-2 {
+        width: 50%;
+        box-sizing: border-box;
+      }
+
+      .talent-1 h2 {
+        color: black;
+        font-size: 27px;
+        margin-bottom: 22px;
+        width: 300px;
+      }
+
+      .talent h4 {
+        color: black;
+        font-size: 17px;
+      }
+      .talent h4::before {
+        content: "\f00c";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.5);
+        border: solid 2px rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        padding: 4px;
+        font-size: 10px;
+        margin-right: 5px;
+      }
+
+      .talent p {
+        font-size: 15px;
+        width: 340px;
+        margin-bottom: 20px;
+      }
+
+      .talent-2 {
+        padding-top: 50px;
+        padding-right: 30px;
+        padding-left: 20px;
+        margin-top: 50px;
+      }
+      .talent-2 img {
+        width: 100%;
+        cursor: pointer;
+      }
+      .span-8 {
+        left: 47%;
+        top: 170px;
+        width: 50px;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.4);
+        color: white;
+        height: 50px;
+        padding: 10px;
+        border-radius: 50%;
+        font-size: 20px;
+      }
+
+      .explore-section {
+        background-color: white;
+        height: 370px;
+      }
+
+      .explore {
+        width: 15%;
+        margin: 20px 5%;
+        cursor: pointer;
+      }
+      .explore img {
+        width: 40px;
+        margin-bottom: 10px;
+        box-sizing: content-box;
+        border-bottom: solid rgba(0, 0, 0, 0.397) 1px;
+        transition: 0.3s;
+      }
+      .explore:hover > img {
+        padding: 0 20px;
+        border-bottom: #1dbf73 solid 1px;
+      }
+      .explore p {
+        color: black;
+        text-transform: capitalize;
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      .explore-1 h3 {
+        color: black;
+        font-size: 32px;
+        text-align: left;
+        margin-top: 60px;
+        margin-bottom: 50px;
+        padding-left: 10px;
+      }
+
+      .team-section {
+        background-color: #0d084d;
+        padding-top: 90px;
+        height: 600px;
+      }
+
+      .team-1 {
+        width: 45%;
+        box-sizing: border-box;
+      }
+      .team-2 {
+        width: 55%;
+        box-sizing: border-box;
+      }
+      .team-2 img {
+        width: 100%;
+      }
+
+      .team-top img {
+        width: 84px;
+        margin-left: 10px;
+        margin-top: -18px;
+      }
+      .team-top h3 {
+        font-size: 30px;
+        font-weight: 400;
+      }
+      .span-9 {
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 10px;
+        background-color: #584aff;
+        padding: 0 3px;
+        border-radius: 40px;
+        top: 7px;
+      }
+
+      .team-bottom span {
+        color: white;
+        font-size: 32px;
+        display: inline-block;
+        width: 300px;
+        font-weight: bold;
+        line-height: 30px;
+      }
+      .team-bottom span i {
+        font-family: "Courgette", cursive;
+        font-weight: 100;
+      }
+
+      .team-bottom h6 {
+        font-size: 20px;
+        width: 380px;
+        margin-top: 20px;
+      }
+      .team-bottom p {
+        font-size: 14px;
+        margin-top: 10px;
+        width: 340px;
+        padding-left: 40px;
+        position: relative;
+      }
+
+      .team-bottom p::before {
+        content: "\f00c";
+        font-family: "Font Awesome 5 Free";
+        position: absolute;
+        top: 5px;
+        font-size: 10px;
+        font-weight: 600;
+        border: solid rgba(255, 255, 255, 0.5) 2px;
+        left: 9px;
+        color: rgba(255, 255, 255, 0.5);
+        width: 21px;
+        height: 22px;
+        border-radius: 50%;
+        padding: 2px 4px;
+      }
+
+      .btn-2 {
+        color: white;
+        background: #1dbf73;
+        border: none;
+        padding: 5px 20px;
+        text-transform: capitalize;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: 0.2s;
+        margin-top: 30px;
+      }
+      .btn-2:hover {
+        background: #1aa162;
+        cursor: pointer;
+      }
+
+      .cleant-section {
+        padding: 100px 0;
+      }
+      .cleant-1 {
+        width: 50%;
+        box-sizing: border-box;
+        cursor: pointer;
+        padding: 0 25px;
+      }
+      .cleant-1 img {
+        width: 100%;
+      }
+      .cleant-1::before {
+        background: rgba(255, 255, 255, 0.2);
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.3s;
+        height: 100%;
+      }
+      .cleant-1:hover::before {
+        visibility: visible;
+        opacity: 1;
+        cursor: pointer;
+      }
+
+      .cleant-2 {
+        width: 50%;
+        box-sizing: border-box;
+      }
+      .cleant-2 h2 {
+        color: rgba(0, 0, 0, 0.4);
+        font-size: 25px;
+        text-transform: capitalize;
+      }
+      .cleant-2 h3 {
+        color: black;
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      .cleant-2 p {
+        font-family: "EB Garamond", serif;
+        color: #003912;
+        font-size: 27px;
+        line-height: 35px;
+      }
+      .span-10 {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.404);
+        top: 103px;
+        left: 228px;
+        font-size: 25px;
+        padding: 5px 16px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+      .span-11 {
+        color: black;
+        background-color: white;
+        top: 103px;
+        left: 6px;
+        font-size: 23px;
+        padding: 2px 10px;
+        box-shadow: 2px 2px 10px 0 black;
+        width: 40px;
+        height: 40px;
+        transition: 0.2s;
+        border-radius: 50%;
+      }
+      .span-12 {
+        color: black;
+        background-color: white;
+        top: 103px;
+        right: 6px;
+        font-size: 23px;
+        padding: 2px 16px;
+        box-shadow: 2px 2px 10px 0 black;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: 0.2s;
+      }
+      .span-11:hover {
+        background-color: rgb(213, 213, 213);
+        cursor: pointer;
+      }
+      .span-12:hover {
+        background-color: rgb(213, 213, 213);
+        cursor: pointer;
+      }
+
+      .project-section {
+        background-color: rgba(0, 0, 0, 0.05);
+        padding: 100px 0;
+        height: 650px;
+      }
+      .project {
+        width: 29.33%;
+        margin: 2%;
+        box-sizing: border-box;
+        box-shadow: 1px 1px 20px -10px black;
+        border-radius: 5px;
+        position: relative;
+      }
+      .project::before {
+        content: "";
+        background: rgba(255, 255, 255, 0.3);
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: 0.3s;
+        visibility: hidden;
+        opacity: 0;
+        height: 100%;
+        width: 100%;
+      }
+      .project:hover::before {
+        visibility: visible;
+        opacity: 1;
+        cursor: pointer;
+      }
+
+      .project-img img {
+        width: 100%;
+        box-sizing: border-box;
+        height: 230px;
+        border-radius: 5px 5px 0 0;
+      }
+      .main-details {
+        height: 70px;
+      }
+      .details-logo {
+        width: 30%;
+        box-sizing: border-box;
+      }
+      .details-logo img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        margin-top: 13px;
+      }
+      .main-details {
+        width: 70%;
+        box-sizing: border-box;
+      }
+      .main-details h3 {
+        color: rgba(0, 0, 0, 0.829);
+        font-size: 16px;
+        text-transform: capitalize;
+        margin-top: 15px;
+        margin-left: -10px;
+      }
+      .main-details p {
+        margin-left: -10px;
+        color: rgba(0, 0, 0, 0.5);
+        margin-top: -5px;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .project-top h1 {
+        font-size: 35px;
+        text-align: left;
+        width: 650px;
+        color: rgba(0, 0, 0, 0.733);
+        margin-left: 10px;
+      }
+
+      .span-13 {
+        width: 50px;
+        height: 50px;
+        color: black;
+        background-color: white;
+        border-radius: 50%;
+        font-size: 25px;
+        padding: 6px 0px;
+        transition: 0.2s;
+        left: -20px;
+        top: 115px;
+        box-shadow: 1px 1px 5px 0 black;
+      }
+      .span-14 {
+        width: 50px;
+        height: 50px;
+        color: black;
+        background-color: white;
+        border-radius: 50%;
+        font-size: 25px;
+        padding: 6px 0px;
+        right: -20px;
+        transition: 0.2s;
+        top: 115px;
+        box-shadow: 1px 1px 5px 0 black;
+      }
+      .span-14:hover {
+        background-color: rgb(218, 216, 216);
+        cursor: pointer;
+      }
+      .span-13:hover {
+        background-color: rgb(218, 216, 216);
+        cursor: pointer;
+      }
+
+      .span-15 {
+        top: -42px;
+        font-size: 18px;
+        font-weight: 500;
+        right: 0px;
+        text-transform: capitalize;
+      }
+      .span-15 a:hover {
+        color: #0d6efd;
+      }
+
+      .guideline-section {
+        background-color: #fff;
+        padding: 100px 0;
+        position: relative;
+        height: 510px;
+      }
+
+      .g-header {
+        width: 70%;
+        box-sizing: border-box;
+      }
+      .g-header h1 {
+        color: black;
+        font-size: 40px;
+        font-weight: bold;
+      }
+
+      .g-more {
+        width: 30%;
+        box-sizing: border-box;
+      }
+      .g-more a {
+        font-size: 20px;
+        text-transform: capitalize;
+        font-weight: 500;
+        padding-right: 10px;
+        transition: 0.2s;
+      }
+      .g-more a:hover {
+        cursor: pointer;
+        color: #0d6efd;
+      }
+
+      .guides {
+        width: 31.33%;
+        margin: 1%;
+        box-sizing: border-box;
+        position: relative;
+      }
+      .guides::before {
+        content: "";
+        background: rgba(255, 255, 255, 0.2);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.3s;
+      }
+      .guides:hover::before {
+        visibility: visible;
+        opacity: 1;
+        cursor: pointer;
+      }
+
+      .guides-img img {
+        width: 100%;
+        border-radius: 5px;
+        height: px;
+      }
+      .guides-details h4 {
+        color: black;
+        font-size: 19px;
+        font-weight: 500;
+        margin-top: 10px;
+      }
+      .guides-details h5 {
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 16px;
+        font-weight: 500;
+        margin-top: -5px;
+      }
+
+      .img-div {
+        height: 520px;
+        box-sizing: border-box;
+      }
+
+      .main-img {
+        margin: 20px;
+      }
+      .main-img img {
+        width: 100%;
+        border-radius: 5px;
+      }
+      .span-16 {
+        top: 80px;
+        left: 20px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        text-align: left;
+        width: 560px;
+      }
+      .span-16 i {
+        font-family: "Courgette", cursive;
+        font-weight: 100;
+      }
+
+      .main-img button {
+        bottom: 60px;
+        left: 40px;
+        font-size: 20px;
+        width: 140px;
+        height: 40px;
+        color: white;
+        font-weight: bold;
+        text-transform: capitalize;
+        border-radius: 5px;
+        border: none;
+        background: #1dbf73;
+        transition: 0.2s;
+      }
+      .main-img button:hover {
+        cursor: pointer;
+        background: #1ba565;
+      }
+
+      .about-section {
+        height: 600px;
+        padding: 50px 0;
+        box-sizing: border-box;
+        border-top: 1px solid rgba(0, 0, 0, 0.5);
+      }
+
+      .about {
+        width: 20%;
+        box-sizing: border-box;
+      }
+      .about h2 {
+        color: rgba(0, 0, 0, 0.85);
+        font-size: 18px;
+        text-transform: capitalize;
+        margin-left: 15px;
+        font-weight: bold;
+      }
+      .about ul li {
+        list-style: none;
+        margin-left: -15px;
+        padding: 10px 0;
+      }
+      .about ul li a {
+        color: rgba(0, 0, 0, 0.7);
+        font-size: 15px;
+        text-transform: capitalize;
+        transition: 0.2s;
+        font-weight: 500;
+      }
+      .about ul li a h4 {
+        font-size: 13px;
+        color: rgba(0, 0, 0, 0.5);
+      }
+      .about ul li a:hover {
+        text-decoration: underline;
+        cursor: pointer;
+        border-bottom: solid rgba(0, 0, 0, 0.7) 1px;
+      }
+
+      .footer-section {
+        height: 85px;
+        background-color: rgba(0, 0, 0, 0.02);
+      }
+
+      .footer {
+        border-top: solid rgba(0, 0, 0, 0.5) 1px;
+      }
+
+      .footer-1 {
+        width: 50%;
+        box-sizing: border-box;
+      }
+      .footer-2 {
+        width: 50%;
+        box-sizing: border-box;
+      }
+      .footer-1 img {
+        width: 100px;
+        margin-top: -17px;
+      }
+      .footer-1 p {
+        display: inline-block;
+        font-size: 15px;
+        font-weight: 500;
+        text-transform: capitalize;
+        color: rgba(0, 0, 0, 0.5);
+      }
+
+      .footer-2 ul {
+        padding-top: 22px;
+        cursor: context-menu;
+      }
+      .footer-2 ul li {
+        display: inline;
+      }
+      .footer-2 ul li a {
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 20px;
+        font-weight: bold;
+        transition: 0.2s;
+        padding: 5px 15px;
+      }
+      .footer-2 ul li a:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 30px;
+      }
     </style>
-</head>
-<body>
-
-
-
-
-
-
-
-
+  </head>
+  <body>
     <div class="banner-section">
-
-        <div class="header-section-1 clearfix">
-            <div class="fix-width">
-                <div class="header1-1 float-left">
-                    <span class="span1-1"><i class="fas fa-bars"></i></span>
-                    <img src="https://qumracapital.com/wp-content/uploads/2017/12/fiverr-logo.png" alt="Fiverr">
-                    <span class="span1-2">.</span>
-                </div>
-                <div class="header1-2 float-left">
-                    <ul>
-                        <li><a href="#">Fiverr Business</a></li>
-                        <li><a href="#">English</a></li>
-                        <li><a href="#">$USD</a></li>
-                        <li><a href="#">Become a Seller</a></li>
-                        <li><a href="#">Sing In</a></li>
-                    </ul>
-                </div>
-                <div class="header1-3 float-left">
-                    <button>Join</button>
-                </div>
-            </div>
-        </div>
-
+      <div class="header-section-1 clearfix">
         <div class="fix-width">
-            <div class="banner-1 position-relative">
-                <div class="banner-2 position-absolute">
-                    <span class="h-3">Find the perfact <i>freelance</i> services for your business</span>
-                    <div class="input-section mb-3 clearfix">
-                        <div class="inp float-left">
-                            <input type="text" placeholder="Try 'bullding mobile app'">
-                            <span class="span-3"><i class="fas fa-search"></i></span>
-                        </div>
-                        <div class="btn  float-right">
-                            <input type="button" name="Search" value="Search">
-                        </div>
-                    </div>
-                    <div class="popular">
-                        <p class="p1">Popular:</p>
-                        <ul class="ul1">
-                            <li class="d-inline"><a href="#">Web and Mobile App</a></li>
-                            <li class="d-inline"><a href="#">Wordpress</a></li>
-                            <li class="d-inline"><a href="#">Logo Desing</a></li>
-                            <li class="d-inline"><a href="#">Dropshipping</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+          <div class="header1-1 float-left">
+            <span class="span1-1"><i class="fas fa-bars"></i></span>
+            <img
+              src="https://qumracapital.com/wp-content/uploads/2017/12/fiverr-logo.png"
+              alt="Fiverr"
+            />
+            <span class="span1-2">.</span>
+          </div>
+          <div class="header1-2 float-left">
+            <ul>
+              <li><a href="#">Fiverr Business</a></li>
+              <li><a href="#">English</a></li>
+              <li><a href="#">$USD</a></li>
+              <li><a href="#">Become a Seller</a></li>
+              <li><a href="#">Sing In</a></li>
+            </ul>
+          </div>
+          <div class="header1-3 float-left">
+            <button>Join</button>
+          </div>
         </div>
+      </div>
 
+      <div class="fix-width">
+        <div class="banner-1 position-relative">
+          <div class="banner-2 position-absolute">
+            <span class="h-3"
+              >Find the perfact <i>freelance</i> services for your
+              business</span
+            >
+            <div class="input-section mb-3 clearfix">
+              <div class="inp float-left">
+                <input type="text" placeholder="Try 'bullding mobile app'" />
+                <span class="span-3"><i class="fas fa-search"></i></span>
+              </div>
+              <div class="btn float-right">
+                <input type="button" name="Search" value="Search" />
+              </div>
+            </div>
+            <div class="popular">
+              <p class="p1">Popular:</p>
+              <ul class="ul1">
+                <li class="d-inline"><a href="#">Web and Mobile App</a></li>
+                <li class="d-inline"><a href="#">Wordpress</a></li>
+                <li class="d-inline"><a href="#">Logo Desing</a></li>
+                <li class="d-inline"><a href="#">Dropshipping</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-
-
-
-
 
     <div class="all-body">
-
-        <div class="header-fixed">
-            <div class="header-section-2 clearfix">
-                <div class="fix-width">
-                    <div class="header2-1 float-left">
-                        <span class="span2-1"><i class="fas fa-bars"></i></span>
-                        <img src="https://i.ibb.co/wy9q81v/fiverr-vector-logo-small-removebg-preview.png" alt="Fiverr">
-                        <span class="span2-2">.</span>
-                    </div>
-                    <div class="header2-4 float-left text-center clearfix">
-                        <div class="h-search float-left">
-                            <input type="text" placeholder="Find a service">
-                        </div>
-                        <div class="h-btn float-right">
-                            <button type="submit">Serach</button>
-                        </div>
-                    </div>
-                    <div class="header2-2 float-left">
-                        <ul>
-                            <li><a href="#">Fiverr Business</a></li>
-                            <li><a href="#">English</a></li>
-                            <li><a href="#">$USD</a></li>
-                            <li><a href="#">Become a Seller</a></li>
-                            <li><a href="#">Sing In</a></li>
-                        </ul>
-                    </div>
-                    <div class="header2-3 float-left">
-                        <button>Join</button>
-                    </div>
-                </div>
+      <div class="header-fixed">
+        <div class="header-section-2 clearfix">
+          <div class="fix-width">
+            <div class="header2-1 float-left">
+              <span class="span2-1"><i class="fas fa-bars"></i></span>
+              <img
+                src="https://i.ibb.co/wy9q81v/fiverr-vector-logo-small-removebg-preview.png"
+                alt="Fiverr"
+              />
+              <span class="span2-2">.</span>
             </div>
-
-            <div class="category-section">
-                <div class="fix-width">
-                    <ul class="ul3 ml-0">
-                        <li><a href="#">graphics & desing</a></li>
-                        <li><a href="#">digital & marketing</a></li>
-                        <li><a href="#">writing & translation</a></li>
-                        <li><a href="#">video & animation</a></li>
-                        <li><a href="#">music & audio</a></li>
-                        <li><a href="#">programming & tech</a></li>
-                        <li><a href="#">business</a></li>
-                        <li><a href="#">lifestyle</a></li>
-                        <li><a href="#">industries</a></li>
-                    </ul>
-                </div>
+            <div class="header2-4 float-left text-center clearfix">
+              <div class="h-search float-left">
+                <input type="text" placeholder="Find a service" />
+              </div>
+              <div class="h-btn float-right">
+                <button type="submit">Serach</button>
+              </div>
             </div>
+            <div class="header2-2 float-left">
+              <ul>
+                <li><a href="#">Fiverr Business</a></li>
+                <li><a href="#">English</a></li>
+                <li><a href="#">$USD</a></li>
+                <li><a href="#">Become a Seller</a></li>
+                <li><a href="#">Sing In</a></li>
+              </ul>
+            </div>
+            <div class="header2-3 float-left">
+              <button>Join</button>
+            </div>
+          </div>
         </div>
 
-
-        <div class="banner-bottom clearfix">
-            <div class="fix-width">
-                <div class="name float-left text-right">
-                    <h4 class="h-1">Trusted by:</h4>
-                </div>
-                <div class="img-section float-right text-left">
-                    <ul class="ul2">
-                        <li><img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/facebook.a1eeefc.png" alt="Fiverr"></li>
-                        <li><img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/google.517da09.png" alt="Fiverr"></li>
-                        <li><img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/netflix.e3ad953.png" alt="Fiverr"></li>
-                        <li><img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/pandg.8b7310b.png" alt="Fiverr"></li>
-                        <li><img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/paypal.ec56157.png" alt="Fiverr"></li>
-                    </ul>
-                </div>
-            </div>
+        <div class="category-section">
+          <div class="fix-width">
+            <ul class="ul3 ml-0">
+              <li><a href="#">graphics & desing</a></li>
+              <li><a href="#">digital & marketing</a></li>
+              <li><a href="#">writing & translation</a></li>
+              <li><a href="#">video & animation</a></li>
+              <li><a href="#">music & audio</a></li>
+              <li><a href="#">programming & tech</a></li>
+              <li><a href="#">business</a></li>
+              <li><a href="#">lifestyle</a></li>
+              <li><a href="#">industries</a></li>
+            </ul>
+          </div>
         </div>
+      </div>
 
-
-        <div class="services-section">
-            <div class="fix-width">
-                <div class="services-top text-left pl-3 pb-3">
-                    <h2>Popular professional services</h2>
-                </div>
-                <div class="services-bottom clearfix">
-                    <div class="services-1 float-left text-center position-relative">
-                        <img class="img-1" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741678/logo-design-2x.png" alt="services">
-                        <span class="span-4 position-absolute">Build your brand</span>
-                        <span class="span-5 position-absolute">Logo Desing</span>
-                        <span class="span-6 position-absolute"><i class="fas fa-angle-left"></i></span>
-                    </div>
-                    <div class="services-1 float-left text-center position-relative">
-                        <img class="img-1" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/ae11e2d45410b0eded7fba0e46b09dbd-1598561917003/wordpress-2x.png" alt="services">
-                        <span class="span-4 position-absolute">Customize your site</span>
-                        <span class="span-5 position-absolute">Wordpress</span>
-                    </div>
-                    <div class="services-1 float-left text-center position-relative">
-                        <img class="img-1" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741669/voiceover-2x.png" alt="services">
-                        <span class="span-4 position-absolute">Share your message</span>
-                        <span class="span-5 position-absolute">Voice Over</span>
-                    </div>
-                    <div class="services-1 float-left text-center position-relative">
-                        <img class="img-1" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741663/animated-explainer-2x.png" alt="services">
-                        <span class="span-4 position-absolute">Engage your audience</span>
-                        <span class="span-5 position-absolute">Video Explainer</span>
-                    </div>
-                    <div class="services-1 float-left text-center position-relative">
-                        <img class="img-1" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741667/social-2x.png" alt="services">
-                        <span class="span-4 position-absolute">Reach more customers</span>
-                        <span class="span-5 position-absolute">Social Media</span>
-                        <span class="span-7 position-absolute"><i class="fas fa-angle-right"></i></span>
-                    </div>
-                </div>
-            </div>
+      <div class="banner-bottom clearfix">
+        <div class="fix-width">
+          <div class="name float-left text-right">
+            <h4 class="h-1">Trusted by:</h4>
+          </div>
+          <div class="img-section float-right text-left">
+            <ul class="ul2">
+              <li>
+                <img
+                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/facebook.a1eeefc.png"
+                  alt="Fiverr"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/google.517da09.png"
+                  alt="Fiverr"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/netflix.e3ad953.png"
+                  alt="Fiverr"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/pandg.8b7310b.png"
+                  alt="Fiverr"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/paypal.ec56157.png"
+                  alt="Fiverr"
+                />
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
 
-
-
-        <div class="talent-section clearfix">
-            <div class="fix-width">
-                <div class="talent-1 text-left float-left pl-4">
-                    <h2>A whole world of freelance talent at your fingertips</h2>
-                    <div class="talent">
-                        <h4>The best for every budget</h4>
-                        <p>
-                            Find high-quality services at every price point. 
-                            No hourly rates, just project-based pricing.
-                        </p>
-                    </div>
-                    <div class="talent">
-                        <h4>Quality work done quickly</h4>
-                        <p>
-                            Find the right freelancer to begin working 
-                            on your project within minutes.
-                        </p>
-                    </div>
-                    <div class="talent">
-                        <h4>Protected payments, every time</h4>
-                        <p>
-                            Always know what you'll pay upfront. 
-                            Your payment isn't released until you 
-                            approve the work.
-                        </p>
-                    </div>
-                    <div class="talent">
-                        <h4>24/7 support</h4>
-                        <p>
-                            Questions? Our round-the-clock 
-                            support team is available to help 
-                            anytime, anywhere.
-                        </p>
-                    </div>
-                </div>
-                <div class="talent-2 position-relative float-right">
-                    <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_700,dpr_1.0/v1/attachments/generic_asset/asset/089e3bb9352f90802ad07ad9f6a4a450-1599517407052/selling-proposition-still-1400-x1.png" alt="video image">
-                    <span class="span-8 position-absolute"><i class="fas fa-play"></i></span>
-                </div>
+      <div class="services-section">
+        <div class="fix-width">
+          <div class="services-top text-left pl-3 pb-3">
+            <h2>Popular professional services</h2>
+          </div>
+          <div class="services-bottom clearfix">
+            <div class="services-1 float-left text-center position-relative">
+              <img
+                class="img-1"
+                src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741678/logo-design-2x.png"
+                alt="services"
+              />
+              <span class="span-4 position-absolute">Build your brand</span>
+              <span class="span-5 position-absolute">Logo Desing</span>
+              <span class="span-6 position-absolute"
+                ><i class="fas fa-angle-left"></i
+              ></span>
             </div>
-        </div>
-
-
-        <div class="explore-section">
-            <div class="fix-width">
-                <div class="explore-1 clearfix">
-                    <h3>Explore the Marketplace</h3>
-                    <div class="explore float-left text-center">
-                        <img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/graphics-design.d32a2f8.svg" alt="explore image">
-                        <p>graphics desing</p>
-                    </div><br>
-                    <div class="explore float-left text-center">
-                        <img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/online-marketing.74e221b.svg" alt="explore image">
-                        <p>digital  marketing</p>
-                    </div><br>
-                    <div class="explore float-left text-center">
-                        <img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/writing-translation.32ebe2e.svg" alt="explore image">
-                        <p>writing  translation</p>
-                    </div>
-                    <div class="explore float-left text-center">
-                        <img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/video-animation.f0d9d71.svg" alt="explore image">
-                        <p>video  animation</p>
-                    </div>
-                    <div class="explore float-left text-center">
-                        <img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/music-audio.320af20.svg" alt="explore image">
-                        <p>music  audio</p>
-                    </div>
-                    <div class="explore float-left text-center">
-                        <img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/programming.9362366.svg" alt="explore image">
-                        <p>programming  tech</p>
-                    </div>
-                    <div class="explore float-left text-center">
-                        <img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/business.bbdf319.svg" alt="explore image">
-                        <p>business</p>
-                    </div>
-                    <div class="explore float-left text-center">
-                        <img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/lifestyle.745b575.svg" alt="explore image">
-                        <p>lifestyle</p>
-                    </div>
-                </div>
+            <div class="services-1 float-left text-center position-relative">
+              <img
+                class="img-1"
+                src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/ae11e2d45410b0eded7fba0e46b09dbd-1598561917003/wordpress-2x.png"
+                alt="services"
+              />
+              <span class="span-4 position-absolute">Customize your site</span>
+              <span class="span-5 position-absolute">Wordpress</span>
             </div>
-        </div>
-
-
-        <div class="team-section clearfix">
-            <div class="fix-width">
-                <div class="team-1 float-left text-left">
-                    <div class="team-top position-relative">
-                        <img class="d-inline-block" src="https://qumracapital.com/wp-content/uploads/2017/12/fiverr-logo.png" alt="fiverr">
-                        <h3 class="d-inline-block text-white">business.</h3>
-                        <span class="span-9 position-absolute">new</span>
-                    </div>
-                    <div class="team-bottom text-left text-white">
-                        <span>A business solution designed for <i>Teams</i></span>
-                        <h6>
-                            Upgrade to a curated experience packed with tools 
-                            and benefits, dedicated to businesses
-                        </h6>
-                        <p>Connect to freelancers with proven business experience</p>
-                        <p>Get matched with the perfect talent by a customer success manager</p>
-                        <p>Manage teamwork and boost productivity with one powerful workspace</p>
-                    </div>
-                    <button class="btn-2">explore fiverr business</button>
-                </div>
-                <div class="team-2 float-right text-center">
-                    <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_870,dpr_1.0/v1/attachments/generic_asset/asset/d9c17ceebda44764b591a8074a898e63-1599597624757/business-desktop-870-x1.png" alt="team">
-                </div>
+            <div class="services-1 float-left text-center position-relative">
+              <img
+                class="img-1"
+                src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741669/voiceover-2x.png"
+                alt="services"
+              />
+              <span class="span-4 position-absolute">Share your message</span>
+              <span class="span-5 position-absolute">Voice Over</span>
             </div>
-        </div>
-
-
-
-        <div class="cleant-section clearfix">
-            <div class="fix-width">
-                <div class="cleant-1 float-left text-center position-relative">
-                    <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_450,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173414/testimonial-video-still-naadam.jpg" alt="IMG">
-                    <span class="span-10 position-absolute"><i class="fas fa-play"></i></span>
-                    <span class="span-11 position-absolute"><i class="fas fa-angle-left"></i></span>
-                </div>
-                <div class="cleant-2 float-right text-left position-relative">
-                    <h2>caitlin tormey, chief commercial officer</h2>
-                    <h3>naadam</h3>
-                    <p>
-                        "We've used Fiverr for Shopify web development,
-                        graphics desing, and backend web development. 
-                        Working with Fiverr makes my job a little easier
-                        every day."
-                    </p>
-                    <span class="span-12 position-absolute"><i class="fas fa-angle-right"></i></span>
-                </div>
+            <div class="services-1 float-left text-center position-relative">
+              <img
+                class="img-1"
+                src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741663/animated-explainer-2x.png"
+                alt="services"
+              />
+              <span class="span-4 position-absolute">Engage your audience</span>
+              <span class="span-5 position-absolute">Video Explainer</span>
             </div>
-        </div>
-
-
-        <div class="project-section">
-            <div class="fix-width">
-                <div class="project-top">
-                    <h1>Get inspired with projects made by our freelancers</h1>
-                </div>
-                <div class="project-bottom mt-5 clearfix text-center">
-                    <div class="project float-left text-center position-relative">
-                        <span class="span-13 position-absolute"><i class="fas fa-angle-left"></i></span>
-                        <div class="project-img">
-                            <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_300,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/designerheather.jpg" alt="project">
-                        </div>
-                        <div class="project-details clearfix">
-                            <div class="details-logo float-left">
-                                <img src="https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto,w_72/profile/photos/25009814/original/heather-profile.jpg" alt="logo">
-                            </div>
-                            <div class="main-details float-right text-left">
-                                <h3>brochure design</h3>
-                                <p>by designerheather</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project float-left text-center">
-                        <div class="project-img">
-                            <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_300,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/paudmartins.png" alt="project">
-                        </div>
-                        <div class="project-details clearfix">
-                            <div class="details-logo float-left">
-                                <img src="https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto,w_72/attachments/profile/photo/46b812164268050bb7c582cec0eea3cc-1560700047401/fbdb107c-8a61-4de2-af23-292186430a6e.jpg" alt="logo">
-                            </div>
-                            <div class="main-details float-right text-left">
-                                <h3>web & mobile design</h3>
-                                <p>by paudmartins</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project float-left text-center position-relative">
-                        <span class="span-14 position-absolute"><i class="fas fa-angle-right"></i></span>
-                        <span class="span-15 position-absolute"><a href="#">see more project<i class="ml-2 fas fa-angle-right"></i></a></span>
-                        <div class="project-img">
-                            <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_300,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/dvincentgomes.jpg" alt="project">
-                        </div>
-                        <div class="project-details clearfix">
-                            <div class="details-logo float-left">
-                                <img src="https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto,w_72/attachments/profile/photo/01b6ce5dc58e320d3e1e27d9c6a10143-1556123965312/c675e6f4-303e-4fab-9854-314669dda095.jpg" alt="logo">
-                            </div>
-                            <div class="main-details float-right text-left">
-                                <h3>illustration</h3>
-                                <p>by dvincentgomes</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="services-1 float-left text-center position-relative">
+              <img
+                class="img-1"
+                src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741667/social-2x.png"
+                alt="services"
+              />
+              <span class="span-4 position-absolute">Reach more customers</span>
+              <span class="span-5 position-absolute">Social Media</span>
+              <span class="span-7 position-absolute"
+                ><i class="fas fa-angle-right"></i
+              ></span>
             </div>
+          </div>
         </div>
+      </div>
 
-
-        <div class="guideline-section">
-            <div class="fix-width">
-                <div class="guideline-top clearfix mb-2">
-                    <div class="g-header float-left text-left">
-                        <h1>Fiverr guides</h1>
-                    </div>
-                    <div class="g-more float-right text-right">
-                        <a href="#">see more guides<i class="fas fa-angle-right ml-2"></i></a>
-                    </div>
-                </div>
-                <div class="guideline-bottom">
-                    <div class="guides float-left">
-                        <div class="guides-img">
-                            <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_350,dpr_1.0/v1/attachments/generic_asset/asset/d532c0ad4feed007b3899cebad595286-1599611560157/guide-start-online-business-552-x2.png" alt="guides img">
-                        </div>
-                        <div class="guides-details text-left">
-                            <h4>Start an online business and work from home</h4>
-                            <h5>A complete guide to starting a small business online</h5>
-                        </div>
-                    </div>
-                    <div class="guides float-left">
-                        <div class="guides-img">
-                            <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_350,dpr_1.0/v1/attachments/generic_asset/asset/d532c0ad4feed007b3899cebad595286-1599611560168/guide-digital-marketing-552-x2.png" alt="guides img">
-                        </div>
-                        <div class="guides-details text-left">
-                            <h4>Digital marketing made easy</h4>
-                            <h5>A practical guide to understand what is digital marketing</h5>
-                        </div>
-                    </div>
-                    <div class="guides float-left">
-                        <div class="guides-img">
-                            <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_350,dpr_1.0/v1/attachments/generic_asset/asset/d532c0ad4feed007b3899cebad595286-1599611560155/guide-create-a-logo-552-x2.png" alt="guides img">
-                        </div>
-                        <div class="guides-details text-left">
-                            <h4>Create a logo for your business</h4>
-                            <h5>A step-by-step guide to create a memorable business logo</h5>
-                        </div>
-                    </div>
-                </div>
+      <div class="talent-section clearfix">
+        <div class="fix-width">
+          <div class="talent-1 text-left float-left pl-4">
+            <h2>A whole world of freelance talent at your fingertips</h2>
+            <div class="talent">
+              <h4>The best for every budget</h4>
+              <p>
+                Find high-quality services at every price point. No hourly
+                rates, just project-based pricing.
+              </p>
             </div>
-        </div>
-
-
-        <div class="img-div">
-            <div class="fix-width">
-                <div class="main-img position-relative">
-                    <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_1160,dpr_1.0/v1/attachments/generic_asset/asset/50218c41d277f7d85feeaf3efb4549bd-1599072608114/bg-signup-1160-x1.png" alt="Woner">
-                    <span class="span-16 position-absolute">Find the <i>talent</i> needed to get your business <i>growing.</i></span>
-                    <button class="position-absolute">get started</button>
-                </div>
+            <div class="talent">
+              <h4>Quality work done quickly</h4>
+              <p>
+                Find the right freelancer to begin working on your project
+                within minutes.
+              </p>
             </div>
-        </div>
-
-
-        <div class="about-section">
-            <div class="fix-width">
-                <div class="about float-left text-left">
-                    <h2>Categories</h2>
-                    <ul>
-                        <li><a href="#">graphics & desing</a></li>
-                        <li><a href="#">digital marketing</a></li>
-                        <li><a href="#">writing & translation</a></li>
-                        <li><a href="#">video & animation</a></li>
-                        <li><a href="#">music & audio</a></li>
-                        <li><a href="#">programming & tech</a></li>
-                        <li><a href="#">business</a></li>
-                        <li><a href="#">lifestyle</a></li>
-                        <li><a href="#">ditemap</a></li>
-                    </ul>
-                </div>
-                <div class="about text-left float-left">
-                    <h2>about</h2>
-                    <ul>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">press & news</a></li>
-                        <li><a href="#">partnerships</a></li>
-                        <li><a href="#">privacy policy</a></li>
-                        <li><a href="#">terms of service</a></li>
-                        <li><a href="#">intellectual property claims</a></li>
-                        <li><a href="#">investor relations</a></li>
-                    </ul>
-                </div>
-                <div class="about float-left text-left">
-                    <h2>support</h2>
-                    <ul>
-                        <li><a href="#">help & support</a></li>
-                        <li><a href="#">trust & safety</a></li>
-                        <li><a href="#">selling on fiverr</a></li>
-                        <li><a href="#">buying on fiverr</a></li>
-                    </ul>
-                </div>
-                <div class="about text-left float-left">
-                    <h2>community</h2>
-                    <ul>
-                        <li><a href="#">events</a></li>
-                        <li><a href="#">blog</a></li>
-                        <li><a href="#">forum</a></li>
-                        <li><a href="#">community standards</a></li>
-                        <li><a href="#">podcast</a></li>
-                        <li><a href="#">affiliates</a></li>
-                        <li><a href="#">invite a friend</a></li>
-                        <li><a href="#">become a seller</a></li>
-                        <li><a href="#">fiverr elevate <h4>Exclusive benefits</h4></a></li>
-                    </ul>
-                </div>
-                <div class="about float-left text-left">
-                    <h2>more from fiverr</h2>
-                    <ul>
-                        <li><a href="#">fiverr business</a></li>
-                        <li><a href="#">fiverr pro</a></li>
-                        <li><a href="#">fiverr studios</a></li>
-                        <li><a href="#">fiverr logo maker</a></li>
-                        <li><a href="#">fiverr guides</a></li>
-                        <li><a href="#">get inspired</a></li>
-                        <li><a href="#">clear voice <h4>content marketing</h4></a></li>
-                        <li><a href="#">AND OC <h4>invoice software</h4></a></li>
-                        <li><a href="#">learn <h4>online courses</h4></a></li>
-                    </ul>
-                </div>
+            <div class="talent">
+              <h4>Protected payments, every time</h4>
+              <p>
+                Always know what you'll pay upfront. Your payment isn't released
+                until you approve the work.
+              </p>
             </div>
-        </div>
-
-
-        <div class="footer-section">
-            <div class="fix-width">
-                <div class="footer clearfix">
-                    <div class="footer-1 float-left text-left">
-                        <img src="https://i.ibb.co/wy9q81v/fiverr-vector-logo-small-removebg-preview.png" alt="fiverr">
-                        <p>&copy; fiverr international ltd 2020</p>
-                    </div>
-                    <div class="footer-2 float-right text-right">
-                        <ul>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#">$USD</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="talent">
+              <h4>24/7 support</h4>
+              <p>
+                Questions? Our round-the-clock support team is available to help
+                anytime, anywhere.
+              </p>
             </div>
+          </div>
+          <div class="talent-2 position-relative float-right">
+            <img
+              src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_700,dpr_1.0/v1/attachments/generic_asset/asset/089e3bb9352f90802ad07ad9f6a4a450-1599517407052/selling-proposition-still-1400-x1.png"
+              alt="video image"
+            />
+            <span class="span-8 position-absolute"
+              ><i class="fas fa-play"></i
+            ></span>
+          </div>
         </div>
+      </div>
 
+      <div class="explore-section">
+        <div class="fix-width">
+          <div class="explore-1 clearfix">
+            <h3>Explore the Marketplace</h3>
+            <div class="explore float-left text-center">
+              <img
+                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/graphics-design.d32a2f8.svg"
+                alt="explore image"
+              />
+              <p>graphics desing</p>
+            </div>
+            <br />
+            <div class="explore float-left text-center">
+              <img
+                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/online-marketing.74e221b.svg"
+                alt="explore image"
+              />
+              <p>digital marketing</p>
+            </div>
+            <br />
+            <div class="explore float-left text-center">
+              <img
+                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/writing-translation.32ebe2e.svg"
+                alt="explore image"
+              />
+              <p>writing translation</p>
+            </div>
+            <div class="explore float-left text-center">
+              <img
+                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/video-animation.f0d9d71.svg"
+                alt="explore image"
+              />
+              <p>video animation</p>
+            </div>
+            <div class="explore float-left text-center">
+              <img
+                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/music-audio.320af20.svg"
+                alt="explore image"
+              />
+              <p>music audio</p>
+            </div>
+            <div class="explore float-left text-center">
+              <img
+                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/programming.9362366.svg"
+                alt="explore image"
+              />
+              <p>programming tech</p>
+            </div>
+            <div class="explore float-left text-center">
+              <img
+                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/business.bbdf319.svg"
+                alt="explore image"
+              />
+              <p>business</p>
+            </div>
+            <div class="explore float-left text-center">
+              <img
+                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/lifestyle.745b575.svg"
+                alt="explore image"
+              />
+              <p>lifestyle</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-section clearfix">
+        <div class="fix-width">
+          <div class="team-1 float-left text-left">
+            <div class="team-top position-relative">
+              <img
+                class="d-inline-block"
+                src="https://qumracapital.com/wp-content/uploads/2017/12/fiverr-logo.png"
+                alt="fiverr"
+              />
+              <h3 class="d-inline-block text-white">business.</h3>
+              <span class="span-9 position-absolute">new</span>
+            </div>
+            <div class="team-bottom text-left text-white">
+              <span>A business solution designed for <i>Teams</i></span>
+              <h6>
+                Upgrade to a curated experience packed with tools and benefits,
+                dedicated to businesses
+              </h6>
+              <p>Connect to freelancers with proven business experience</p>
+              <p>
+                Get matched with the perfect talent by a customer success
+                manager
+              </p>
+              <p>
+                Manage teamwork and boost productivity with one powerful
+                workspace
+              </p>
+            </div>
+            <button class="btn-2">explore fiverr business</button>
+          </div>
+          <div class="team-2 float-right text-center">
+            <img
+              src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_870,dpr_1.0/v1/attachments/generic_asset/asset/d9c17ceebda44764b591a8074a898e63-1599597624757/business-desktop-870-x1.png"
+              alt="team"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="cleant-section clearfix">
+        <div class="fix-width">
+          <div class="cleant-1 float-left text-center position-relative">
+            <img
+              src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_450,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173414/testimonial-video-still-naadam.jpg"
+              alt="IMG"
+            />
+            <span class="span-10 position-absolute"
+              ><i class="fas fa-play"></i
+            ></span>
+            <span class="span-11 position-absolute"
+              ><i class="fas fa-angle-left"></i
+            ></span>
+          </div>
+          <div class="cleant-2 float-right text-left position-relative">
+            <h2>caitlin tormey, chief commercial officer</h2>
+            <h3>naadam</h3>
+            <p>
+              "We've used Fiverr for Shopify web development, graphics desing,
+              and backend web development. Working with Fiverr makes my job a
+              little easier every day."
+            </p>
+            <span class="span-12 position-absolute"
+              ><i class="fas fa-angle-right"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-section">
+        <div class="fix-width">
+          <div class="project-top">
+            <h1>Get inspired with projects made by our freelancers</h1>
+          </div>
+          <div class="project-bottom mt-5 clearfix text-center">
+            <div class="project float-left text-center position-relative">
+              <span class="span-13 position-absolute"
+                ><i class="fas fa-angle-left"></i
+              ></span>
+              <div class="project-img">
+                <img
+                  src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_300,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/designerheather.jpg"
+                  alt="project"
+                />
+              </div>
+              <div class="project-details clearfix">
+                <div class="details-logo float-left">
+                  <img
+                    src="https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto,w_72/profile/photos/25009814/original/heather-profile.jpg"
+                    alt="logo"
+                  />
+                </div>
+                <div class="main-details float-right text-left">
+                  <h3>brochure design</h3>
+                  <p>by designerheather</p>
+                </div>
+              </div>
+            </div>
+            <div class="project float-left text-center">
+              <div class="project-img">
+                <img
+                  src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_300,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/paudmartins.png"
+                  alt="project"
+                />
+              </div>
+              <div class="project-details clearfix">
+                <div class="details-logo float-left">
+                  <img
+                    src="https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto,w_72/attachments/profile/photo/46b812164268050bb7c582cec0eea3cc-1560700047401/fbdb107c-8a61-4de2-af23-292186430a6e.jpg"
+                    alt="logo"
+                  />
+                </div>
+                <div class="main-details float-right text-left">
+                  <h3>web & mobile design</h3>
+                  <p>by paudmartins</p>
+                </div>
+              </div>
+            </div>
+            <div class="project float-left text-center position-relative">
+              <span class="span-14 position-absolute"
+                ><i class="fas fa-angle-right"></i
+              ></span>
+              <span class="span-15 position-absolute"
+                ><a href="#"
+                  >see more project<i class="ml-2 fas fa-angle-right"></i></a
+              ></span>
+              <div class="project-img">
+                <img
+                  src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_300,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/dvincentgomes.jpg"
+                  alt="project"
+                />
+              </div>
+              <div class="project-details clearfix">
+                <div class="details-logo float-left">
+                  <img
+                    src="https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto,w_72/attachments/profile/photo/01b6ce5dc58e320d3e1e27d9c6a10143-1556123965312/c675e6f4-303e-4fab-9854-314669dda095.jpg"
+                    alt="logo"
+                  />
+                </div>
+                <div class="main-details float-right text-left">
+                  <h3>illustration</h3>
+                  <p>by dvincentgomes</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guideline-section">
+        <div class="fix-width">
+          <div class="guideline-top clearfix mb-2">
+            <div class="g-header float-left text-left">
+              <h1>Fiverr guides</h1>
+            </div>
+            <div class="g-more float-right text-right">
+              <a href="#"
+                >see more guides<i class="fas fa-angle-right ml-2"></i
+              ></a>
+            </div>
+          </div>
+          <div class="guideline-bottom">
+            <div class="guides float-left">
+              <div class="guides-img">
+                <img
+                  src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_350,dpr_1.0/v1/attachments/generic_asset/asset/d532c0ad4feed007b3899cebad595286-1599611560157/guide-start-online-business-552-x2.png"
+                  alt="guides img"
+                />
+              </div>
+              <div class="guides-details text-left">
+                <h4>Start an online business and work from home</h4>
+                <h5>A complete guide to starting a small business online</h5>
+              </div>
+            </div>
+            <div class="guides float-left">
+              <div class="guides-img">
+                <img
+                  src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_350,dpr_1.0/v1/attachments/generic_asset/asset/d532c0ad4feed007b3899cebad595286-1599611560168/guide-digital-marketing-552-x2.png"
+                  alt="guides img"
+                />
+              </div>
+              <div class="guides-details text-left">
+                <h4>Digital marketing made easy</h4>
+                <h5>
+                  A practical guide to understand what is digital marketing
+                </h5>
+              </div>
+            </div>
+            <div class="guides float-left">
+              <div class="guides-img">
+                <img
+                  src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_350,dpr_1.0/v1/attachments/generic_asset/asset/d532c0ad4feed007b3899cebad595286-1599611560155/guide-create-a-logo-552-x2.png"
+                  alt="guides img"
+                />
+              </div>
+              <div class="guides-details text-left">
+                <h4>Create a logo for your business</h4>
+                <h5>
+                  A step-by-step guide to create a memorable business logo
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="img-div">
+        <div class="fix-width">
+          <div class="main-img position-relative">
+            <img
+              src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_1160,dpr_1.0/v1/attachments/generic_asset/asset/50218c41d277f7d85feeaf3efb4549bd-1599072608114/bg-signup-1160-x1.png"
+              alt="Woner"
+            />
+            <span class="span-16 position-absolute"
+              >Find the <i>talent</i> needed to get your business
+              <i>growing.</i></span
+            >
+            <button class="position-absolute">get started</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <div class="fix-width">
+          <div class="about float-left text-left">
+            <h2>Categories</h2>
+            <ul>
+              <li><a href="#">graphics & desing</a></li>
+              <li><a href="#">digital marketing</a></li>
+              <li><a href="#">writing & translation</a></li>
+              <li><a href="#">video & animation</a></li>
+              <li><a href="#">music & audio</a></li>
+              <li><a href="#">programming & tech</a></li>
+              <li><a href="#">business</a></li>
+              <li><a href="#">lifestyle</a></li>
+              <li><a href="#">ditemap</a></li>
+            </ul>
+          </div>
+          <div class="about text-left float-left">
+            <h2>about</h2>
+            <ul>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">press & news</a></li>
+              <li><a href="#">partnerships</a></li>
+              <li><a href="#">privacy policy</a></li>
+              <li><a href="#">terms of service</a></li>
+              <li><a href="#">intellectual property claims</a></li>
+              <li><a href="#">investor relations</a></li>
+            </ul>
+          </div>
+          <div class="about float-left text-left">
+            <h2>support</h2>
+            <ul>
+              <li><a href="#">help & support</a></li>
+              <li><a href="#">trust & safety</a></li>
+              <li><a href="#">selling on fiverr</a></li>
+              <li><a href="#">buying on fiverr</a></li>
+            </ul>
+          </div>
+          <div class="about text-left float-left">
+            <h2>community</h2>
+            <ul>
+              <li><a href="#">events</a></li>
+              <li><a href="#">blog</a></li>
+              <li><a href="#">forum</a></li>
+              <li><a href="#">community standards</a></li>
+              <li><a href="#">podcast</a></li>
+              <li><a href="#">affiliates</a></li>
+              <li><a href="#">invite a friend</a></li>
+              <li><a href="#">become a seller</a></li>
+              <li>
+                <a href="#"
+                  >fiverr elevate
+                  <h4>Exclusive benefits</h4></a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="about float-left text-left">
+            <h2>more from fiverr</h2>
+            <ul>
+              <li><a href="#">fiverr business</a></li>
+              <li><a href="#">fiverr pro</a></li>
+              <li><a href="#">fiverr studios</a></li>
+              <li><a href="#">fiverr logo maker</a></li>
+              <li><a href="#">fiverr guides</a></li>
+              <li><a href="#">get inspired</a></li>
+              <li>
+                <a href="#"
+                  >clear voice
+                  <h4>content marketing</h4></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  >AND OC
+                  <h4>invoice software</h4></a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  >learn
+                  <h4>online courses</h4></a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <div class="fix-width">
+          <div class="footer clearfix">
+            <div class="footer-1 float-left text-left">
+              <img
+                src="https://i.ibb.co/wy9q81v/fiverr-vector-logo-small-removebg-preview.png"
+                alt="fiverr"
+              />
+              <p>&copy; fiverr international ltd 2020</p>
+            </div>
+            <div class="footer-2 float-right text-right">
+              <ul>
+                <li>
+                  <a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+                </li>
+                <li><a href="#">$USD</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-
-
-
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
-
-
-
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

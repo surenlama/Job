@@ -1732,80 +1732,137 @@ a{
         </div>
 
 
-        <div class="services-section">
-            <div class="fix-width">
-                <div class="services-top text-left pl-3 pb-3">
-                    <h2>Freelancing Services</h2>
-                </div>
-
-                <!-- <div class="services-bottom clearfix">
-                    {% for i in category_list %}
-
-              
-                     <div class="services-1 float-left text-center position-relative">
-
-                        <img src="/media/{{i.image}}" alt="no image" style="height: 250px; width: 150px;">                           
-                        <span class="span-4 position-absolute">Reach more customers</span>
-                        <span class="span-5 position-absolute">Social Media</span>
-                        <span class="span-7 position-absolute"><i class="fas fa-angle-right"></i></span>
-
-                    </div>  
-                    {% endfor %}
-
-
-                </div> -->
-                <div class="services-bottom clearfix">
-                <div class="owl-carousel owl-theme">
-                    {% for item in category_list %}            
-                        <div class="services-1 float-left text-center position-relative">
-                            <img src="/media/{{item.image}}" alt="no image" style="height: 250px; width: 150px;">                           
-                        <h2 class="span-4 position-absolute" style="color: rgb(253, 250, 250);">{{item.name}}</h2>
-                        </div>
-                    <!-- <div class="item"><h4>{{i.name}}</h4></div> -->
-            {% endfor %}
-                </div>
-            </div>
-            </div>
-        </div>
-
-
 
         <div class="services-section">
             <div class="fix-width">
-                <div class="services-top text-left pl-3 pb-3">
-                    <h2>Field Work Services</h2>
+              <div class="services-top text-left pl-3 pb-3">
+                <h2>Popular professional services</h2>
+              </div>
+              <div class="services-bottom clearfix">
+                <div class="services-1 float-left text-center position-relative">
+                  <img
+                    class="img-1"
+                    src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741678/logo-design-2x.png"
+                    alt="services"
+                  />
+                  <span class="span-4 position-absolute">Build your brand</span>
+                  <span class="span-5 position-absolute">Logo Desing</span>
+                  <span class="span-6 position-absolute"
+                    ><i class="fas fa-angle-left"></i
+                  ></span>
                 </div>
-                <div class="services-bottom clearfix">
-                    <div class="services-1 float-left text-center position-relative">
-                        <img class="img-1" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741678/logo-design-2x.png" alt="services">
-                        <span class="span-4 position-absolute">Build your brand</span>
-                        <span class="span-5 position-absolute">Logo Desing</span>
-                        <span class="span-6 position-absolute"><i class="fas fa-angle-left"></i></span>
-                    </div>
-                    <div class="services-1 float-left text-center position-relative">
-                        <img class="img-1" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/ae11e2d45410b0eded7fba0e46b09dbd-1598561917003/wordpress-2x.png" alt="services">
-                        <span class="span-4 position-absolute">Customize your site</span>
-                        <span class="span-5 position-absolute">Wordpress</span>
-                    </div>
-                    <div class="services-1 float-left text-center position-relative">
-                        <img class="img-1" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741669/voiceover-2x.png" alt="services">
-                        <span class="span-4 position-absolute">Share your message</span>
-                        <span class="span-5 position-absolute">Voice Over</span>
-                    </div>
-                    <div class="services-1 float-left text-center position-relative">
-                        <img class="img-1" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741663/animated-explainer-2x.png" alt="services">
-                        <span class="span-4 position-absolute">Engage your audience</span>
-                        <span class="span-5 position-absolute">Video Explainer</span>
-                    </div>
-                    <div class="services-1 float-left text-center position-relative">
-                        <img class="img-1" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741667/social-2x.png" alt="services">
-                        <span class="span-4 position-absolute">Reach more customers</span>
-                        <span class="span-5 position-absolute">Social Media</span>
-                        <span class="span-7 position-absolute"><i class="fas fa-angle-right"></i></span>
-                    </div>
+                <div class="services-1 float-left text-center position-relative">
+                  <img
+                    class="img-1"
+                    src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/ae11e2d45410b0eded7fba0e46b09dbd-1598561917003/wordpress-2x.png"
+                    alt="services"
+                  />
+                  <span class="span-4 position-absolute">Customize your site</span>
+                  <span class="span-5 position-absolute">Wordpress</span>
                 </div>
+                <div class="services-1 float-left text-center position-relative">
+                  <img
+                    class="img-1"
+                    src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741669/voiceover-2x.png"
+                    alt="services"
+                  />
+                  <span class="span-4 position-absolute">Share your message</span>
+                  <span class="span-5 position-absolute">Voice Over</span>
+                </div>
+                <div class="services-1 float-left text-center position-relative">
+                  <img
+                    class="img-1"
+                    src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741663/animated-explainer-2x.png"
+                    alt="services"
+                  />
+                  <span class="span-4 position-absolute">Engage your audience</span>
+                  <span class="span-5 position-absolute">Video Explainer</span>
+                </div>
+                <div class="services-1 float-left text-center position-relative">
+                  <img
+                    class="img-1"
+                    src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741667/social-2x.png"
+                    alt="services"
+                  />
+                  <span class="span-4 position-absolute">Reach more customers</span>
+                  <span class="span-5 position-absolute">Social Media</span>
+                  <span class="span-7 position-absolute">
+                    <a href="#">
+                    <i class="fas fa-angle-right"></i>
+                </a>
+                </span>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
+
+  
+
+
+
+        
+     
+
+        <div class="services-section">
+            <div class="fix-width">
+              <div class="services-top text-left pl-3 pb-3">
+                <h2>Popular professional services</h2>
+              </div>
+              <div class="services-bottom clearfix">
+                <div class="services-1 float-left text-center position-relative">
+                  <img
+                    class="img-1"
+                    src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741678/logo-design-2x.png"
+                    alt="services"
+                  />
+                  <span class="span-4 position-absolute">Build your brand</span>
+                  <span class="span-5 position-absolute">Logo Desing</span>
+                  <span class="span-6 position-absolute"
+                    ><i class="fas fa-angle-left"></i
+                  ></span>
+                </div>
+                <div class="services-1 float-left text-center position-relative">
+                  <img
+                    class="img-1"
+                    src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/ae11e2d45410b0eded7fba0e46b09dbd-1598561917003/wordpress-2x.png"
+                    alt="services"
+                  />
+                  <span class="span-4 position-absolute">Customize your site</span>
+                  <span class="span-5 position-absolute">Wordpress</span>
+                </div>
+                <div class="services-1 float-left text-center position-relative">
+                  <img
+                    class="img-1"
+                    src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741669/voiceover-2x.png"
+                    alt="services"
+                  />
+                  <span class="span-4 position-absolute">Share your message</span>
+                  <span class="span-5 position-absolute">Voice Over</span>
+                </div>
+                <div class="services-1 float-left text-center position-relative">
+                  <img
+                    class="img-1"
+                    src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741663/animated-explainer-2x.png"
+                    alt="services"
+                  />
+                  <span class="span-4 position-absolute">Engage your audience</span>
+                  <span class="span-5 position-absolute">Video Explainer</span>
+                </div>
+                <div class="services-1 float-left text-center position-relative">
+                  <img
+                    class="img-1"
+                    src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_255,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741667/social-2x.png"
+                    alt="services"
+                  />
+                  <span class="span-4 position-absolute">Reach more customers</span>
+                  <span class="span-5 position-absolute">Social Media</span>
+                  <span class="span-7 position-absolute"
+                    ><i class="fas fa-angle-right"></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
         <div class="talent-section clearfix" style="background-color: rgb(184, 145, 16);">
